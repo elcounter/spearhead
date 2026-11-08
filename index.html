@@ -238,6 +238,10 @@ body.g-has-foot{padding-bottom:calc(var(--navh) + 66px)}
 .g-modal[hidden]{display:none}
 .g-sheet{background:var(--page);width:100%;max-width:760px;max-height:100%;overflow:auto;border-radius:14px 14px 0 0;padding-bottom:env(safe-area-inset-bottom,0px)}
 .g-x{flex:none;width:34px;height:34px;display:grid;place-items:center;background:none;border:0;color:#fff;cursor:pointer}
+.doc .maps{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;background:var(--card);border-radius:8px;padding:12px;box-shadow:0 1px 2px rgba(0,0,0,.08)}
+.doc .maps figure{margin:0;text-align:center;font:600 13px var(--body);color:var(--muted)}
+.doc .maps svg{display:block;width:100%;height:auto;border-radius:4px;margin-bottom:6px}
+@media (max-width:420px){.doc .maps{grid-template-columns:1fr}}
 /* Pied de page */
 .foot{padding:24px 16px calc(24px + env(safe-area-inset-bottom,0px));text-align:center;color:var(--muted);font-size:12px;line-height:1.6;border-top:1px solid var(--line)}
 .foot p{margin:0}
@@ -297,7 +301,7 @@ body.g-has-foot{padding-bottom:calc(var(--navh) + 66px)}
 
 <footer class="foot">
   <p>© 2026 elcounter. Tous droits réservés.</p>
-  <p>SpearCounter version 1.3.0 · MAJ 08-11-2026</p>
+  <p>SpearCounter version 1.4.0 · MAJ 08-11-2026</p>
   <p>Application non officielle, non affiliée à Games Workshop.</p>
   <p>Warhammer Spearhead est une marque de Games Workshop Ltd.</p>
 </footer>
@@ -317,13 +321,15 @@ body.g-has-foot{padding-bottom:calc(var(--navh) + 66px)}
 <script src="data/khazalite.js"></script>
 <script src="data/ogors.js"></script>
 <script src="data/crixxit.js"></script>
+<script src="data/packs-classiques.js"></script>
 <script src="data/cite-de-cendre.js"></script>
 <script src="partie.js"></script>
 <script>
 (function(){
   "use strict";
   const SPEARHEADS = window.SPEARHEADS || [];
-  const PACKS = window.RULEPACKS || [];
+  const PACK_ORDER = ["feu-et-jade","sable-et-os","cite-de-cendre","double"];
+  const PACKS = (window.RULEPACKS || []).slice().sort((a, b) => (PACK_ORDER.indexOf(a.id) + 1 || 99) - (PACK_ORDER.indexOf(b.id) + 1 || 99));
   // Couleur par phase (code couleur de l'application officielle)
   const PHASE = {
     hero:"var(--ph-hero)", shoot:"var(--ph-shoot)", fight:"var(--ph-fight)", charge:"var(--ph-charge)",
@@ -386,6 +392,7 @@ body.g-has-foot{padding-bottom:calc(var(--navh) + 66px)}
         case "ul": return `<ul>${b.x.map(i => `<li>${esc(i)}</li>`).join("")}</ul>`;
         case "ol": return `<ol>${b.x.map(i => `<li>${esc(i)}</li>`).join("")}</ol>`;
         case "ab": return docAb(b.a);
+        case "maps": return `<div class="maps">${b.x.map(([cap, svg]) => `<figure>${svg}<figcaption>${esc(cap)}</figcaption></figure>`).join("")}</div>`;
         case "twists": return b.x.map(t => twistCard(t, b.face)).join("");
         case "tacs": return (PK.tactics || []).map(tacCard).join("");
         default: return "";
