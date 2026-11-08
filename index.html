@@ -129,6 +129,9 @@ main{padding-block:16px 40px}
 .ios-hint[hidden]{display:none}
 .ios-hint p{margin:0 0 10px}
 .ios-hint button{background:#e9c96b;color:#1b1b1b;border:0;border-radius:6px;padding:6px 12px;font:700 13px var(--body);cursor:pointer}
+/* Accueil */
+.home-intro{margin:0 0 12px;font:500 14px var(--display);letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.sh-link small{display:block;margin-top:4px;font:500 12px var(--display);letter-spacing:.08em;text-transform:uppercase;color:#e9c96b}
 /* Pied de page */
 .foot{padding:24px 16px calc(24px + env(safe-area-inset-bottom,0px));text-align:center;color:var(--muted);font-size:12px;line-height:1.6;border-top:1px solid var(--line)}
 .foot p{margin:0}
@@ -141,19 +144,22 @@ main{padding-block:16px 40px}
 <header class="bar">
   <div class="in top">
     <button class="back" id="back" type="button" aria-label="Retour" hidden><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg></button>
-    <div class="ttl"><span class="kicker">SpearCounter</span><h1 id="title">Forgeruines de Hashut</h1></div>
+    <div class="ttl"><span class="kicker" id="kicker">Warhammer Spearhead</span><h1 id="title">SpearCounter</h1></div>
     <button class="install" id="install" type="button" hidden aria-label="Installer l'application"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg>Installer</button>
   </div>
-  <nav class="in tabs" id="tabs">
-    <a href="#memo" id="nav-memo">Mémo</a>
-    <a href="#regles" id="nav-regles">Règles</a>
-    <a href="#phases" id="nav-phases">Phases</a>
+  <nav class="in tabs" id="tabs" hidden>
+    <a href="#" id="nav-memo">Mémo</a>
+    <a href="#" id="nav-regles">Règles</a>
+    <a href="#" id="nav-phases">Phases</a>
   </nav>
 </header>
 
 <main class="in">
+  <!-- Accueil : choix du Spearhead -->
+  <section id="view-home"><p class="home-intro">Choisis ton Spearhead</p><div class="list" id="home"></div></section>
+
   <!-- Mémo -->
-  <section id="view-memo"><div class="list" id="list"></div></section>
+  <section id="view-memo" hidden><div class="list" id="list"></div></section>
 
   <!-- Fiche unité -->
   <section id="view-unit" hidden><div class="sheet" id="unit"></div></section>
@@ -168,7 +174,7 @@ main{padding-block:16px 40px}
 
 <footer class="foot">
   <p>© 2026 elcounter. Tous droits réservés.</p>
-  <p>SpearCounter version 1.0.0 · MAJ 08-11-2026</p>
+  <p>SpearCounter version 1.1.0 · MAJ 08-11-2026</p>
   <p>Application non officielle, non affiliée à Games Workshop.</p>
   <p>Warhammer Spearhead est une marque de Games Workshop Ltd.</p>
 </footer>
@@ -178,9 +184,11 @@ main{padding-block:16px 40px}
   <button type="button" id="ios-hint-ok">OK</button>
 </div>
 
+<script src="data/hashut.js"></script>
 <script>
 (function(){
   "use strict";
+  const SPEARHEADS = window.SPEARHEADS || [];
   // Couleur par phase (code couleur de l'application officielle)
   const PHASE = {
     hero:"var(--ph-hero)", shoot:"var(--ph-shoot)", fight:"var(--ph-fight)", charge:"var(--ph-charge)",
@@ -188,97 +196,25 @@ main{padding-block:16px 40px}
   };
   const PHASE_LABEL = {hero:"Phase des héros", move:"Mouvement", shoot:"Tir", charge:"Charge", fight:"Combat", end:"Fin de tour", defense:"Défense", passive:"Passif général"};
 
-  // ---------- Données ----------
-  const UNITS = [
-    {id:"despote", en:"Despote de Guerre",
-      stats:{M:'4"', S:6, C:2, Sv:"3+"},
-      weapons:[{n:"Vouge de Flambedémon", range:"Mêlée", a:5, h:3, w:3, r:1, d:"2", crit:"mortal"}],
-      abilities:[
-        {c:"end", t:"Passif", n:"Impitoyable Conquérant", x:[
-          "Effet : si cette unité a au moins un point de pouvoir démoniaque, les unités amies ayant 0 point de pouvoir démoniaque comptent comme ayant 1 point de pouvoir démoniaque tant qu'elles sont entièrement à 6\" et visibles d'elle.",
-          "Pour chaque point de pouvoir démoniaque qu'a cette unité, ajoutez 3\" à la portée de cette aptitude."]}
-      ],
-      kw:"HÉROS, INFANTERIE"},
-    {id:"dominotaure", en:"Machine Dominotaure avec Canons d'Immolation",
-      stats:{M:'6"', S:10, C:2, Sv:"2+"},
-      weapons:[
-        {n:"Canons d'Immolation", range:'8"', a:5, h:2, w:4, r:1, d:"D3", crit:"none", extra:["Tir en combat"]},
-        {n:"Cornes et Coups Cinglants", range:"Mêlée", a:3, h:4, w:3, r:1, d:"D3", crit:"none"}
-      ],
-      abilities:[
-        {c:"passive", t:"Passif", n:"Force Démoniaque", x:[
-          "Effet : pour chaque point de pouvoir démoniaque de cette unité :",
-          "Ajoutez 1\" à sa caractéristique de Mouvement.",
-          "Ajoutez 1 à la caractéristique d'Attaques de ses armes."]}
-      ],
-      kw:"MACHINE DE GUERRE, RENFORTS"},
-    {id:"bombarde", en:"Bombarde de Tourment",
-      stats:{M:'4"', S:8, C:2, Sv:"3+"},
-      weapons:[
-        {n:"Torrent d'Énergie de la Ruine", range:'30"', a:4, h:3, w:3, r:1, d:"D3", crit:"none", extra:["Anti-CAVALERIE (+1 Perf.)","Anti-INFANTERIE (+1 Perf.)"]},
-        {n:"Armes d'Artilleurs", range:"Mêlée", a:3, h:4, w:4, r:0, d:"1", crit:"none"}
-      ],
-      abilities:[
-        {c:"shoot", t:"Passif", n:"Trajectoire Calculée", x:[
-          "Effet : ajoutez 1 aux jets de touche des attaques de tir de cette unité qui ciblent une unité ennemie ayant au moins 5 figurines et se trouvant à plus de 12\" de cette unité."]},
-        {c:"shoot", t:"Une fois par tour (armée), votre phase de tir", n:"Bombardement de la Ruine", x:[
-          "Annonce : si cette unité a utilisé une aptitude de TIR à ce tour et que toutes ses attaques ont ciblé la même unité ennemie, cette dernière est la cible. Ensuite, vous pouvez choisir comme cibles supplémentaires un nombre d'unités ennemies à 6\" de la cible égal au nombre de points de pouvoir démoniaque de cette unité.",
-          "Effet : jetez un dé pour chaque cible. Sur 3+, soustrayez 3 au score de contrôle de la cible pour le restant du tour."]}
-      ],
-      kw:"MACHINE DE GUERRE"},
-    {id:"cohorte", en:"Cohorte Infernale avec Lances Hashutites",
-      stats:{M:'4"', S:1, C:1, Sv:"3+"},
-      weapons:[{n:"Lance Hashutite", range:"Mêlée", a:2, h:3, w:4, r:0, d:"1", crit:"none", extra:["Anti-charge (+1 Perf.)"]}],
-      abilities:[
-        {c:"hero", t:"Une fois par bataille, n'importe quelle phase des héros", n:"Frappez les Gongs", x:[
-          "Effet : le Porteur de Gong de cette unité (s'il y en a un) est un pion. Vous pouvez retirer ce Porteur de Gong du champ de bataille et ramener D3 figurines tuées dans son unité."]},
-        {c:"defense", t:"Passif", n:"Résilience Démoniaque", x:[
-          "Effet : appliquez l'effet correspondant au nombre de points de pouvoir démoniaque (PPD) de cette unité :",
-          "1 PPD : cette unité a PROTECTION (6+).",
-          "2 PPD : cette unité a PROTECTION (5+).",
-          "3 PPD : cette unité a PROTECTION (5+) et vous ignorez le premier point de dégât qui lui est alloué à chaque phase."]}
-      ],
-      kw:"INFANTERIE, RENFORTS"}
-  ];
 
-  // Règles de l'armée
-  const ARMY = {id:"armee", en:"Règles de l'armée", sections:[
-    {key:"trait", title:"Trait de bataille", who:"Trait de bataille", abilities:[
-      {c:"hero", t:"Une fois par tour (armée), votre phase des héros", n:"Dompter le Pouvoir Démoniaque", x:[
-        "Effet : vous devez utiliser cette aptitude au début de chacune de vos phases des héros. Retirez tous les points de pouvoir démoniaque de chaque unité amie. Ensuite, gagnez autant de points de pouvoir démoniaque que le numéro du round de bataille en cours plus 1.",
-        "Ensuite, allouez vos points de pouvoir démoniaque aux unités amies. Chaque unité peut avoir au maximum 3 points de pouvoir démoniaque. Ensuite, tous les points de pouvoir démoniaque non alloués sont perdus."]}
-    ]},
-    {key:"regiment", pick:true, title:"Aptitude de régiment", who:"Aptitude de régiment", abilities:[
-      {c:"passive", t:"Une fois par bataille, phase de déploiement", n:"Progression Implacable", x:[
-        "Annonce : choisissez comme cibles 2 unités de Cohortes Infernales amies.",
-        "Effet : chaque cible peut immédiatement se déplacer de jusqu'à 3\" mais ne peut pas utiliser d'aptitude de CHARGE au premier round de bataille."]},
-      {c:"shoot", t:"Une fois par tour, votre phase de tir", n:"Bombardement de Suppression", x:[
-        "Annonce : choisissez comme cible une unité d'INFANTERIE ennemie à laquelle on a alloué au moins un point de dégât à ce tour à cause d'attaques de tir d'une Bombarde de Tourment amie.",
-        "Effet : jusqu'au début de votre prochain tour, soustrayez 1 au nombre de dés jetés pour les jets de charge pour la cible, jusqu'à un minimum de 1."]}
-    ]},
-    {key:"opti", pick:true, title:"Optimisation du général", who:"Optimisation (général)", abilities:[
-      {c:"hero", t:"Une fois par bataille, n'importe quelle phase des héros", n:"Parchemin de Pétrification", x:[
-        "Effet : pour le restant du tour, votre général a une PROTECTION (2+) mais ne peut pas utiliser d'aptitude ni être la cible d'aptitude amie."]},
-      {c:"shoot", t:"Une fois par bataille, votre phase de tir", n:"Calice de Ténèbres", x:[
-        "Annonce : choisissez comme cible une unité ennemie visible à 12\" de votre général.",
-        "Effet : infligez D3 dégâts mortels à la cible."]},
-      {c:"defense", t:"Passif", n:"Talisman d'Obsidienne", x:[
-        "Effet : ignorez le premier point de dégât alloué à votre général à chaque phase."]},
-      {c:"fight", t:"Une fois par bataille, n'importe quelle phase de mêlée", n:"Amulette de Haine Brûlante", x:[
-        "Effet : pour le restant du tour, les attaques de votre général infligent des touches critiques sur un jet de touche non modifié de 5+."]}
-    ]}
-  ]};
-  const PHOTOS = {"armee": "img/armee.jpg", "bombarde": "img/bombarde.jpg", "cohorte": "img/cohorte.jpg", "despote": "img/despote.jpg", "dominotaure": "img/dominotaure.jpg"};
   const CRIT_LABEL = {none:"", "2hits":"Critique (2 touches)", auto:"Critique (blessure auto)", mortal:"Critique (mortel)"};
 
   const $ = id => document.getElementById(id);
   const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
   const isMelee = w => w.range === "Mêlée";
 
+  const photoAttr = src => src ? ` style="--img:url('${src}')"` : "";
+  let SH = null; // Spearhead affiché
+
+  // ---------- Accueil ----------
+  $("home").innerHTML = SPEARHEADS.map(sh => `<button type="button" class="unit-link sh-link${sh.cover ? " has-photo" : ""}" data-id="${sh.id}"${photoAttr(sh.cover)}><span>${esc(sh.name)}${sh.faction ? `<small>${esc(sh.faction)}</small>` : ""}</span></button>`).join("");
+  $("home").addEventListener("click", e => { const t = e.target.closest(".sh-link"); if (t) location.hash = t.dataset.id + "/memo"; });
+
   // ---------- Mémo ----------
-  const chevron = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>';
-  $("list").innerHTML = UNITS.map(u => `<button type="button" class="unit-link${PHOTOS[u.id] ? " has-photo" : ""}" data-id="${u.id}"${PHOTOS[u.id] ? ` style="--img:url('${PHOTOS[u.id]}')"` : ""}><span>${esc(u.en)}</span></button>`).join("");
-  $("list").addEventListener("click", e => { const t = e.target.closest(".unit-link"); if (t) location.hash = t.dataset.id; });
+  function renderMemo(){
+    $("list").innerHTML = SH.units.map(u => `<button type="button" class="unit-link${SH.photos[u.id] ? " has-photo" : ""}" data-id="${u.id}"${photoAttr(SH.photos[u.id])}><span>${esc(u.en)}</span></button>`).join("");
+  }
+  $("list").addEventListener("click", e => { const t = e.target.closest(".unit-link"); if (t) location.hash = SH.id + "/u/" + t.dataset.id; });
 
   function weaponBlock(u, list, ranged){
     if (!list.length) return "";
@@ -318,34 +254,26 @@ main{padding-block:16px 40px}
     {k:"end",         n:"Fin du tour",              c:"end"},
     {k:"end-opp",     n:"Fin du tour adverse",      c:"end"}
   ];
-  // Moment d'utilisation de chaque capacité
-  const WHEN = {
-    "Dompter le Pouvoir Démoniaque":["hero"],
-    "Progression Implacable":["deploy"],
-    "Bombardement de Suppression":["shoot"],
-    "Parchemin de Pétrification":["hero","hero-opp"],
-    "Calice de Ténèbres":["shoot"],
-    "Talisman d'Obsidienne":["shoot-opp","fight-opp"],
-    "Amulette de Haine Brûlante":["fight","fight-opp"],
-    "Impitoyable Conquérant":["hero"],
-    "Trajectoire Calculée":["shoot"],
-    "Bombardement de la Ruine":["shoot"],
-    "Frappez les Gongs":["hero","hero-opp"]
-  };
 
 
-  // ---------- Choix (aptitude de régiment + optimisation) ----------
-  const STORE = "hashut-spearhead-choix";
-  const CHOICE = {};
-  try { Object.assign(CHOICE, JSON.parse(localStorage.getItem(STORE) || "{}")); } catch(e){}
-  ARMY.sections.forEach(sec => {
-    if (sec.pick && !sec.abilities.some(a => a.n === CHOICE[sec.key])) CHOICE[sec.key] = sec.abilities[0].n;
-  });
-  function saveChoice(){ try { localStorage.setItem(STORE, JSON.stringify(CHOICE)); } catch(e){} }
+  // ---------- Choix (aptitude de régiment + optimisation), mémorisés par Spearhead ----------
+  let CHOICE = {};
+  const storeKey = () => "spearcounter-choix-" + SH.id;
+  function loadChoice(){
+    CHOICE = {};
+    try {
+      const old = SH.id === "hashut" ? localStorage.getItem("hashut-spearhead-choix") : null;
+      Object.assign(CHOICE, JSON.parse(localStorage.getItem(storeKey()) || old || "{}"));
+    } catch(e){}
+    SH.army.sections.forEach(sec => {
+      if (sec.pick && !sec.abilities.some(a => a.n === CHOICE[sec.key])) CHOICE[sec.key] = sec.abilities[0].n;
+    });
+  }
+  function saveChoice(){ try { localStorage.setItem(storeKey(), JSON.stringify(CHOICE)); } catch(e){} }
 
   function renderRules(){
-    let h = PHOTOS.armee ? `<div class="hero-photo rules-photo"><img src="${PHOTOS.armee}" alt="Règles de l'armée"></div>` : "";
-    h += ARMY.sections.map(sec => {
+    let h = SH.photos.armee ? `<div class="hero-photo rules-photo"><img src="${SH.photos.armee}" alt="Règles de l'armée"></div>` : "";
+    h += SH.army.sections.map(sec => {
       if (!sec.pick) return `<h3 class="sec">${esc(sec.title)}</h3><div class="abilities">${sec.abilities.map(a => abCard(a)).join("")}</div>`;
       return `<h3 class="sec">${esc(sec.title)} (1 au choix)</h3><p class="hint">Touche une carte pour la sélectionner.</p><div class="abilities" role="radiogroup" aria-label="${esc(sec.title)}">` +
         sec.abilities.map((a,i) => `<label class="pick"><input type="radio" name="${sec.key}" value="${i}"${CHOICE[sec.key] === a.n ? " checked" : ""}>${abCard(a, true)}</label>`).join("") + `</div>`;
@@ -353,7 +281,7 @@ main{padding-block:16px 40px}
     $("regles").innerHTML = h;
   }
   $("regles").addEventListener("change", e => {
-    const sec = ARMY.sections.find(x => x.key === e.target.name);
+    const sec = SH.army.sections.find(x => x.key === e.target.name);
     if (!sec) return;
     CHOICE[sec.key] = sec.abilities[+e.target.value].n;
     saveChoice();
@@ -362,26 +290,32 @@ main{padding-block:16px 40px}
 
   function renderPhases(){
     const SOURCES = [];
-    ARMY.sections.forEach(sec => sec.abilities.forEach(a => {
+    SH.army.sections.forEach(sec => sec.abilities.forEach(a => {
       if (!sec.pick || CHOICE[sec.key] === a.n) SOURCES.push({who: sec.who, a});
     }));
-    UNITS.forEach(u => {
+    SH.units.forEach(u => {
       u.abilities.forEach(a => SOURCES.push({who: u.en, a}));
       (u.enhancements || []).forEach(a => SOURCES.push({who: u.en + " (amélioration)", a}));
     });
     $("phases").innerHTML = PHASES.map(ph => {
-      const items = SOURCES.filter(({a}) => (WHEN[a.n] || ["perm"]).includes(ph.k));
+      const items = SOURCES.filter(({a}) => (SH.when[a.n] || ["perm"]).includes(ph.k));
       if (!items.length) return "";
       return `<details class="phase" style="--c:${PHASE[ph.c]}"><summary><span>${ph.n}</span><span class="count">${items.length}</span></summary>` +
         `<div class="abilities">` + items.map(({who,a}) => `<div class="ab-wrap"><p class="who">${esc(who)}</p>${abCard(a)}</div>`).join("") + `</div></details>`;
     }).join("");
   }
-  renderRules();
-  renderPhases();
+
+  function openSpearhead(sh){
+    if (SH === sh) return;
+    SH = sh;
+    loadChoice();
+    renderMemo(); renderRules(); renderPhases();
+    ["memo","regles","phases"].forEach(k => { $("nav-" + k).href = "#" + sh.id + "/" + k; });
+  }
 
   function showUnit(u){
     const s = u.stats;
-    let h = PHOTOS[u.id] ? `<div class="hero-photo"><img src="${PHOTOS[u.id]}" alt="${esc(u.en)}"></div>` : "";
+    let h = SH.photos[u.id] ? `<div class="hero-photo"><img src="${SH.photos[u.id]}" alt="${esc(u.en)}"></div>` : "";
     h += `<div class="statband"><div class="stats" style="--n:${s.W ? 5 : 4}">` +
       [[s.M,"Mouv.",""],[s.S,"Santé",""],[s.C,"Contrôle",""],[s.Sv,"Sauv."," sv"]].concat(s.W ? [[s.W,"Prot."," wd"]] : []).map(([v,l,c]) =>
         `<div><div class="disc${c}">${esc(v)}</div><div class="l">${l}</div></div>`).join("") + `</div></div>`;
@@ -395,21 +329,29 @@ main{padding-block:16px 40px}
   }
 
   // ---------- Navigation ----------
+  // #  : accueil · #<spearhead>/memo|regles|phases · #<spearhead>/u/<unité>
   function route(){
-    const hash = location.hash.slice(1);
-    const unit = UNITS.find(u => u.id === hash);
-    const view = unit ? "unit" : (["phases","regles"].includes(hash) ? hash : "memo");
-    $("view-memo").hidden = view !== "memo";
-    $("view-regles").hidden = view !== "regles";
-    $("view-phases").hidden = view !== "phases";
-    $("view-unit").hidden = view !== "unit";
-    $("back").hidden = view !== "unit";
-    $("title").textContent = unit ? unit.en : "Forgeruines de Hashut";
+    const [shId, part, unitId] = location.hash.slice(1).split("/");
+    const sh = SPEARHEADS.find(x => x.id === shId);
+    if (!sh) { show("home"); return; }
+    openSpearhead(sh);
+    const unit = part === "u" ? sh.units.find(u => u.id === unitId) : null;
+    show(unit ? "unit" : (["regles","phases"].includes(part) ? part : "memo"), unit);
+  }
+  function show(view, unit){
+    ["home","memo","regles","phases","unit"].forEach(k => { $("view-" + k).hidden = k !== view; });
+    $("tabs").hidden = view === "home" || view === "unit";
+    $("back").hidden = view === "home";
+    $("kicker").textContent = view === "home" ? "Warhammer Spearhead" : (view === "unit" ? SH.name : "SpearCounter");
+    $("title").textContent = view === "home" ? "SpearCounter" : (unit ? unit.en : SH.name);
     ["memo","regles","phases"].forEach(k => { if (k === view) $("nav-" + k).setAttribute("aria-current", "page"); else $("nav-" + k).removeAttribute("aria-current"); });
     if (unit) showUnit(unit);
     window.scrollTo(0, 0);
   }
-  $("back").addEventListener("click", () => { location.hash = "memo"; });
+  $("back").addEventListener("click", () => {
+    const [shId, part] = location.hash.slice(1).split("/");
+    location.hash = part === "u" ? shId + "/memo" : "";
+  });
   window.addEventListener("hashchange", route);
   route();
 })();

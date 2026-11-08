@@ -1,6 +1,6 @@
 // Service worker : fonctionnement hors ligne.
 // Changer VERSION à chaque mise à jour du site pour forcer le rafraîchissement du cache.
-const VERSION = "spearcounter-1.0.0";
+const VERSION = "spearcounter-1.1.0";
 const ASSETS = [
   "./",
   "./index.html",
@@ -9,11 +9,12 @@ const ASSETS = [
   "./icons/icon-512.png",
   "./icons/maskable-512.png",
   "./icons/apple-touch-icon.png",
-  "./img/armee.jpg",
-  "./img/bombarde.jpg",
-  "./img/cohorte.jpg",
-  "./img/despote.jpg",
-  "./img/dominotaure.jpg"
+  "./data/hashut.js",
+  "./img/hashut/armee.jpg",
+  "./img/hashut/bombarde.jpg",
+  "./img/hashut/cohorte.jpg",
+  "./img/hashut/despote.jpg",
+  "./img/hashut/dominotaure.jpg"
 ];
 
 self.addEventListener("install", e => {
