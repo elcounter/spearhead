@@ -157,6 +157,87 @@ main{padding-block:16px 40px}
 .part-body{padding:10px 12px}
 .part-body .nm{font-weight:700;margin-bottom:4px}
 .part-body .nm small{color:var(--muted);font-weight:600}
+/* Barre de navigation du bas */
+:root{--navh:calc(64px + env(safe-area-inset-bottom,0px))}
+body{padding-bottom:var(--navh)}
+body.g-has-foot{padding-bottom:calc(var(--navh) + 66px)}
+.bnav{position:fixed;left:0;right:0;bottom:0;z-index:8;background:#fff;border-top:1px solid #d8d8d8;padding-bottom:env(safe-area-inset-bottom,0px);box-shadow:0 -2px 8px rgba(0,0,0,.08)}
+.bnav .in{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));max-width:820px;margin:0 auto}
+.bnav a{display:grid;justify-items:center;gap:3px;padding:8px 2px 9px;text-decoration:none;color:#6d6d6d;font:500 12px var(--display);text-transform:uppercase;letter-spacing:.06em;border-top:3px solid transparent;margin-top:-1px}
+.bnav a[aria-current="page"]{color:var(--bar);border-top-color:var(--bar)}
+.bnav svg{width:24px;height:24px}
+/* Partie */
+#view-partie{--gold:#d4ae3f;--gold-dk:#9a7a1c;--soft:#ececec;--ok:#3e6b26}
+.g-score{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);align-items:center;gap:12px;padding-block:2px 12px}
+.g-score[hidden]{display:none}
+.g-score .nm{font:600 15px var(--body);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.g-score .nm:first-child{text-align:right}
+.g-score .pts{font:700 34px/1 var(--display);font-variant-numeric:tabular-nums;letter-spacing:.02em}
+.g-stack{display:grid;gap:14px}
+.g-panel{background:var(--card);border-radius:10px;overflow:hidden;box-shadow:0 1px 2px rgba(0,0,0,.12)}
+.g-sec{background:var(--khaki);color:#fff;font:700 15px var(--body);text-transform:uppercase;letter-spacing:.04em;padding:11px 16px;margin:0;display:flex;justify-content:space-between;align-items:center;gap:8px}
+.g-sec.dark{background:var(--namebar)}
+.g-body{padding:14px 16px;display:grid;gap:14px}
+.g-lbl{display:block;font:600 12px var(--body);text-transform:uppercase;letter-spacing:.05em;color:var(--muted);margin-bottom:6px}
+.g-hint{font-size:13px;color:var(--muted);margin:0}
+.g-row{display:flex;gap:8px;align-items:center}
+.g-grow{flex:1;min-width:0}
+.g-two{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+#view-partie input[type=text],#view-partie select{width:100%;font:600 16px var(--body);color:var(--ink);background:#f7f7f7;border:2px solid var(--line);border-radius:6px;padding:9px 10px}
+.g-btn{display:block;text-align:center;text-decoration:none;border:2px solid var(--line);background:#fff;color:var(--ink);border-radius:8px;padding:10px 14px;font:700 15px var(--body);min-height:46px;cursor:pointer}
+.g-btn.primary{background:var(--bar);border-color:var(--bar);color:#fff}
+.g-btn.gold{background:var(--gold);border-color:var(--gold);color:#1b1b1b}
+.g-btn.ghost{background:none;border-color:transparent;color:var(--bar);padding-inline:6px;min-height:0}
+.g-btn[disabled]{opacity:.45;cursor:not-allowed}
+.g-pick{border:2px solid var(--line);background:#fff;border-radius:8px;padding:12px 10px;font:700 16px var(--body);min-height:52px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;cursor:pointer;color:var(--ink)}
+.g-pick[aria-pressed="true"]{background:var(--gold);border-color:var(--gold-dk);color:#1b1b1b}
+.g-stepper{display:flex;align-items:center;gap:6px}
+.g-stepper button{width:40px;height:40px;border-radius:50%;border:2px solid var(--ink);background:#fff;font:700 20px/1 var(--body);display:grid;place-items:center;padding:0;cursor:pointer;color:var(--ink)}
+.g-stepper output{min-width:34px;text-align:center;font:700 20px var(--display);font-variant-numeric:tabular-nums}
+.g-switch{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.g-who{display:flex;flex-wrap:wrap;gap:6px}
+.g-tag{font:700 11px var(--body);text-transform:uppercase;letter-spacing:.06em;padding:3px 8px;border-radius:4px;background:var(--soft);color:var(--ink)}
+.g-tag.out{background:var(--bar);color:#fff}
+.g-tag.first{background:var(--gold);color:#1b1b1b}
+.g-chips{display:flex;flex-wrap:wrap;gap:8px}
+.g-chip{border:2px dashed #8a8a8a;background:#fff;border-radius:999px;padding:8px 14px;font:600 15px var(--body);display:flex;align-items:center;gap:8px;cursor:pointer;color:var(--ink);text-align:left}
+.g-chip .v{font:700 13px var(--display);background:var(--soft);border-radius:999px;padding:1px 7px}
+.g-chip[aria-pressed="true"]{background:var(--gold);border-style:solid;border-color:var(--gold-dk)}
+.g-chip[aria-pressed="true"] .v{background:rgba(255,255,255,.55)}
+.g-sub{display:flex;justify-content:space-between;font:600 14px var(--body);color:var(--muted);padding-top:2px}
+.g-sub b{color:var(--ink);font-variant-numeric:tabular-nums}
+.g-note{border-left:4px solid var(--bar);background:#fff;padding:10px 12px;border-radius:6px;font-size:14px}
+.g-note.gold{border-color:var(--gold-dk)}
+.g-missing{margin:0;color:#a3231a;font-weight:600;font-size:14px}
+.g-missing:empty{display:none}
+.g-hero{padding:20px 16px;display:grid;gap:10px;text-align:center}
+.g-hero h2{font:700 24px var(--display);text-transform:uppercase;margin:0}
+.g-live{gap:10px}
+.g-big{font:700 26px var(--display);font-variant-numeric:tabular-nums;white-space:nowrap}
+.g-hist{display:grid;gap:8px}
+.g-hist > div{display:flex;justify-content:space-between;gap:8px;padding:10px 12px;background:#fff;border-radius:8px;font-size:14px}
+.g-hopen{text-align:left;background:none;border:0;padding:0;font:inherit;color:inherit;cursor:pointer}
+.g-del{flex:none;width:40px;height:40px;border-radius:8px;border:0;background:none;color:var(--bar);display:grid;place-items:center;cursor:pointer}
+.g-status{justify-self:center;font:700 12px var(--body);text-transform:uppercase;letter-spacing:.08em;padding:4px 12px;border-radius:999px;background:var(--soft)}
+.g-status.win{background:var(--ok);color:#fff}
+.g-final{text-align:center;display:grid;gap:6px;padding:18px 12px}
+.g-final .g-big{font-size:52px;line-height:1}
+.g-names{display:grid;grid-template-columns:1fr 1fr;gap:8px;font-weight:700}
+.g-scroll{overflow-x:auto}
+.g-rt{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums;font-size:14px;min-width:300px}
+.g-rt th,.g-rt td{padding:7px 2px;text-align:center;border-bottom:1px solid var(--soft)}
+.g-rt th{font:700 12px var(--body);text-transform:uppercase;color:var(--muted)}
+.g-rt td:first-child,.g-rt th:first-child{text-align:left}
+.g-rt td.tot{font-weight:700}
+.g-rt td.cell span{display:inline-block;min-width:26px;padding:2px 0;border:1px solid var(--line);border-radius:5px}
+.g-foot{position:fixed;left:0;right:0;bottom:var(--navh);z-index:6;background:var(--namebar)}
+.g-foot[hidden]{display:none}
+.g-foot .in{display:flex;justify-content:space-between;align-items:center;gap:10px;padding-block:10px}
+.g-foot .g-btn.ghost{color:#e9c96b}
+.g-modal{position:fixed;inset:0;z-index:30;background:rgba(0,0,0,.55);display:flex;align-items:flex-end;justify-content:center;padding-top:16px}
+.g-modal[hidden]{display:none}
+.g-sheet{background:var(--page);width:100%;max-width:760px;max-height:100%;overflow:auto;border-radius:14px 14px 0 0;padding-bottom:env(safe-area-inset-bottom,0px)}
+.g-x{flex:none;width:34px;height:34px;display:grid;place-items:center;background:none;border:0;color:#fff;cursor:pointer}
 /* Pied de page */
 .foot{padding:24px 16px calc(24px + env(safe-area-inset-bottom,0px));text-align:center;color:var(--muted);font-size:12px;line-height:1.6;border-top:1px solid var(--line)}
 .foot p{margin:0}
@@ -172,6 +253,7 @@ main{padding-block:16px 40px}
     <div class="ttl"><span class="kicker" id="kicker">Warhammer Spearhead</span><h1 id="title">SpearCounter</h1></div>
     <button class="install" id="install" type="button" hidden aria-label="Installer l'application"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg>Installer</button>
   </div>
+  <div class="in g-score" id="g-score" hidden><span class="nm" id="g-sn0"></span><span class="pts" id="g-pts"></span><span class="nm" id="g-sn1"></span></div>
   <nav class="in tabs" id="tabs" hidden>
     <a href="#" id="nav-memo">Mémo</a>
     <a href="#" id="nav-regles">Règles</a>
@@ -183,7 +265,16 @@ main{padding-block:16px 40px}
   <!-- Accueil : choix du Spearhead -->
   <section id="view-home">
     <p class="home-intro">Choisis ta Spearhead</p><div class="list" id="home"></div>
-    <p class="home-intro home-sep">Règles</p><div class="list" id="home-packs"></div>
+  </section>
+
+  <!-- Onglet Règles : packs de bataille -->
+  <section id="view-rules" hidden><p class="home-intro">Packs de bataille</p><div class="list" id="home-packs"></div></section>
+
+  <!-- Onglet Partie -->
+  <section id="view-partie" hidden>
+    <div class="g-stack" id="g-view"></div>
+    <div class="g-foot" id="g-foot" hidden><div class="in"><button class="g-btn ghost" id="g-prev" type="button">Précédent</button><button class="g-btn gold" id="g-next" type="button">Suivant</button></div></div>
+    <div class="g-modal" id="g-modal" hidden><div class="g-sheet" id="g-sheet" role="dialog" aria-modal="true"></div></div>
   </section>
 
   <!-- Règles d'un pack de bataille -->
@@ -206,10 +297,16 @@ main{padding-block:16px 40px}
 
 <footer class="foot">
   <p>© 2026 elcounter. Tous droits réservés.</p>
-  <p>SpearCounter version 1.2.0 · MAJ 08-11-2026</p>
+  <p>SpearCounter version 1.3.0 · MAJ 08-11-2026</p>
   <p>Application non officielle, non affiliée à Games Workshop.</p>
   <p>Warhammer Spearhead est une marque de Games Workshop Ltd.</p>
 </footer>
+
+<nav class="bnav" aria-label="Navigation principale"><div class="in">
+  <a href="#regles" id="bn-regles"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2z"/><path d="M4 19V5"/><path d="M9 7h6"/></svg><span>Règles</span></a>
+  <a href="#" id="bn-spearhead"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2l3 7-3 13-3-13z"/><path d="M7 9h10"/></svg><span>Spearhead</span></a>
+  <a href="#partie" id="bn-partie"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="3"/><circle cx="9" cy="9" r="1.2" fill="currentColor"/><circle cx="15" cy="15" r="1.2" fill="currentColor"/><circle cx="15" cy="9" r="1.2" fill="currentColor"/><circle cx="9" cy="15" r="1.2" fill="currentColor"/></svg><span>Partie</span></a>
+</div></nav>
 
 <div class="ios-hint" id="ios-hint" role="dialog" aria-label="Installer l'application" hidden>
   <p>Pour installer l'app : touche le bouton <b>Partager</b> de Safari, puis <b>Sur l'écran d'accueil</b>.</p>
@@ -221,6 +318,7 @@ main{padding-block:16px 40px}
 <script src="data/ogors.js"></script>
 <script src="data/crixxit.js"></script>
 <script src="data/cite-de-cendre.js"></script>
+<script src="partie.js"></script>
 <script>
 (function(){
   "use strict";
@@ -417,6 +515,8 @@ main{padding-block:16px 40px}
   // #  : accueil · #<spearhead>/memo|regles|phases · #<spearhead>/u/<unité>
   function route(){
     const [shId, part, unitId] = location.hash.slice(1).split("/");
+    if (shId === "partie") { show("partie"); window.SC_PARTIE.open((t, sub) => { $("kicker").textContent = "Partie · Cité de Cendre"; $("title").textContent = t; $("back").hidden = !sub; }); return; }
+    if (shId === "regles") { show("rules"); return; }
     if (shId === "pack") {
       PK = PACKS.find(x => x.id === part);
       if (PK) {
@@ -433,19 +533,25 @@ main{padding-block:16px 40px}
     show(unit ? "unit" : (["regles","phases"].includes(part) ? part : "memo"), unit);
   }
   function show(view, unit, doc){
-    ["home","memo","regles","phases","unit","pack","doc"].forEach(k => { $("view-" + k).hidden = k !== view; });
-    $("tabs").hidden = ["home","unit","pack","doc"].includes(view);
-    $("back").hidden = view === "home";
+    ["home","rules","partie","memo","regles","phases","unit","pack","doc"].forEach(k => { $("view-" + k).hidden = k !== view; });
+    $("tabs").hidden = ["home","rules","partie","unit","pack","doc"].includes(view);
+    $("back").hidden = view === "home" || view === "rules" || view === "partie";
+    if (view !== "partie") $("g-score").hidden = true;
+    document.body.classList.toggle("g-has-foot", view === "partie" && !$("g-foot").hidden);
     const inPack = view === "pack" || view === "doc";
-    $("kicker").textContent = view === "home" ? "Warhammer Spearhead" : inPack ? (doc ? PK.name : "Règles") : (view === "unit" ? SH.name : "SpearCounter");
-    $("title").textContent = view === "home" ? "SpearCounter" : inPack ? (doc ? doc.en : PK.name) : (unit ? unit.en : SH.name);
+    if (view === "partie") { $("bn-partie").setAttribute("aria-current", "page"); ["regles","spearhead"].forEach(k => $("bn-" + k).removeAttribute("aria-current")); window.scrollTo(0, 0); return; }
+    $("kicker").textContent = view === "home" || view === "rules" ? "Warhammer Spearhead" : inPack ? (doc ? PK.name : "Règles") : (view === "unit" ? SH.name : "SpearCounter");
+    $("title").textContent = view === "home" || view === "rules" ? "SpearCounter" : inPack ? (doc ? doc.en : PK.name) : (unit ? unit.en : SH.name);
+    const tab = view === "partie" ? "partie" : (view === "rules" || inPack) ? "regles" : "spearhead";
+    ["regles","spearhead","partie"].forEach(k => { if (k === tab) $("bn-" + k).setAttribute("aria-current", "page"); else $("bn-" + k).removeAttribute("aria-current"); });
     ["memo","regles","phases"].forEach(k => { if (k === view) $("nav-" + k).setAttribute("aria-current", "page"); else $("nav-" + k).removeAttribute("aria-current"); });
     if (unit) showUnit(unit);
     window.scrollTo(0, 0);
   }
   $("back").addEventListener("click", () => {
     const [shId, part, sub] = location.hash.slice(1).split("/");
-    if (shId === "pack") location.hash = sub ? "pack/" + part : "";
+    if (shId === "partie") return window.SC_PARTIE.back();
+    if (shId === "pack") location.hash = sub ? "pack/" + part : "regles";
     else location.hash = part === "u" ? shId + "/memo" : "";
   });
   window.addEventListener("hashchange", route);
