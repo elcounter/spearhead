@@ -4,7 +4,7 @@
   name: "Bosquet d'Aigrécorce",
   faction: "Sylvaneths",
   cover: "img/bosquet-aigrecorce/armee.jpg",
-  photos: { armee: "img/bosquet-aigrecorce/armee.jpg" },
+  photos: { armee: "img/bosquet-aigrecorce/armee.jpg", branchanteresse: "img/bosquet-aigrecorce/branchanteresse.jpg", sylviarque: "img/bosquet-aigrecorce/sylviarque.jpg", "chasseurs-kurnoth": "img/bosquet-aigrecorce/chasseurs-kurnoth.jpg", "sylve-revenants": "img/bosquet-aigrecorce/sylve-revenants.jpg" },
   units: [
     {
       id: "branchanteresse",

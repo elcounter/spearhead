@@ -1,7 +1,7 @@
 // Service worker : fonctionnement hors ligne.
 // Changer VERSION à chaque mise à jour du site pour forcer le rafraîchissement du cache.
 // Ajouter ici tout nouveau fichier de données (data/) et photo (img/).
-const VERSION = "spearcounter-1.8.3";
+const VERSION = "spearcounter-1.8.4";
 const ASSETS = [
   "./",
   "./index.html",
@@ -16,6 +16,11 @@ const ASSETS = [
   "./data/khazalite.js",
   "./data/ogors.js",
   "./data/packs-classiques.js",
+  "./img/bosquet-aigrecorce/armee.jpg",
+  "./img/bosquet-aigrecorce/branchanteresse.jpg",
+  "./img/bosquet-aigrecorce/chasseurs-kurnoth.jpg",
+  "./img/bosquet-aigrecorce/sylve-revenants.jpg",
+  "./img/bosquet-aigrecorce/sylviarque.jpg",
   "./img/cite/campagne.jpg",
   "./img/cite/decors.jpg",
   "./img/cite/deploiement.jpg",
