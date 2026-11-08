@@ -18,6 +18,14 @@
   const esc = s => String(s == null ? "" : s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
   const SHS = () => window.SPEARHEADS || [];
   const shName = id => { const s = SHS().find(x => x.id === id); return s ? s.name : ""; };
+  // Faction saisie librement ; si elle correspond à une Spearhead de l'app, on propose ses phases
+  const norm = t => String(t || "").toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^a-z0-9]+/g, " ").trim();
+  const facOf = P => (P.fac || "").trim() || shName(P.sh);
+  function shMatch(P){
+    if (P.sh && !P.fac) return SHS().find(x => x.id === P.sh) || null;
+    const f = norm(P.fac); if (f.length < 3) return null;
+    return SHS().find(x => [x.name, x.faction, x.id].some(n => { const v = norm(n); return v && (v.includes(f) || f.includes(v)); })) || null;
+  }
 
   // ---------- Sauvegarde locale ----------
   const load = (k, d) => { try { const v = localStorage.getItem(k); return v ? JSON.parse(v) : d; } catch (e) { return d; } };
@@ -25,7 +33,7 @@
 
   function newGame(){
     return {id:"p" + Date.now(), status:"setup", view:"setup", label:"", pack:null, face:null, attacker:null,
-      players:[0,1].map(() => ({name:"", sh:""})),
+      players:[0,1].map(() => ({name:"", fac:""})),
       rounds:Array.from({length:ROUNDS}, () => ({first:null, s:[[0,0,0,0,0],[0,0,0,0,0]]}))};
   }
   let GAMES = load(LKEY, []);
@@ -94,7 +102,7 @@
       const P = G.players[p];
       h += `<div class="g-panel"><h2 class="g-sec">${p === 0 ? "Joueur" : "Adversaire"}</h2><div class="g-body">
         <div><label class="g-lbl" for="g-n${p}">Nom</label><input type="text" id="g-n${p}" data-set="name" data-p="${p}" value="${esc(P.name)}" placeholder="Joueur ${p+1}" autocomplete="off"></div>
-        <div><label class="g-lbl" for="g-s${p}">Spearhead</label><select id="g-s${p}" data-set="sh" data-p="${p}"><option value="">Autre Spearhead</option>${SHS().map(s => `<option value="${s.id}"${s.id === P.sh ? " selected" : ""}>${esc(s.name)}</option>`).join("")}</select></div>
+        <div><label class="g-lbl" for="g-s${p}">Faction</label><input type="text" id="g-s${p}" data-set="fac" data-p="${p}" value="${esc(facOf(P))}" placeholder="${p === 0 ? "Ex. Forgeruines de Hashut" : "Ex. Hordegueules Ogors"}" autocomplete="off"></div>
       </div></div>`;
     });
     h += `<p class="g-missing" id="g-missing" aria-live="polite"></p>`;
@@ -139,7 +147,7 @@
         <div><span class="g-lbl">Fin de son tour : objectifs contrôlés</span><div class="g-chips">${OBJ.map((n, i) => `<button class="g-chip" type="button" data-act="obj" data-p="${p}" data-r="${r}" data-i="${i}" aria-pressed="${!!s[i]}">${n}<span class="v">1</span></button>`).join("")}</div></div>
         ${stepper("tac", p, r, s[3], "Tactiques exécutées")}
         ${stepper("extra", p, r, s[4], "PV des péripéties")}
-        ${P.sh ? `<a class="g-btn ghost" href="#${P.sh}/phases">Phases de ${esc(shName(P.sh))}</a>` : ""}
+        ${(m => m ? `<a class="g-btn ghost" href="#${m.id}/phases">Phases de ${esc(m.name)}</a>` : "")(shMatch(P))}
         <div class="g-sub"><span>Points ce round</span><b>${roundScore(p, r)} PV</b></div>
       </div></div>`;
     });
@@ -149,7 +157,7 @@
   function vSummary(ro){
     const a = total(0), b = total(1), done = G.status === "done";
     const st = !done ? `<span class="g-status">En cours</span>` : a === b ? `<span class="g-status">Égalité</span>` : `<span class="g-status win">Victoire de ${pname(a > b ? 0 : 1)}</span>`;
-    const fac = p => esc(shName(G.players[p].sh) || "Autre Spearhead");
+    const fac = p => esc(facOf(G.players[p]) || "Faction inconnue");
     let h = `<div class="g-panel g-final">${st}<div class="g-names"><span>${pname(0)}<br><span class="g-hint">${fac(0)}</span></span><span>${pname(1)}<br><span class="g-hint">${fac(1)}</span></span></div><div class="g-big">${a} - ${b}</div><span class="g-hint">${esc(packLine(G))}${G.label ? " · " + esc(G.label) : ""}</span></div>`;
     [0,1].forEach(p => {
       const line = (name, f) => `<tr><td>${name}</td>${[1,2,3,4].map(r => `<td class="cell"><span>${f(r) || "-"}</span></td>`).join("")}<td class="tot">${[1,2,3,4].reduce((t, r) => t + f(r), 0)}</td></tr>`;
@@ -204,12 +212,13 @@
 
   $("g-view").addEventListener("change", e => {
     const el = e.target;
-    if (el.dataset.set === "sh") { G.players[+el.dataset.p].sh = el.value; save(); }
+
   });
   $("g-view").addEventListener("input", e => {
     const el = e.target, k = el.dataset.set;
     if (k === "name") { G.players[+el.dataset.p].name = el.value; save(); const m = missing(); $("g-next").disabled = m.length > 0; $("g-missing").textContent = m.length ? "Il manque : " + m.join(", ") + "." : ""; }
     else if (k === "label") { G.label = el.value; save(); }
+    else if (k === "fac") { G.players[+el.dataset.p].fac = el.value; save(); }
   });
 
   document.getElementById("view-partie").addEventListener("click", e => {
@@ -258,7 +267,7 @@
   function summaryText(){
     const L = [`${rawName(0)} ${total(0)} - ${total(1)} ${rawName(1)}`, `${packLine(G)}${G.label ? " · " + G.label : ""}`];
     [0,1].forEach(p => {
-      const sh = shName(G.players[p].sh);
+      const sh = facOf(G.players[p]);
       L.push("", `${rawName(p)}${sh ? " (" + sh + ")" : ""}`);
       L.push(`Points par round : ${[1,2,3,4].map(r => roundScore(p, r)).join(" / ")}`);
     });
