@@ -7,7 +7,7 @@
  "imgs": {
   "campagne": "img/cite/campagne.jpg",
   "decors": "img/cite/decors.jpg",
-  "plan": "img/cite/plan.jpg",
+  "plan": "img/cite/deploiement.jpg",
   "plateau": "img/cite/plateau.jpg",
   "r-barricade": "img/cite/r-barricade.jpg",
   "r-caisse": "img/cite/r-caisse.jpg",
