@@ -1,6 +1,7 @@
 // Service worker : fonctionnement hors ligne.
 // Changer VERSION à chaque mise à jour du site pour forcer le rafraîchissement du cache.
-const VERSION = "spearcounter-1.1.1";
+// Ajouter ici tout nouveau fichier de données (data/) et photo (img/).
+const VERSION = "spearcounter-1.2.0";
 const ASSETS = [
   "./",
   "./index.html",
@@ -8,12 +9,41 @@ const ASSETS = [
   "./icons/sc-icon-512.png",
   "./icons/sc-maskable-512.png",
   "./icons/sc-apple-touch-icon.png",
+  "./data/cite-de-cendre.js",
+  "./data/crixxit.js",
   "./data/hashut.js",
+  "./data/khazalite.js",
+  "./data/ogors.js",
+  "./img/cite/campagne.jpg",
+  "./img/cite/decors.jpg",
+  "./img/cite/plan.jpg",
+  "./img/cite/plateau.jpg",
+  "./img/cite/r-barricade.jpg",
+  "./img/cite/r-caisse.jpg",
+  "./img/cite/r-chausse.jpg",
+  "./img/cite/r-egout.jpg",
+  "./img/cite/r-tonneau.jpg",
+  "./img/cite/reliques.jpg",
+  "./img/crixxit/armee.jpg",
+  "./img/crixxit/crixxit.jpg",
+  "./img/crixxit/egouts.jpg",
+  "./img/crixxit/maitremort.jpg",
+  "./img/crixxit/nocturnes.jpg",
   "./img/hashut/armee.jpg",
   "./img/hashut/bombarde.jpg",
   "./img/hashut/cohorte.jpg",
   "./img/hashut/despote.jpg",
-  "./img/hashut/dominotaure.jpg"
+  "./img/hashut/dominotaure.jpg",
+  "./img/khazalite/armee.jpg",
+  "./img/khazalite/boucliers.jpg",
+  "./img/khazalite/canon.jpg",
+  "./img/khazalite/gholems.jpg",
+  "./img/khazalite/hjulda.jpg",
+  "./img/ogors/armee.jpg",
+  "./img/ogors/cavalerie.jpg",
+  "./img/ogors/gloutons.jpg",
+  "./img/ogors/tyran.jpg",
+  "./img/ogors/ventres-durs.jpg"
 ];
 
 self.addEventListener("install", e => {

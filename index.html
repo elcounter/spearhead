@@ -132,6 +132,31 @@ main{padding-block:16px 40px}
 /* Accueil */
 .home-intro{margin:0 0 12px;font:500 14px var(--display);letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
 .sh-link small{display:block;margin-top:4px;font:500 12px var(--display);letter-spacing:.08em;text-transform:uppercase;color:#e9c96b}
+.home-sep{margin-top:28px}
+/* Pages de règles (pack de bataille) */
+.doc{padding:16px;display:grid;gap:12px;background:var(--page)}
+.doc > h3{margin:10px 0 0;font:700 15px var(--body);text-transform:uppercase;letter-spacing:.04em;color:#fff;background:var(--khaki);padding:10px 14px;border-radius:6px}
+.doc > h3:first-child{margin-top:0}
+.doc > p,.doc > ul,.doc > ol{margin:0;background:var(--card);border-radius:8px;padding:12px 16px;box-shadow:0 1px 2px rgba(0,0,0,.08)}
+.doc > ul,.doc > ol{padding-left:34px;display:grid;gap:6px}
+.doc .note{border-left:4px solid #9a7a1c}
+.doc-photo{margin:-16px -16px 0}
+.doc .ab-img{background:#f3f1ed;display:flex;justify-content:center;padding:10px 16px;border-bottom:2px solid #dcdcdc}
+.doc .ab-img img{display:block;max-width:100%;max-height:170px;object-fit:contain}
+.card{border-radius:12px;overflow:hidden;border:3px solid var(--c);background:var(--card)}
+.card-head{background:var(--c);color:#fff;padding:10px 16px;font:500 12px var(--display);text-transform:uppercase;letter-spacing:.08em;display:flex;justify-content:space-between;gap:8px}
+.card-name{padding:12px 16px 4px;font:700 17px var(--body)}
+.card-name small{display:block;font:600 13px var(--body);color:var(--muted);margin-top:2px}
+.card-body{padding:6px 16px 14px;display:grid;gap:10px}
+.card-body p{margin:0}
+.under{border-left:4px solid var(--bar);padding:8px 12px;background:#f7f2f1;border-radius:6px}
+.under b{color:var(--bar)}
+.part{border-radius:8px;overflow:hidden;border:2px solid var(--pc)}
+.part-head{background:var(--pc);color:#fff;padding:7px 12px;font:700 13px var(--body);display:flex;justify-content:space-between;gap:8px}
+.part-head span:last-child{font-weight:600;opacity:.9;text-align:right}
+.part-body{padding:10px 12px}
+.part-body .nm{font-weight:700;margin-bottom:4px}
+.part-body .nm small{color:var(--muted);font-weight:600}
 /* Pied de page */
 .foot{padding:24px 16px calc(24px + env(safe-area-inset-bottom,0px));text-align:center;color:var(--muted);font-size:12px;line-height:1.6;border-top:1px solid var(--line)}
 .foot p{margin:0}
@@ -156,7 +181,14 @@ main{padding-block:16px 40px}
 
 <main class="in">
   <!-- Accueil : choix du Spearhead -->
-  <section id="view-home"><p class="home-intro">Choisis ta Spearhead</p><div class="list" id="home"></div></section>
+  <section id="view-home">
+    <p class="home-intro">Choisis ta Spearhead</p><div class="list" id="home"></div>
+    <p class="home-intro home-sep">Règles</p><div class="list" id="home-packs"></div>
+  </section>
+
+  <!-- Règles d'un pack de bataille -->
+  <section id="view-pack" hidden><div class="list" id="pack"></div></section>
+  <section id="view-doc" hidden><div class="sheet"><div class="doc" id="doc"></div></div></section>
 
   <!-- Mémo -->
   <section id="view-memo" hidden><div class="list" id="list"></div></section>
@@ -174,7 +206,7 @@ main{padding-block:16px 40px}
 
 <footer class="foot">
   <p>© 2026 elcounter. Tous droits réservés.</p>
-  <p>SpearCounter version 1.1.1 · MAJ 08-11-2026</p>
+  <p>SpearCounter version 1.2.0 · MAJ 08-11-2026</p>
   <p>Application non officielle, non affiliée à Games Workshop.</p>
   <p>Warhammer Spearhead est une marque de Games Workshop Ltd.</p>
 </footer>
@@ -185,10 +217,15 @@ main{padding-block:16px 40px}
 </div>
 
 <script src="data/hashut.js"></script>
+<script src="data/khazalite.js"></script>
+<script src="data/ogors.js"></script>
+<script src="data/crixxit.js"></script>
+<script src="data/cite-de-cendre.js"></script>
 <script>
 (function(){
   "use strict";
   const SPEARHEADS = window.SPEARHEADS || [];
+  const PACKS = window.RULEPACKS || [];
   // Couleur par phase (code couleur de l'application officielle)
   const PHASE = {
     hero:"var(--ph-hero)", shoot:"var(--ph-shoot)", fight:"var(--ph-fight)", charge:"var(--ph-charge)",
@@ -210,9 +247,57 @@ main{padding-block:16px 40px}
   $("home").innerHTML = SPEARHEADS.map(sh => `<button type="button" class="unit-link sh-link${sh.cover ? " has-photo" : ""}" data-id="${sh.id}"${photoAttr(sh.cover)}><span>${esc(sh.name)}${sh.faction ? `<small>${esc(sh.faction)}</small>` : ""}</span></button>`).join("");
   $("home").addEventListener("click", e => { const t = e.target.closest(".sh-link"); if (t) location.hash = t.dataset.id + "/memo"; });
 
+  // ---------- Règles (packs de bataille) ----------
+  let PK = null;
+  $("home-packs").innerHTML = PACKS.map(pk => `<button type="button" class="unit-link sh-link army-link${pk.cover ? " has-photo" : ""}" data-id="${pk.id}"${photoAttr(pk.cover)}><span>${esc(pk.name)}${pk.sub ? `<small>${esc(pk.sub)}</small>` : ""}</span></button>`).join("");
+  $("home-packs").addEventListener("click", e => { const t = e.target.closest(".sh-link"); if (t) location.hash = "pack/" + t.dataset.id; });
+  $("pack").addEventListener("click", e => { const t = e.target.closest(".unit-link"); if (t) location.hash = "pack/" + PK.id + "/" + t.dataset.id; });
+  function renderPack(){
+    $("pack").innerHTML = PK.groups.map(g => {
+      const src = PK.imgs[g.img || g.id];
+      return `<button type="button" class="unit-link army-link${src ? " has-photo" : ""}" data-id="${g.id}"${photoAttr(src)}><span>${esc(g.en)}</span></button>`;
+    }).join("");
+  }
+  function docAb(a){
+    const src = a.img && PK.imgs[a.img];
+    return `<div class="ab" style="--c:${PHASE[a.c]}"><div class="ab-head"><span>${esc(a.t)}</span></div>
+      <div class="ab-name">${esc(a.n)}</div>${src ? `<div class="ab-img"><img src="${src}" alt="${esc(a.n)}"></div>` : ""}<div class="ab-body">${a.x.map(p => `<p>${esc(p)}</p>`).join("")}</div></div>`;
+  }
+  function twistCard(t, face){
+    const [fr, en, eff, und] = t;
+    return `<div class="card" style="--c:${PHASE.passive}"><div class="card-head"><span>Péripétie</span><span>${esc(face || "")}</span></div>
+      <div class="card-name">${esc(fr)}<small>${esc(en)}</small></div>
+      <div class="card-body"><p>${esc(eff)}</p><div class="under"><b>Outsider :</b> ${esc(und)}</div></div></div>`;
+  }
+  function tacCard(t){
+    const [fr, en, cond, ofr, oen, when, col, , eff] = t;
+    return `<div class="card" style="--c:var(--namebar)"><div class="card-head"><span>Tactique de bataille</span></div>
+      <div class="card-name">${esc(fr)}<small>${esc(en)}</small></div>
+      <div class="card-body">
+        <div class="part" style="--pc:${PHASE.end}"><div class="part-head"><span>Tactique</span><span>Fin de votre tour</span></div><div class="part-body">${esc(cond)}</div></div>
+        <div class="part" style="--pc:${PHASE[col]}"><div class="part-head"><span>Ordre</span><span>${esc(when)}</span></div><div class="part-body"><div class="nm">${esc(ofr)} <small>(${esc(oen)})</small></div>${esc(eff)}</div></div>
+      </div></div>`;
+  }
+  function renderDoc(g){
+    const src = PK.imgs[g.img || g.id];
+    $("doc").innerHTML = (src ? `<div class="hero-photo doc-photo"><img src="${src}" alt="${esc(g.en)}"></div>` : "") + g.blocks.map(b => {
+      switch (b.k) {
+        case "p": return `<p>${esc(b.x)}</p>`;
+        case "note": return `<p class="note">${esc(b.x)}</p>`;
+        case "h": return `<h3>${esc(b.x)}</h3>`;
+        case "ul": return `<ul>${b.x.map(i => `<li>${esc(i)}</li>`).join("")}</ul>`;
+        case "ol": return `<ol>${b.x.map(i => `<li>${esc(i)}</li>`).join("")}</ol>`;
+        case "ab": return docAb(b.a);
+        case "twists": return b.x.map(t => twistCard(t, b.face)).join("");
+        case "tacs": return (PK.tactics || []).map(tacCard).join("");
+        default: return "";
+      }
+    }).join("");
+  }
+
   // ---------- Mémo ----------
   function renderMemo(){
-    $("list").innerHTML = SH.units.map(u => `<button type="button" class="unit-link${SH.photos[u.id] ? " has-photo" : ""}" data-id="${u.id}"${photoAttr(SH.photos[u.id])}><span>${esc(u.en)}</span></button>`).join("");
+    $("list").innerHTML = SH.units.map(u => `<button type="button" class="unit-link${SH.photos[u.id] ? " has-photo" : ""}" data-id="${u.id}"${photoAttr(SH.photos[u.id])}><span>${esc(u.en).replace(/-/g, "\u2011")}</span></button>`).join("");
   }
   $("list").addEventListener("click", e => { const t = e.target.closest(".unit-link"); if (t) location.hash = SH.id + "/u/" + t.dataset.id; });
 
@@ -332,25 +417,36 @@ main{padding-block:16px 40px}
   // #  : accueil · #<spearhead>/memo|regles|phases · #<spearhead>/u/<unité>
   function route(){
     const [shId, part, unitId] = location.hash.slice(1).split("/");
+    if (shId === "pack") {
+      PK = PACKS.find(x => x.id === part);
+      if (PK) {
+        const g = PK.groups.find(x => x.id === unitId);
+        if (g) renderDoc(g); else renderPack();
+        show(g ? "doc" : "pack", null, g);
+        return;
+      }
+    }
     const sh = SPEARHEADS.find(x => x.id === shId);
     if (!sh) { show("home"); return; }
     openSpearhead(sh);
     const unit = part === "u" ? sh.units.find(u => u.id === unitId) : null;
     show(unit ? "unit" : (["regles","phases"].includes(part) ? part : "memo"), unit);
   }
-  function show(view, unit){
-    ["home","memo","regles","phases","unit"].forEach(k => { $("view-" + k).hidden = k !== view; });
-    $("tabs").hidden = view === "home" || view === "unit";
+  function show(view, unit, doc){
+    ["home","memo","regles","phases","unit","pack","doc"].forEach(k => { $("view-" + k).hidden = k !== view; });
+    $("tabs").hidden = ["home","unit","pack","doc"].includes(view);
     $("back").hidden = view === "home";
-    $("kicker").textContent = view === "home" ? "Warhammer Spearhead" : (view === "unit" ? SH.name : "SpearCounter");
-    $("title").textContent = view === "home" ? "SpearCounter" : (unit ? unit.en : SH.name);
+    const inPack = view === "pack" || view === "doc";
+    $("kicker").textContent = view === "home" ? "Warhammer Spearhead" : inPack ? (doc ? PK.name : "Règles") : (view === "unit" ? SH.name : "SpearCounter");
+    $("title").textContent = view === "home" ? "SpearCounter" : inPack ? (doc ? doc.en : PK.name) : (unit ? unit.en : SH.name);
     ["memo","regles","phases"].forEach(k => { if (k === view) $("nav-" + k).setAttribute("aria-current", "page"); else $("nav-" + k).removeAttribute("aria-current"); });
     if (unit) showUnit(unit);
     window.scrollTo(0, 0);
   }
   $("back").addEventListener("click", () => {
-    const [shId, part] = location.hash.slice(1).split("/");
-    location.hash = part === "u" ? shId + "/memo" : "";
+    const [shId, part, sub] = location.hash.slice(1).split("/");
+    if (shId === "pack") location.hash = sub ? "pack/" + part : "";
+    else location.hash = part === "u" ? shId + "/memo" : "";
   });
   window.addEventListener("hashchange", route);
   route();
