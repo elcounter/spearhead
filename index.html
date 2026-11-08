@@ -485,7 +485,7 @@ body.g-has-foot{padding-bottom:calc(var(--navh) + 66px)}
     return FACTION_ALLIANCE[sh.faction] || "Autres";
   }
   function shBtn(sh) {
-    return `<button type="button" class="unit-link sh-link\( {sh.cover ? " has-photo" : ""}" data-id=" \){sh.id}"\( {photoAttr(sh.cover)}><span> \){esc(sh.name)}\( {sh.faction ? `<small> \){esc(sh.faction)}</small>` : ""}</span></button>`;
+    return `<button type="button" class="unit-link sh-link${sh.cover ? " has-photo" : ""}" data-id="${sh.id}"${photoAttr(sh.cover)}><span>${esc(sh.name)}${sh.faction ? `<small>${esc(sh.faction)}</small>` : ""}</span></button>`;
   }
   const byAlliance = {};
   SPEARHEADS.forEach(sh => {
@@ -496,7 +496,7 @@ body.g-has-foot{padding-bottom:calc(var(--navh) + 66px)}
   const allianceKeys = ALLIANCE_ORDER.filter(a => byAlliance[a] && byAlliance[a].length)
     .concat(Object.keys(byAlliance).filter(a => !ALLIANCE_ORDER.includes(a)));
   $("home").innerHTML = allianceKeys.map(a =>
-    `<div class="alliance-block"><h3 class="alliance-title">\( {esc(a)}</h3><div class="list"> \){byAlliance[a].map(shBtn).join("")}</div></div>`
+    `<div class="alliance-block"><h3 class="alliance-title">${esc(a)}</h3><div class="list">${byAlliance[a].map(shBtn).join("")}</div></div>`
   ).join("");
   $("home").addEventListener("click", e => { const t = e.target.closest(".sh-link"); if (t) location.hash = t.dataset.id + "/memo"; });
 
