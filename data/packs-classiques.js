@@ -3,10 +3,12 @@
  "id": "feu-et-jade",
  "name": "Le Feu et le Jade",
  "sub": "Pack de bataille",
- "cover": "img/feu-et-jade/aqshy.jpg",
+ "cover": "img/feu-et-jade/bataille.jpg",
  "imgs": {
-  "aqshy": "img/feu-et-jade/aqshy.jpg",
-  "ghyran": "img/feu-et-jade/ghyran.jpg"
+  "decors": "img/feu-et-jade/decors.jpg",
+  "objectifs": "img/feu-et-jade/objectifs.jpg",
+  "art": "img/feu-et-jade/art.jpg",
+  "bataille": "img/feu-et-jade/bataille.jpg"
  },
  "groups": [
   {
@@ -56,7 +58,7 @@
      "x": "4 rounds de bataille."
     }
    ],
-   "img": "aqshy"
+   "img": "bataille"
   },
   {
    "id": "rounds",
@@ -119,7 +121,7 @@
      "x": "Après 4 rounds, le joueur qui a marqué le plus de points de victoire est le vainqueur. En cas d'égalité, la bataille est une égalité."
     }
    ],
-   "img": "ghyran"
+   "img": "art"
   },
   {
    "id": "decors",
@@ -143,8 +145,8 @@
     {
      "k": "ul",
      "x": [
-      "Grand élément de terrain : Couvert, Occultant, Instable.",
-      "Petit élément de terrain : Couvert, Instable."
+      "Grand élément de terrain (Domicile en Ruine) : Couvert, Occultant, Instable.",
+      "Petit élément de terrain (Autel Ravagé) : Couvert, Instable."
      ]
     },
     {
@@ -185,7 +187,7 @@
      }
     }
    ],
-   "img": "aqshy"
+   "img": "decors"
   },
   {
    "id": "objectifs",
@@ -198,6 +200,10 @@
     {
      "k": "p",
      "x": "Une figurine qui est sur un objectif, même partiellement, le conteste."
+    },
+    {
+     "k": "p",
+     "x": "Chaque objectif est nommé d'après un dieu-animal mythique : Dracothion, Ignax, Behemat, Vulcatrix et Nagendra."
     },
     {
      "k": "h",
@@ -222,7 +228,7 @@
      }
     }
    ],
-   "img": "ghyran"
+   "img": "objectifs"
   }
  ]
 });

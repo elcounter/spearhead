@@ -1,7 +1,7 @@
 // Service worker : fonctionnement hors ligne.
 // Changer VERSION à chaque mise à jour du site pour forcer le rafraîchissement du cache.
 // Ajouter ici tout nouveau fichier de données (data/) et photo (img/).
-const VERSION = "spearcounter-1.7.0";
+const VERSION = "spearcounter-1.7.1";
 const ASSETS = [
   "./",
   "./index.html",
@@ -35,8 +35,10 @@ const ASSETS = [
   "./img/double/bataille-gauche.jpg",
   "./img/double/bataille.jpg",
   "./img/double/deux-plateaux.jpg",
-  "./img/feu-et-jade/aqshy.jpg",
-  "./img/feu-et-jade/ghyran.jpg",
+  "./img/feu-et-jade/art.jpg",
+  "./img/feu-et-jade/bataille.jpg",
+  "./img/feu-et-jade/decors.jpg",
+  "./img/feu-et-jade/objectifs.jpg",
   "./img/hashut/armee.jpg",
   "./img/hashut/bombarde.jpg",
   "./img/hashut/cohorte.jpg",
