@@ -1,7 +1,7 @@
-// Spearhead : Gardes de Drakkblud (Forts Khazalites)
+// Spearhead : Gardes Claniques de Drakkblud (Forts Khazalites)
 (window.SPEARHEADS = window.SPEARHEADS || []).push({
  "id": "khazalite",
- "name": "Gardes de Drakkblud",
+ "name": "Gardes Claniques de Drakkblud",
  "faction": "Forts Khazalites",
  "cover": "img/khazalite/armee.jpg",
  "photos": {
@@ -194,8 +194,18 @@
        "Annonce : choisissez comme cible une unité d'INFANTERIE amie.",
        "Effet : retirez la cible du champ de bataille et replacez-la sur le champ de bataille, à plus de 6\" des unités ennemies."
       ]
+     },
+     {
+      "c": "passive",
+      "t": "Une fois par bataille, phase de déploiement",
+      "n": "Soldez la Rancune",
+      "x": [
+       "Annonce : choisissez une unité ennemie qui sera l'objet de rancune.",
+       "Effet : pour le restant de la bataille, vous pouvez relancer les jets de touche de 1 pour les attaques de mêlée des unités d'INFANTERIE amies qui ciblent l'objet de rancune."
+      ]
      }
-    ]
+    ],
+    "pick": true
    },
    {
     "key": "opti",
@@ -209,8 +219,36 @@
       "x": [
        "Effet : ajoutez 2 à la caractéristique d'Attaques des armes de mêlée de votre général."
       ]
+     },
+     {
+      "c": "hero",
+      "t": "Une fois par bataille, votre phase des héros",
+      "n": "Intimidation Hardie",
+      "x": [
+       "Annonce : choisissez comme cible une unité ennemie visible et à 12\" de votre général.",
+       "Effet : soustrayez D6 au score de contrôle de la cible jusqu'au début de votre prochain tour."
+      ]
+     },
+     {
+      "c": "move",
+      "t": "Une fois par bataille, votre phase de mouvement",
+      "n": "Tactiques Bien Rodées",
+      "x": [
+       "Annonce : choisissez comme cible une unité amie visible et entièrement à 12\" de votre général.",
+       "Effet : la cible peut utiliser des aptitudes de REPLI et quand même utiliser des aptitudes de CHARGE au même tour. De plus, aucun dégât mortel n'est infligé à la cible par les aptitudes de REPLI qu'elle utilise à ce tour."
+      ]
+     },
+     {
+      "c": "shoot",
+      "t": "Phase de tir adverse",
+      "n": "Châtiment Rancunier",
+      "x": [
+       "Annonce : choisissez comme cible une unité amie qui n'est pas en mêlée et à qui un ou plusieurs dégâts ont été alloués à cette phase.",
+       "Effet : la cible peut utiliser l'aptitude « Mouvement Normal » comme si c'était votre phase de mouvement."
+      ]
      }
-    ]
+    ],
+    "pick": true
    }
   ]
  },
