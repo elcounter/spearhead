@@ -1,9 +1,17 @@
-// Onglet Partie : feuille de bataille Spearhead (pack Cité de Cendre), 4 rounds
+// Onglet Partie : feuille de bataille Spearhead (Le Feu et le Jade, Le Sable et l'Os, Cité de Cendre), 4 rounds
 (function(){
   "use strict";
   const ROUNDS = 4;
   const LKEY = "spearcounter-parties", HKEY = "spearcounter-historique";
-  const FACES = {bastion:"Bastion de Cendre", croisement:"Croisement Brisé"};
+  // Packs de bataille jouables et faces de leur champ de bataille de royaume
+  const PACKS = [
+    {id:"feu-et-jade", n:"Le Feu et le Jade", faces:{aqshy:"Aqshy", ghyran:"Ghyran"}},
+    {id:"sable-et-os", n:"Le Sable et l'Os", faces:{dolorum:"Dolorum", ossie:"Ossie"}},
+    {id:"cite-de-cendre", n:"Cité de Cendre", faces:{bastion:"Bastion de Cendre", croisement:"Croisement Brisé"}}
+  ];
+  const packOf = g => PACKS.find(x => x.id === (g.pack || "cite-de-cendre"));
+  const faceName = g => g.face ? packOf(g).faces[g.face] || "" : "";
+  const packLine = g => packOf(g).n + (g.face ? " · " + faceName(g) : "");
   const OBJ = ["Au moins 1 objectif", "Au moins 2 objectifs", "Plus d'objectifs que l'adversaire"];
   const TRASH = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16M10 11v6M14 11v6M6 7l1 13h10l1-13M9 7V4h6v3"/></svg>';
   const $ = id => document.getElementById(id);
@@ -16,11 +24,12 @@
   const store = (k, v) => { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} };
 
   function newGame(){
-    return {id:"p" + Date.now(), status:"setup", view:"setup", label:"", face:null, attacker:null,
+    return {id:"p" + Date.now(), status:"setup", view:"setup", label:"", pack:null, face:null, attacker:null,
       players:[0,1].map(() => ({name:"", sh:""})),
       rounds:Array.from({length:ROUNDS}, () => ({first:null, s:[[0,0,0,0,0],[0,0,0,0,0]]}))};
   }
   let GAMES = load(LKEY, []);
+  GAMES.forEach(g => { if (!g.pack && g.face) g.pack = "cite-de-cendre"; });
   let G = null, view = "home", histG = null;
   const cur = load(LKEY + "-courante", null);
   if (cur) { G = GAMES.find(g => g.id === cur.id) || null; if (G) view = cur.view || G.view || "setup"; }
@@ -66,18 +75,19 @@
     if (live.length) h += `<div><span class="g-lbl">Parties en cours</span><div class="g-stack">${live.map(g => withG(g, () => {
       const where = g.view === "setup" ? "Préparation" : g.view === "start" ? "Début de partie" : g.view === "summary" ? "Récapitulatif" : g.view && g.view[0] === "r" ? "Round " + g.view.slice(1) : "";
       return `<div class="g-panel"><div class="g-body g-live">
-        <div class="g-row"><div class="g-grow"><b>${pname(0)}</b> contre <b>${pname(1)}</b><div class="g-hint">${g.face ? FACES[g.face] : "Face à choisir"}${g.label ? " · " + esc(g.label) : ""}</div></div><div class="g-big">${total(0)} - ${total(1)}</div></div>
+        <div class="g-row"><div class="g-grow"><b>${pname(0)}</b> contre <b>${pname(1)}</b><div class="g-hint">${g.pack || g.face ? esc(packLine(g)) : "Pack à choisir"}${g.label ? " · " + esc(g.label) : ""}</div></div><div class="g-big">${total(0)} - ${total(1)}</div></div>
         <div class="g-row"><span class="g-tag">${where}</span><span class="g-grow"></span><button class="g-del" type="button" data-act="del" data-id="${g.id}" aria-label="Supprimer cette partie">${TRASH}</button><button class="g-btn gold" type="button" data-act="resume" data-id="${g.id}">Reprendre</button></div>
       </div></div>`; })).join("")}</div></div>`;
-    else h += `<div class="g-panel g-hero"><h2>Aucune partie en cours</h2><p class="g-hint">Joueurs, Spearheads et face du plateau, puis le score round par round.</p></div>`;
+    else h += `<div class="g-panel g-hero"><h2>Aucune partie en cours</h2><p class="g-hint">Pack de bataille, joueurs et Spearheads, puis le score round par round.</p></div>`;
     if (hist.length) h += `<div><span class="g-lbl">Parties terminées</span><div class="g-hist">${hist.slice(0,15).map((x, i) => `<div><button class="g-grow g-hopen" type="button" data-act="hopen" data-i="${i}"><b>${esc(x.a)}</b> ${x.sa} - ${x.sb} <b>${esc(x.b)}</b><br><span class="g-hint">${esc(x.f)} · ${esc(x.d)}</span></button><button class="g-del" type="button" data-act="hdel" data-i="${i}" aria-label="Supprimer cette partie">${TRASH}</button></div>`).join("")}</div></div>`;
     return h;
   }
 
   function vSetup(){
     let h = `<div class="g-panel"><h2 class="g-sec">Partie</h2><div class="g-body">
-      <div><span class="g-lbl">Face du plateau</span><div class="g-two">${Object.keys(FACES).map(k => `<button class="g-pick" type="button" data-act="face" data-f="${k}" aria-pressed="${G.face === k}">${FACES[k]}</button>`).join("")}</div>
-        <button class="g-btn ghost" type="button" data-act="rface">Face aléatoire</button></div>
+      <div><span class="g-lbl">Pack de bataille</span><div class="g-packs">${PACKS.map(k => `<button class="g-pick" type="button" data-act="pack" data-k="${k.id}" aria-pressed="${G.pack === k.id}">${esc(k.n)}</button>`).join("")}</div></div>
+      ${G.pack ? `<div><span class="g-lbl">Face du plateau</span><div class="g-two">${Object.entries(packOf(G).faces).map(([k, n]) => `<button class="g-pick" type="button" data-act="face" data-f="${k}" aria-pressed="${G.face === k}">${esc(n)}</button>`).join("")}</div>
+        <button class="g-btn ghost" type="button" data-act="rface">Face aléatoire</button></div>` : ""}
       <div><label class="g-lbl" for="g-label">Nom de la partie (facultatif)</label><input type="text" id="g-label" data-set="label" value="${esc(G.label)}" placeholder="Ex. Partie avec ..."></div>
     </div></div>`;
     [0,1].forEach(p => {
@@ -92,7 +102,8 @@
   }
   function missing(){
     const m = [];
-    if (!G.face) m.push("face du plateau");
+    if (!G.pack) m.push("pack de bataille");
+    else if (!G.face) m.push("face du plateau");
     if (!(G.players[0].name || "").trim()) m.push("nom du joueur");
     if (!(G.players[1].name || "").trim()) m.push("nom de l'adversaire");
     return m;
@@ -103,7 +114,7 @@
         <p class="g-hint">Tirez au dé : le gagnant choisit qui est l'attaquant.</p></div></div>
       <div class="g-panel"><h2 class="g-sec">Qui joue en premier au round 1 ?</h2><div class="g-body">${pick("first", G.rounds[0].first, 1)}
         <p class="g-hint">C'est l'attaquant qui choisit.</p></div></div>
-      <a class="g-btn" href="#pack/cite-de-cendre/avant">Revoir la séquence de pré-bataille</a>`;
+      <a class="g-btn" href="#pack/${packOf(G).id}/avant">Revoir la séquence de pré-bataille</a>`;
   }
 
   function vRound(r){
@@ -139,7 +150,7 @@
     const a = total(0), b = total(1), done = G.status === "done";
     const st = !done ? `<span class="g-status">En cours</span>` : a === b ? `<span class="g-status">Égalité</span>` : `<span class="g-status win">Victoire de ${pname(a > b ? 0 : 1)}</span>`;
     const fac = p => esc(shName(G.players[p].sh) || "Autre Spearhead");
-    let h = `<div class="g-panel g-final">${st}<div class="g-names"><span>${pname(0)}<br><span class="g-hint">${fac(0)}</span></span><span>${pname(1)}<br><span class="g-hint">${fac(1)}</span></span></div><div class="g-big">${a} - ${b}</div><span class="g-hint">${esc(FACES[G.face] || "")}${G.label ? " · " + esc(G.label) : ""}</span></div>`;
+    let h = `<div class="g-panel g-final">${st}<div class="g-names"><span>${pname(0)}<br><span class="g-hint">${fac(0)}</span></span><span>${pname(1)}<br><span class="g-hint">${fac(1)}</span></span></div><div class="g-big">${a} - ${b}</div><span class="g-hint">${esc(packLine(G))}${G.label ? " · " + esc(G.label) : ""}</span></div>`;
     [0,1].forEach(p => {
       const line = (name, f) => `<tr><td>${name}</td>${[1,2,3,4].map(r => `<td class="cell"><span>${f(r) || "-"}</span></td>`).join("")}<td class="tot">${[1,2,3,4].reduce((t, r) => t + f(r), 0)}</td></tr>`;
       h += `<div class="g-panel"><h2 class="g-sec dark"><span>${pname(p)}</span><span>${total(p)} PV</span></h2><div class="g-body g-scroll">
@@ -209,8 +220,9 @@
     if (a === "resume") { const g = GAMES.find(x => x.id === b.dataset.id); if (!g) return; G = g; return go(g.view || "setup"); }
     if (a === "home") { closeModal(); return go("home"); }
     if (a === "hopen") return go("hist:" + b.dataset.i);
+    if (a === "pack") { if (G.pack !== b.dataset.k) { G.pack = b.dataset.k; G.face = null; } save(); return render(true); }
     if (a === "face") { G.face = b.dataset.f; save(); return render(true); }
-    if (a === "rface") { G.face = Math.random() < .5 ? "bastion" : "croisement"; save(); return render(true); }
+    if (a === "rface") { const f = Object.keys(packOf(G).faces); G.face = f[Math.floor(Math.random() * f.length)]; save(); return render(true); }
     if (a === "attacker") { G.attacker = p; save(); return render(true); }
     if (a === "first") { G.rounds[r-1].first = p; save(); return render(true); }
     if (a === "obj") {
@@ -232,7 +244,7 @@
     if (a === "finish-ok") {
       G.status = "done";
       const hist = load(HKEY, []);
-      hist.unshift({a:rawName(0), b:rawName(1), sa:total(0), sb:total(1), f:FACES[G.face] || "", d:new Date().toLocaleDateString("fr-FR"), g:JSON.parse(JSON.stringify(G))});
+      hist.unshift({a:rawName(0), b:rawName(1), sa:total(0), sb:total(1), f:packLine(G), d:new Date().toLocaleDateString("fr-FR"), g:JSON.parse(JSON.stringify(G))});
       store(HKEY, hist.slice(0, 50));
       GAMES = GAMES.filter(x => x.id !== G.id); store(LKEY, GAMES); G = null;
       closeModal(); return go("hist:0");
@@ -244,7 +256,7 @@
     }
   });
   function summaryText(){
-    const L = [`${rawName(0)} ${total(0)} - ${total(1)} ${rawName(1)}`, `Cité de Cendre · ${FACES[G.face] || ""}${G.label ? " · " + G.label : ""}`];
+    const L = [`${rawName(0)} ${total(0)} - ${total(1)} ${rawName(1)}`, `${packLine(G)}${G.label ? " · " + G.label : ""}`];
     [0,1].forEach(p => {
       const sh = shName(G.players[p].sh);
       L.push("", `${rawName(p)}${sh ? " (" + sh + ")" : ""}`);
@@ -255,6 +267,7 @@
 
   window.SC_PARTIE = {
     open(head){ setHead = head; render(false); },
+    packName: () => G && G.pack && !view.startsWith("hist:") && view !== "home" ? packOf(G).n : "",
     back(){ if (view.startsWith("hist:")) go("home"); else back(); },
     atHome: () => view === "home"
   };

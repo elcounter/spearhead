@@ -243,6 +243,7 @@ body.g-has-foot{padding-bottom:calc(var(--navh) + 66px)}
 .doc .maps figure{margin:0;text-align:center;font:600 13px var(--body);color:var(--muted)}
 .doc .maps svg{display:block;width:100%;height:auto;border-radius:4px;margin-bottom:6px}
 @media (max-width:420px){.doc .maps{grid-template-columns:1fr}}
+.g-packs{display:grid;gap:8px}
 /* Pied de page */
 .foot{padding:24px 16px calc(24px + env(safe-area-inset-bottom,0px));text-align:center;color:var(--muted);font-size:12px;line-height:1.6;border-top:1px solid var(--line)}
 .foot p{margin:0}
@@ -302,7 +303,7 @@ body.g-has-foot{padding-bottom:calc(var(--navh) + 66px)}
 
 <footer class="foot">
   <p>© 2026 elcounter. Tous droits réservés.</p>
-  <p>SpearCounter version 1.4.1 · MAJ 08-11-2026</p>
+  <p>SpearCounter version 1.5.0 · MAJ 08-11-2026</p>
   <p>Application non officielle, non affiliée à Games Workshop.</p>
   <p>Warhammer Spearhead est une marque de Games Workshop Ltd.</p>
 </footer>
@@ -523,7 +524,7 @@ body.g-has-foot{padding-bottom:calc(var(--navh) + 66px)}
   // #  : accueil · #<spearhead>/memo|regles|phases · #<spearhead>/u/<unité>
   function route(){
     const [shId, part, unitId] = location.hash.slice(1).split("/");
-    if (shId === "partie") { show("partie"); window.SC_PARTIE.open((t, sub) => { $("kicker").textContent = "Partie · Cité de Cendre"; $("title").textContent = t; $("back").hidden = !sub; }); return; }
+    if (shId === "partie") { show("partie"); window.SC_PARTIE.open((t, sub) => { const pn = window.SC_PARTIE.packName(); $("kicker").textContent = pn ? "Partie · " + pn : "Partie"; $("title").textContent = t; $("back").hidden = !sub; }); return; }
     if (shId === "regles") { show("rules"); return; }
     if (shId === "pack") {
       PK = PACKS.find(x => x.id === part);
