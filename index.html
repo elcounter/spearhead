@@ -163,7 +163,7 @@ main{padding-block:16px 40px}
 body{padding-bottom:var(--navh)}
 body.g-has-foot{padding-bottom:calc(var(--navh) + 66px)}
 .bnav{position:fixed;left:0;right:0;bottom:0;z-index:8;background:#fff;border-top:1px solid #d8d8d8;padding-bottom:env(safe-area-inset-bottom,0px);box-shadow:0 -2px 8px rgba(0,0,0,.08)}
-.bnav .in{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));max-width:820px;margin:0 auto}
+.bnav .in{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));max-width:820px;margin:0 auto}
 .bnav a{display:grid;justify-items:center;gap:3px;padding:8px 2px 9px;text-decoration:none;color:#6d6d6d;font:500 12px var(--display);text-transform:uppercase;letter-spacing:.06em;border-top:3px solid transparent;margin-top:-1px}
 .bnav a[aria-current="page"]{color:var(--bar);border-top-color:var(--bar)}
 .bnav svg{width:24px;height:24px}
@@ -244,6 +244,37 @@ body.g-has-foot{padding-bottom:calc(var(--navh) + 66px)}
 .doc .maps svg{display:block;width:100%;height:auto;border-radius:4px;margin-bottom:6px}
 @media (max-width:420px){.doc .maps{grid-template-columns:1fr}}
 .g-packs{display:grid;gap:8px}
+/* Accueil */
+.welcome{text-align:center;padding:12px 8px 18px}
+.welcome .mark{width:64px;height:64px;display:block;margin:0 auto 10px}
+.welcome h2{font:700 26px/1.1 var(--display);text-transform:uppercase;margin:0 0 6px}
+.welcome p{margin:0;color:var(--muted)}
+.btn-install{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;margin:0 0 14px;padding:13px 16px;border:0;border-radius:10px;background:var(--bar);color:#fff;font:700 15px var(--display);text-transform:uppercase;letter-spacing:.06em;text-decoration:none;cursor:pointer}
+.btn-install[hidden]{display:none}
+.btn-install svg,.ficon svg{width:22px;height:22px}
+.feat{display:grid;gap:10px}
+.fcard{display:flex;align-items:center;gap:14px;background:var(--card);border-radius:10px;padding:14px 16px;color:var(--ink);text-decoration:none;box-shadow:0 1px 2px rgba(0,0,0,.12);border-left:5px solid var(--bar);font-size:14px;line-height:1.35}
+.fcard b{font:700 16px var(--body)}
+.fcard:hover{background:#faf7f2}
+.ficon{flex:none;width:44px;height:44px;border-radius:50%;background:var(--bar);color:#fff;display:grid;place-items:center}
+.home-extra{display:flex;flex-direction:column;gap:10px;margin:22px 0 8px}
+.wc-btn{display:flex;flex-direction:column;align-items:center;gap:2px;padding:12px 14px;border-radius:10px;background:#2a2c30;border:1px solid #5c636c;border-left:4px solid #d4ae3f;color:#eef1f4;text-decoration:none;font:600 14px var(--display)}
+.wc-btn b{color:#d4ae3f;font-weight:600}
+.wc-btn span{font:400 12px var(--body);color:#a8b0ba}
+/* Soutenir */
+.sup-hero{text-align:center;padding:6px 4px 14px}
+.sup-hero .mark{width:64px;height:64px;display:block;margin:0 auto}
+.sup-hero h2{font:700 24px/1.1 var(--display);text-transform:uppercase;margin:8px 0 10px}
+.sup-hero p{margin:0 0 10px;line-height:1.5;text-align:left}
+.sup-panel{background:var(--card);border-radius:10px;overflow:hidden;box-shadow:0 1px 2px rgba(0,0,0,.12)}
+.sup-panel .sec{font-size:15px;padding:11px 16px}
+.sup-body{padding:14px 16px}
+.sup-main{display:block;text-align:center;text-decoration:none;margin:0 0 14px;padding:13px 16px;border-radius:8px;background:var(--bar);color:#fff;font:700 15px var(--body)}
+.steps{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.steps li{display:flex;gap:12px;align-items:flex-start;background:#f7f7f7;border-radius:10px;padding:12px 14px;line-height:1.4;font-size:14px}
+.snum{flex:none;display:grid;place-items:center;width:28px;height:28px;border-radius:50%;background:var(--bar);color:#fff;font:700 15px var(--display)}
+.sup-thanks{text-align:center;margin:16px 0 0;line-height:1.5}
+.sup-link{display:inline-block;margin:0 0 8px;padding:5px 12px;border:1px solid #d6cfc3;border-radius:999px;color:var(--bar);font:600 12px var(--body);text-decoration:none;background:#fff}
 /* Pied de page */
 .foot{padding:24px 16px calc(24px + env(safe-area-inset-bottom,0px));text-align:center;color:var(--muted);font-size:12px;line-height:1.6;border-top:1px solid var(--line)}
 .foot p{margin:0}
@@ -269,7 +300,14 @@ body.g-has-foot{padding-bottom:calc(var(--navh) + 66px)}
 
 <main class="in">
   <!-- Accueil : choix du Spearhead -->
-  <section id="view-home">
+  <!-- Accueil -->
+  <section id="view-accueil" hidden><div id="accueil"></div></section>
+
+  <!-- Soutenir le projet -->
+  <section id="view-soutenir" hidden><div id="soutenir"></div></section>
+
+  <!-- Onglet Spearhead : choix de la Spearhead -->
+  <section id="view-home" hidden>
     <p class="home-intro">Choisis ta Spearhead</p><div class="list" id="home"></div>
   </section>
 
@@ -302,15 +340,17 @@ body.g-has-foot{padding-bottom:calc(var(--navh) + 66px)}
 </main>
 
 <footer class="foot">
+  <a class="sup-link" href="#soutenir">Si tu veux soutenir le projet</a>
   <p>© 2026 elcounter. Tous droits réservés.</p>
-  <p>SpearCounter version 1.7.2 · MAJ 08-11-2026</p>
+  <p>SpearCounter version 1.8.0 · MAJ 08-11-2026</p>
   <p>Application non officielle, non affiliée à Games Workshop.</p>
   <p>Spearhead est une marque de Games Workshop Ltd.</p>
 </footer>
 
 <nav class="bnav" aria-label="Navigation principale"><div class="in">
+  <a href="#" id="bn-accueil"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11l9-7 9 7"/><path d="M5 10v10h5v-6h4v6h5V10"/></svg><span>Accueil</span></a>
   <a href="#regles" id="bn-regles"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2z"/><path d="M4 19V5"/><path d="M9 7h6"/></svg><span>Règles</span></a>
-  <a href="#" id="bn-spearhead"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2l3 7-3 13-3-13z"/><path d="M7 9h10"/></svg><span>Spearhead</span></a>
+  <a href="#spearheads" id="bn-spearhead"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2l3 7-3 13-3-13z"/><path d="M7 9h10"/></svg><span>Spearhead</span></a>
   <a href="#partie" id="bn-partie"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="3"/><circle cx="9" cy="9" r="1.2" fill="currentColor"/><circle cx="15" cy="15" r="1.2" fill="currentColor"/><circle cx="15" cy="9" r="1.2" fill="currentColor"/><circle cx="9" cy="15" r="1.2" fill="currentColor"/></svg><span>Partie</span></a>
 </div></nav>
 
@@ -349,7 +389,43 @@ body.g-has-foot{padding-bottom:calc(var(--navh) + 66px)}
   const photoAttr = src => src ? ` style="--img:url('${src}')"` : "";
   let SH = null; // Spearhead affiché
 
-  // ---------- Accueil ----------
+  // ---------- Accueil de l'app ----------
+  const I = d => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${d}</svg>`;
+  const MARK = inner => `<svg class="mark" viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="30" fill="#6b2119"/><circle cx="32" cy="32" r="25" fill="none" stroke="#d4ae3f" stroke-width="2.5"/>${inner}</svg>`;
+  const STANDALONE = window.matchMedia("(display-mode: standalone)").matches || window.navigator.standalone === true;
+  const FEATURES = [
+    ["regles","Règles","Les règles des packs de bataille : Le Feu et le Jade, Le Sable et l'Os, Cité de Cendre, Double.",'<path d="M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2z"/><path d="M4 19V5"/><path d="M9 7h6"/>'],
+    ["spearheads","Spearhead","Choisis ta Spearhead : mémo des unités, règles d'armée et phases.",'<path d="M12 2l3 7-3 13-3-13z"/><path d="M7 9h10"/>'],
+    ["partie","Partie","Suis le score de tes parties entre amis, round par round.",'<rect x="4" y="4" width="16" height="16" rx="3"/><circle cx="9" cy="9" r="1.2" fill="currentColor"/><circle cx="15" cy="15" r="1.2" fill="currentColor"/><circle cx="15" cy="9" r="1.2" fill="currentColor"/><circle cx="9" cy="15" r="1.2" fill="currentColor"/>']
+  ];
+  const EXTRA = [
+    ["mailto:warcounter@proton.me?subject=%5BSpearCounter%5D%20Retour","Signaler un bug / Suggestion","Envoie un e-mail pour faire remonter un souci ou une idée.",'<path d="M4 4h16v16H4z"/><path d="M4 8l8 5 8-5"/>'],
+    ["#soutenir","Si tu veux soutenir le projet","Un don pour l'hébergement et le développement.",'<path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/>']
+  ];
+  const card = ([href, n, d, svg]) => `<a class="fcard" href="${href.startsWith("mailto:") || href.startsWith("#") ? href : "#" + href}"><span class="ficon">${I(svg)}</span><span><b>${n}</b><br>${d}</span></a>`;
+  $("accueil").innerHTML = `<div class="welcome">${MARK('<path d="M40 22c-2-3-5-4-8-4-5 0-8 3-8 6.5 0 8 16 5 16 13 0 3.5-3.5 6.5-8 6.5-3.5 0-6.5-1.5-8.5-4.5" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round"/>')}
+      <h2>Bienvenue sur SpearCounter</h2><p>Ton compagnon pour Warhammer Age of Sigmar Spearhead.</p></div>
+    ${STANDALONE ? "" : `<button class="btn-install" type="button" id="home-install">${I('<path d="M12 3v12M7 10l5 5 5-5"/><path d="M5 19h14"/>')}<span>Installer l'app</span></button>`}
+    <div class="feat">${FEATURES.map(card).join("")}</div>
+    <div class="home-extra">
+      <div class="feat">${EXTRA.map(card).join("")}</div>
+      <a class="wc-btn" href="https://elcounter.github.io/warcounter/" target="_blank" rel="noopener"><b>Découvrir WarCounter</b><span>Ton compagnon pour Warhammer Age of Sigmar</span></a>
+    </div>`;
+  const hi = $("home-install"); if (hi) hi.addEventListener("click", () => { if (window.SC_INSTALL) window.SC_INSTALL(); });
+
+  const PAYPAL_URL = "https://www.paypal.com/qrcodes/p2pqrc/MXBPC6EUBZBGN";
+  const step = (n, t) => `<li><span class="snum">${n}</span><span>${t}</span></li>`;
+  $("soutenir").innerHTML = `<div class="sup-hero">${MARK('<path d="M32 46s-13-8-13-17a7 7 0 0 1 13-3.5A7 7 0 0 1 45 29c0 9-13 17-13 17z" fill="#fff"/>')}
+      <h2>Soutenir SpearCounter</h2>
+      <p>Projet piloté sur mon temps libre, ton don servira à payer un meilleur hébergement et à me donner du temps pour peaufiner l'application.</p>
+      <p>SpearCounter est gratuit, sans publicité, et le restera. <b>Ce n'est absolument pas obligatoire</b> : utiliser l'app et me faire des retours, c'est déjà un super soutien.</p></div>
+    <div class="sup-panel"><h3 class="sec">Faire un don avec PayPal</h3><div class="sup-body">
+      <a class="sup-main" href="${PAYPAL_URL}" target="_blank" rel="noopener">Faire un don avec PayPal</a>
+      <ol class="steps">${step(1, "Appuie sur le bouton ci-dessus.")}${step(2, "Indique le montant de ton choix.")}${step(3, "Sélectionne <b>Entre proches</b> : ainsi, aucun frais n'est prélevé sur ton don.")}</ol>
+    </div></div>
+    <p class="sup-thanks">Merci du fond du cœur, et bonnes parties !<br><b>elcounter</b></p>`;
+
+  // ---------- Onglet Spearhead : liste ----------
   $("home").innerHTML = SPEARHEADS.map(sh => `<button type="button" class="unit-link sh-link${sh.cover ? " has-photo" : ""}" data-id="${sh.id}"${photoAttr(sh.cover)}><span>${esc(sh.name)}${sh.faction ? `<small>${esc(sh.faction)}</small>` : ""}</span></button>`).join("");
   $("home").addEventListener("click", e => { const t = e.target.closest(".sh-link"); if (t) location.hash = t.dataset.id + "/memo"; });
 
@@ -526,6 +602,8 @@ body.g-has-foot{padding-bottom:calc(var(--navh) + 66px)}
     const [shId, part, unitId] = location.hash.slice(1).split("/");
     if (shId === "partie") { show("partie"); window.SC_PARTIE.open((t, sub) => { const pn = window.SC_PARTIE.packName(); $("kicker").textContent = pn ? "Partie · " + pn : "Partie"; $("title").textContent = t; $("back").hidden = !sub; }); return; }
     if (shId === "regles") { show("rules"); return; }
+    if (shId === "spearheads") { show("home"); return; }
+    if (shId === "soutenir") { show("soutenir"); return; }
     if (shId === "pack") {
       PK = PACKS.find(x => x.id === part);
       if (PK) {
@@ -536,23 +614,24 @@ body.g-has-foot{padding-bottom:calc(var(--navh) + 66px)}
       }
     }
     const sh = SPEARHEADS.find(x => x.id === shId);
-    if (!sh) { show("home"); return; }
+    if (!sh) { show("accueil"); return; }
     openSpearhead(sh);
     const unit = part === "u" ? sh.units.find(u => u.id === unitId) : null;
     show(unit ? "unit" : (["regles","phases"].includes(part) ? part : "memo"), unit);
   }
   function show(view, unit, doc){
-    ["home","rules","partie","memo","regles","phases","unit","pack","doc"].forEach(k => { $("view-" + k).hidden = k !== view; });
-    $("tabs").hidden = ["home","rules","partie","unit","pack","doc"].includes(view);
-    $("back").hidden = view === "home" || view === "rules" || view === "partie";
+    ["accueil","soutenir","home","rules","partie","memo","regles","phases","unit","pack","doc"].forEach(k => { $("view-" + k).hidden = k !== view; });
+    $("tabs").hidden = ["accueil","soutenir","home","rules","partie","unit","pack","doc"].includes(view);
+    $("back").hidden = ["accueil","home","rules","partie"].includes(view);
     if (view !== "partie") $("g-score").hidden = true;
     document.body.classList.toggle("g-has-foot", view === "partie" && !$("g-foot").hidden);
     const inPack = view === "pack" || view === "doc";
-    if (view === "partie") { $("bn-partie").setAttribute("aria-current", "page"); ["regles","spearhead"].forEach(k => $("bn-" + k).removeAttribute("aria-current")); window.scrollTo(0, 0); return; }
-    $("kicker").textContent = view === "home" || view === "rules" ? "Warhammer Spearhead" : inPack ? (doc ? PK.name : "Règles") : (view === "unit" ? SH.name : "SpearCounter");
-    $("title").textContent = view === "home" || view === "rules" ? "SpearCounter" : inPack ? (doc ? doc.en : PK.name) : (unit ? unit.en : SH.name);
-    const tab = view === "partie" ? "partie" : (view === "rules" || inPack) ? "regles" : "spearhead";
-    ["regles","spearhead","partie"].forEach(k => { if (k === tab) $("bn-" + k).setAttribute("aria-current", "page"); else $("bn-" + k).removeAttribute("aria-current"); });
+    if (view === "partie") { $("bn-partie").setAttribute("aria-current", "page"); ["accueil","regles","spearhead"].forEach(k => $("bn-" + k).removeAttribute("aria-current")); window.scrollTo(0, 0); return; }
+    const top = ["accueil","soutenir","home","rules"].includes(view);
+    $("kicker").textContent = top ? "Warhammer Spearhead" : inPack ? (doc ? PK.name : "Règles") : (view === "unit" ? SH.name : "SpearCounter");
+    $("title").textContent = top ? "SpearCounter" : inPack ? (doc ? doc.en : PK.name) : (unit ? unit.en : SH.name);
+    const tab = view === "accueil" || view === "soutenir" ? "accueil" : (view === "rules" || inPack) ? "regles" : "spearhead";
+    ["accueil","regles","spearhead","partie"].forEach(k => { if (k === tab) $("bn-" + k).setAttribute("aria-current", "page"); else $("bn-" + k).removeAttribute("aria-current"); });
     ["memo","regles","phases"].forEach(k => { if (k === view) $("nav-" + k).setAttribute("aria-current", "page"); else $("nav-" + k).removeAttribute("aria-current"); });
     if (unit) showUnit(unit);
     window.scrollTo(0, 0);
@@ -561,7 +640,8 @@ body.g-has-foot{padding-bottom:calc(var(--navh) + 66px)}
     const [shId, part, sub] = location.hash.slice(1).split("/");
     if (shId === "partie") return window.SC_PARTIE.back();
     if (shId === "pack") location.hash = sub ? "pack/" + part : "regles";
-    else location.hash = part === "u" ? shId + "/memo" : "";
+    else if (shId === "soutenir") location.hash = "";
+    else location.hash = part === "u" ? shId + "/memo" : "spearheads";
   });
   window.addEventListener("hashchange", route);
   route();
@@ -583,6 +663,12 @@ body.g-has-foot{padding-bottom:calc(var(--navh) + 66px)}
   // iOS / iPadOS : pas d'invite automatique, on affiche la marche à suivre
   const ios = /iphone|ipad|ipod/i.test(navigator.userAgent) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
   if (ios) btn.hidden = false;
+  // Bouton « Installer l'app » de l'accueil
+  window.SC_INSTALL = () => {
+    if (deferred || ios) return btn.click();
+    hint.querySelector("p").innerHTML = "Pour installer l'app : ouvre le menu de ton navigateur, puis choisis <b>Installer l'application</b> ou <b>Ajouter à l'écran d'accueil</b>.";
+    hint.hidden = false;
+  };
   btn.addEventListener("click", async () => {
     if (deferred) {
       deferred.prompt();
