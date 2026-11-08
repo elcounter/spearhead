@@ -236,10 +236,12 @@
  "id": "sable-et-os",
  "name": "Le Sable et l'Os",
  "sub": "Pack de bataille",
- "cover": "img/sable-et-os/dolorum.jpg",
+ "cover": "img/sable-et-os/bataille.jpg",
  "imgs": {
-  "dolorum": "img/sable-et-os/dolorum.jpg",
-  "ossie": "img/sable-et-os/ossie.jpg"
+  "art": "img/sable-et-os/art.jpg",
+  "decors": "img/sable-et-os/decors.jpg",
+  "objectifs": "img/sable-et-os/objectifs.jpg",
+  "bataille": "img/sable-et-os/bataille.jpg"
  },
  "groups": [
   {
@@ -289,7 +291,7 @@
      "x": "4 rounds de bataille."
     }
    ],
-   "img": "dolorum"
+   "img": "bataille"
   },
   {
    "id": "rounds",
@@ -352,7 +354,7 @@
      "x": "Après 4 rounds, le joueur qui a marqué le plus de points de victoire est le vainqueur. En cas d'égalité, la bataille est une égalité."
     }
    ],
-   "img": "ossie"
+   "img": "art"
   },
   {
    "id": "decors",
@@ -468,7 +470,7 @@
      }
     }
    ],
-   "img": "dolorum"
+   "img": "decors"
   },
   {
    "id": "objectifs",
@@ -481,6 +483,10 @@
     {
      "k": "p",
      "x": "Une figurine qui est sur un objectif, même partiellement, le conteste."
+    },
+    {
+     "k": "p",
+     "x": "Chaque objectif est une estrade nommée d'après un domaine de Shyish : Nécropole (Necropolis), Sang (Blood), Illusion (Delusion), Chagrin (Grief) et Nuit (Night)."
     },
     {
      "k": "h",
@@ -505,7 +511,7 @@
      }
     }
    ],
-   "img": "ossie"
+   "img": "objectifs"
   }
  ]
 });
