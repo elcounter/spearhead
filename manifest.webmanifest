@@ -1,7 +1,7 @@
 {
-  "name": "Forgeruines de Hashut",
-  "short_name": "Hashut",
-  "description": "Mémo Spearhead Forgeruines de Hashut — unités, règles et phases.",
+  "name": "SpearCounter",
+  "short_name": "SpearCounter",
+  "description": "Mémos Warhammer Spearhead — unités, règles et phases.",
   "lang": "fr",
   "start_url": "./",
   "scope": "./",

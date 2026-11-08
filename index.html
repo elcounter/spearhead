@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>Forgeruines de Hashut</title>
+<title>SpearCounter</title>
 <link rel="manifest" href="manifest.webmanifest">
 <meta name="theme-color" content="#6b2119">
 <link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png">
@@ -11,7 +11,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="Hashut">
+<meta name="apple-mobile-web-app-title" content="SpearCounter">
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Bitter:wght@400;600;700&display=swap">
 <style>
@@ -31,7 +31,7 @@
 }
 *{box-sizing:border-box}
 html,body{background:var(--page);color:var(--ink)}
-body{font-family:var(--body);font-size:15px;line-height:1.45}
+body{margin:0;font-family:var(--body);font-size:15px;line-height:1.45}
 body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bar)}
 .in{max-width:820px;margin:0 auto;padding-left:max(16px, env(safe-area-inset-left,0px));padding-right:max(16px, env(safe-area-inset-right,0px))}
 button,select,input{font-family:inherit}
@@ -129,6 +129,9 @@ main{padding-block:16px 40px}
 .ios-hint[hidden]{display:none}
 .ios-hint p{margin:0 0 10px}
 .ios-hint button{background:#e9c96b;color:#1b1b1b;border:0;border-radius:6px;padding:6px 12px;font:700 13px var(--body);cursor:pointer}
+/* Pied de page */
+.foot{padding:24px 16px calc(24px + env(safe-area-inset-bottom,0px));text-align:center;color:var(--muted);font-size:12px;line-height:1.6;border-top:1px solid var(--line)}
+.foot p{margin:0}
 .who{font:700 12px var(--display);text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin:0 0 4px 2px}
 .ab-wrap + .ab-wrap{margin-top:12px}
 </style>
@@ -138,7 +141,7 @@ main{padding-block:16px 40px}
 <header class="bar">
   <div class="in top">
     <button class="back" id="back" type="button" aria-label="Retour" hidden><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg></button>
-    <div class="ttl"><span class="kicker">Spearhead</span><h1 id="title">Forgeruines de Hashut</h1></div>
+    <div class="ttl"><span class="kicker">SpearCounter</span><h1 id="title">Forgeruines de Hashut</h1></div>
     <button class="install" id="install" type="button" hidden aria-label="Installer l'application"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg>Installer</button>
   </div>
   <nav class="in tabs" id="tabs">
@@ -162,6 +165,13 @@ main{padding-block:16px 40px}
   <section id="view-phases" hidden><div class="phases" id="phases"></div></section>
 
 </main>
+
+<footer class="foot">
+  <p>© 2026 elcounter. Tous droits réservés.</p>
+  <p>SpearCounter version 1.0.0 · MAJ 08-11-2026</p>
+  <p>Application non officielle, non affiliée à Games Workshop.</p>
+  <p>Warhammer Spearhead est une marque de Games Workshop Ltd.</p>
+</footer>
 
 <div class="ios-hint" id="ios-hint" role="dialog" aria-label="Installer l'application" hidden>
   <p>Pour installer l'app : touche le bouton <b>Partager</b> de Safari, puis <b>Sur l'écran d'accueil</b>.</p>

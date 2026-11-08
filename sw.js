@@ -1,6 +1,6 @@
 // Service worker : fonctionnement hors ligne.
 // Changer VERSION à chaque mise à jour du site pour forcer le rafraîchissement du cache.
-const VERSION = "hashut-v1";
+const VERSION = "spearcounter-1.0.0";
 const ASSETS = [
   "./",
   "./index.html",
