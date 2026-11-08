@@ -1,7 +1,7 @@
 // Service worker : fonctionnement hors ligne.
 // Changer VERSION à chaque mise à jour du site pour forcer le rafraîchissement du cache.
 // Ajouter ici tout nouveau fichier de données (data/) et photo (img/).
-const VERSION = "spearcounter-1.6.0";
+const VERSION = "spearcounter-1.7.0";
 const ASSETS = [
   "./",
   "./index.html",
@@ -31,6 +31,12 @@ const ASSETS = [
   "./img/crixxit/egouts.jpg",
   "./img/crixxit/maitremort.jpg",
   "./img/crixxit/nocturnes.jpg",
+  "./img/double/bataille-droite.jpg",
+  "./img/double/bataille-gauche.jpg",
+  "./img/double/bataille.jpg",
+  "./img/double/deux-plateaux.jpg",
+  "./img/feu-et-jade/aqshy.jpg",
+  "./img/feu-et-jade/ghyran.jpg",
   "./img/hashut/armee.jpg",
   "./img/hashut/bombarde.jpg",
   "./img/hashut/cohorte.jpg",
@@ -45,7 +51,9 @@ const ASSETS = [
   "./img/ogors/cavalerie.jpg",
   "./img/ogors/gloutons.jpg",
   "./img/ogors/tyran.jpg",
-  "./img/ogors/ventres-durs.jpg"
+  "./img/ogors/ventres-durs.jpg",
+  "./img/sable-et-os/dolorum.jpg",
+  "./img/sable-et-os/ossie.jpg"
 ];
 
 self.addEventListener("install", e => {

@@ -3,8 +3,11 @@
  "id": "feu-et-jade",
  "name": "Le Feu et le Jade",
  "sub": "Pack de bataille",
- "cover": null,
- "imgs": {},
+ "cover": "img/feu-et-jade/aqshy.jpg",
+ "imgs": {
+  "aqshy": "img/feu-et-jade/aqshy.jpg",
+  "ghyran": "img/feu-et-jade/ghyran.jpg"
+ },
  "groups": [
   {
    "id": "avant",
@@ -52,7 +55,8 @@
      "k": "p",
      "x": "4 rounds de bataille."
     }
-   ]
+   ],
+   "img": "aqshy"
   },
   {
    "id": "rounds",
@@ -114,7 +118,8 @@
      "k": "p",
      "x": "Après 4 rounds, le joueur qui a marqué le plus de points de victoire est le vainqueur. En cas d'égalité, la bataille est une égalité."
     }
-   ]
+   ],
+   "img": "ghyran"
   },
   {
    "id": "decors",
@@ -179,7 +184,8 @@
       ]
      }
     }
-   ]
+   ],
+   "img": "aqshy"
   },
   {
    "id": "objectifs",
@@ -215,7 +221,8 @@
       ]
      }
     }
-   ]
+   ],
+   "img": "ghyran"
   }
  ]
 });
@@ -223,8 +230,11 @@
  "id": "sable-et-os",
  "name": "Le Sable et l'Os",
  "sub": "Pack de bataille",
- "cover": null,
- "imgs": {},
+ "cover": "img/sable-et-os/dolorum.jpg",
+ "imgs": {
+  "dolorum": "img/sable-et-os/dolorum.jpg",
+  "ossie": "img/sable-et-os/ossie.jpg"
+ },
  "groups": [
   {
    "id": "avant",
@@ -272,7 +282,8 @@
      "k": "p",
      "x": "4 rounds de bataille."
     }
-   ]
+   ],
+   "img": "dolorum"
   },
   {
    "id": "rounds",
@@ -334,7 +345,8 @@
      "k": "p",
      "x": "Après 4 rounds, le joueur qui a marqué le plus de points de victoire est le vainqueur. En cas d'égalité, la bataille est une égalité."
     }
-   ]
+   ],
+   "img": "ossie"
   },
   {
    "id": "decors",
@@ -449,7 +461,8 @@
       ]
      }
     }
-   ]
+   ],
+   "img": "dolorum"
   },
   {
    "id": "objectifs",
@@ -485,7 +498,8 @@
       ]
      }
     }
-   ]
+   ],
+   "img": "ossie"
   }
  ]
 });
@@ -493,8 +507,13 @@
  "id": "double",
  "name": "Fer de Lance en Double",
  "sub": "2 contre 2",
- "cover": null,
- "imgs": {},
+ "cover": "img/double/bataille.jpg",
+ "imgs": {
+  "bataille": "img/double/bataille.jpg",
+  "gauche": "img/double/bataille-gauche.jpg",
+  "droite": "img/double/bataille-droite.jpg",
+  "plateaux": "img/double/deux-plateaux.jpg"
+ },
  "groups": [
   {
    "id": "avant",
@@ -545,7 +564,8 @@
      "k": "p",
      "x": "4 rounds de bataille."
     }
-   ]
+   ],
+   "img": "bataille"
   },
   {
    "id": "cartes",
@@ -589,7 +609,8 @@
       ]
      ]
     }
-   ]
+   ],
+   "img": "plateaux"
   },
   {
    "id": "regles",
@@ -651,7 +672,8 @@
      "k": "p",
      "x": "Si l'équipe qui a joué en second au round précédent gagne le jet de priorité et décide de jouer en premier, elle prend l'initiative. Elle ne pioche alors pas de carte de tactique de bataille à ce round, sauf si elle est l'outsider et que l'écart de points de victoire entre les deux équipes est de 5 ou plus."
     }
-   ]
+   ],
+   "img": "gauche"
   },
   {
    "id": "victoire",
@@ -682,7 +704,8 @@
      "k": "p",
      "x": "L'équipe qui a le plus de points de victoire à la fin de la bataille est la gagnante. Si les deux équipes en ont autant, la bataille est une égalité."
     }
-   ]
+   ],
+   "img": "droite"
   }
  ]
 });
