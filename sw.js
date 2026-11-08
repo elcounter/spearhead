@@ -1,14 +1,13 @@
 // Service worker : fonctionnement hors ligne.
 // Changer VERSION à chaque mise à jour du site pour forcer le rafraîchissement du cache.
-const VERSION = "spearcounter-1.1.0";
+const VERSION = "spearcounter-1.1.1";
 const ASSETS = [
   "./",
   "./index.html",
-  "./manifest.webmanifest",
-  "./icons/icon-192.png",
-  "./icons/icon-512.png",
-  "./icons/maskable-512.png",
-  "./icons/apple-touch-icon.png",
+  "./icons/sc-icon-192.png",
+  "./icons/sc-icon-512.png",
+  "./icons/sc-maskable-512.png",
+  "./icons/sc-apple-touch-icon.png",
   "./data/hashut.js",
   "./img/hashut/armee.jpg",
   "./img/hashut/bombarde.jpg",
@@ -18,7 +17,7 @@ const ASSETS = [
 ];
 
 self.addEventListener("install", e => {
-  e.waitUntil(caches.open(VERSION).then(c => c.addAll(ASSETS)).then(() => self.skipWaiting()));
+  e.waitUntil(caches.open(VERSION).then(c => c.addAll(ASSETS.map(u => new Request(u, {cache: "reload"})))).then(() => self.skipWaiting()));
 });
 
 self.addEventListener("activate", e => {
@@ -52,6 +51,12 @@ self.addEventListener("fetch", e => {
         return hit || net;
       }))
     );
+    return;
+  }
+
+  // Manifeste : réseau d'abord (nom et icône toujours à jour)
+  if (url.origin === location.origin && url.pathname.endsWith(".webmanifest")) {
+    e.respondWith(fetch(req, {cache: "no-store"}).catch(() => caches.match(req, {ignoreSearch: true})));
     return;
   }
 

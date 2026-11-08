@@ -10,8 +10,8 @@
   "background_color": "#f1f1f1",
   "theme_color": "#6b2119",
   "icons": [
-    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png" },
-    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png" },
-    { "src": "icons/maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+    { "src": "icons/sc-icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "icons/sc-icon-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "icons/sc-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
   ]
 }
