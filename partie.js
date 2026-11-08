@@ -38,6 +38,7 @@
   }
   let GAMES = load(LKEY, []);
   GAMES.forEach(g => { if (!g.pack && g.face) g.pack = "cite-de-cendre"; });
+  GAMES.forEach(g => g.players.forEach(P => { if (P.sh && !P.fac && g.status === "setup") delete P.sh; }));
   let G = null, view = "home", histG = null;
   const cur = load(LKEY + "-courante", null);
   if (cur) { G = GAMES.find(g => g.id === cur.id) || null; if (G) view = cur.view || G.view || "setup"; }
@@ -102,7 +103,7 @@
       const P = G.players[p];
       h += `<div class="g-panel"><h2 class="g-sec">${p === 0 ? "Joueur" : "Adversaire"}</h2><div class="g-body">
         <div><label class="g-lbl" for="g-n${p}">Nom</label><input type="text" id="g-n${p}" data-set="name" data-p="${p}" value="${esc(P.name)}" placeholder="Joueur ${p+1}" autocomplete="off"></div>
-        <div><label class="g-lbl" for="g-s${p}">Faction</label><input type="text" id="g-s${p}" data-set="fac" data-p="${p}" value="${esc(facOf(P))}" placeholder="${p === 0 ? "Ex. Forgeruines de Hashut" : "Ex. Hordegueules Ogors"}" autocomplete="off"></div>
+        <div><label class="g-lbl" for="g-s${p}">Faction</label><input type="text" id="g-s${p}" data-set="fac" data-p="${p}" value="${esc(P.fac || "")}" placeholder="${p === 0 ? "Ex. Forgeruines de Hashut" : "Ex. Maraudeurs Mangeguerres"}" autocomplete="off"></div>
       </div></div>`;
     });
     h += `<p class="g-missing" id="g-missing" aria-live="polite"></p>`;
