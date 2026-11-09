@@ -156,6 +156,7 @@ const ASSETS = [
   "./img/bagnehorde-maudite/carognes.jpg",
   "./img/bagnehorde-maudite/armee.jpg",
   "./img/confrerie-vigilante/seigneur-veritant.jpg",
+  "./img/confrerie-vigilante/seigneur-vigilant.jpg",
   "./img/confrerie-vigilante/prosecutors.jpg",
   "./img/confrerie-vigilante/liberators.jpg",
   "./img/confrerie-vigilante/armee.jpg",
