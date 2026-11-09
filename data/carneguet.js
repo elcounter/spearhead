@@ -3,8 +3,8 @@
  "id": "carneguet",
  "name": "Carneguet",
  "faction": "Cours de Mangechairs",
- "cover": null,
- "photos": {},
+ "cover": "img/carneguet/armee.jpg",
+ "photos": {"armee": "img/carneguet/armee.jpg", "sangtinelle": "img/carneguet/sangtinelle.jpg", "depeceurs": "img/carneguet/depeceurs.jpg", "horreurs-cryptes": "img/carneguet/horreurs-cryptes.jpg", "fleaux-cryptes": "img/carneguet/fleaux-cryptes.jpg"},
  "units": [
   {
    "id": "sangtinelle",

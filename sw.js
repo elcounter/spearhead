@@ -2,7 +2,7 @@
 // Changer VERSION à chaque mise à jour du site pour forcer le rafraîchissement du cache.
 // ASSETS (app et données, légers) : mis en cache à l'installation. IMAGES : cache séparé et durable, rempli en arrière-plan.
 // Ces deux listes sont régénérées par sync.py.
-const VERSION = "spearcounter-2.1.7";
+const VERSION = "spearcounter-2.1.8";
 const ASSETS = [
   "./",
   "./index.html",
@@ -92,6 +92,11 @@ const IMAGES = [
   "./img/bosquet-aigrecorce/chasseurs-kurnoth.jpg",
   "./img/bosquet-aigrecorce/sylve-revenants.jpg",
   "./img/bosquet-aigrecorce/sylviarque.jpg",
+  "./img/carneguet/armee.jpg",
+  "./img/carneguet/depeceurs.jpg",
+  "./img/carneguet/fleaux-cryptes.jpg",
+  "./img/carneguet/horreurs-cryptes.jpg",
+  "./img/carneguet/sangtinelle.jpg",
   "./img/carnepelerins-sang-lies/armee.jpg",
   "./img/carnepelerins-sang-lies/guerriers-sang.jpg",
   "./img/carnepelerins-sang-lies/massacreurs.jpg",
@@ -227,6 +232,11 @@ const IMAGES = [
   "./img/legion-soufflesang/chevaliers-chaos.jpg",
   "./img/legion-soufflesang/guerriers-chaos.jpg",
   "./img/legion-soufflesang/seigneur-chaos.jpg",
+  "./img/liges-charognards/armee.jpg",
+  "./img/liges-charognards/chevaliers-morbheg.jpg",
+  "./img/liges-charognards/grand-regent.jpg",
+  "./img/liges-charognards/prevots-cryptes.jpg",
+  "./img/liges-charognards/varghulf.jpg",
   "./img/mangeferraille/armee.jpg",
   "./img/mangeferraille/gnoblars.jpg",
   "./img/mangeferraille/lance-ferraille.jpg",
