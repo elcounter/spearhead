@@ -2,7 +2,7 @@
 // Changer VERSION à chaque mise à jour du site pour forcer le rafraîchissement du cache.
 // ASSETS (app et données, légers) : mis en cache à l'installation. IMAGES : cache séparé et durable, rempli en arrière-plan.
 // Ces deux listes sont régénérées par sync.py.
-const VERSION = "spearcounter-2.1.6";
+const VERSION = "spearcounter-2.1.7";
 const ASSETS = [
   "./",
   "./index.html",
@@ -107,6 +107,11 @@ const IMAGES = [
   "./img/chasse-pillemanes/gardes-morrarr-2.jpg",
   "./img/chasse-pillemanes/hilotes-namarti.jpg",
   "./img/chasse-pillemanes/scruteur-ames.jpg",
+  "./img/chasse-sanguivore/armee.jpg",
+  "./img/chasse-sanguivore/chevaliers-sang.jpg",
+  "./img/chasse-sanguivore/seigneur-vampire.jpg",
+  "./img/chasse-sanguivore/squelettes.jpg",
+  "./img/chasse-sanguivore/vargheists.jpg",
   "./img/cite/campagne.jpg",
   "./img/cite/decors.jpg",
   "./img/cite/deploiement.jpg",
@@ -252,6 +257,11 @@ const IMAGES = [
   "./img/ost-lugubre/portepestes.jpg",
   "./img/ost-lugubre/rouillarque.jpg",
   "./img/ost-lugubre/scribe-avarieur.jpg",
+  "./img/ost-tombes-raclemorts/armee.jpg",
+  "./img/ost-tombes-raclemorts/chevaliers-tertres.jpg",
+  "./img/ost-tombes-raclemorts/garde-tertres.jpg",
+  "./img/ost-tombes-raclemorts/roi-revenant.jpg",
+  "./img/ost-tombes-raclemorts/squelettes.jpg",
   "./img/peloton-fusilier/armee.jpg",
   "./img/peloton-fusilier/chasseurs.jpg",
   "./img/peloton-fusilier/forgeguerre.jpg",
