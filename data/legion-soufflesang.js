@@ -4,7 +4,7 @@
   name: "Légion de Soufflesang",
   faction: "Esclaves des Ténèbres",
   cover: "img/legion-soufflesang/armee.jpg",
-  photos: { armee: "img/legion-soufflesang/armee.jpg", char-chaos: "img/legion-soufflesang/char-chaos.jpg", chevaliers-chaos: "img/legion-soufflesang/chevaliers-chaos.jpg", guerriers-chaos: "img/legion-soufflesang/guerriers-chaos.jpg", seigneur-chaos: "img/legion-soufflesang/seigneur-chaos.jpg" },
+  photos: { armee: "img/legion-soufflesang/armee.jpg", "char-chaos": "img/legion-soufflesang/char-chaos.jpg", "chevaliers-chaos": "img/legion-soufflesang/chevaliers-chaos.jpg", "guerriers-chaos": "img/legion-soufflesang/guerriers-chaos.jpg", "seigneur-chaos": "img/legion-soufflesang/seigneur-chaos.jpg" },
   units: [
     { id: "seigneur-chaos", en: "Seigneur du Chaos", stats: { M: '5\"', S: 6, C: 2, Sv: "3+" },
       weapons: [{ n: "Fauchard du Chaos", range: "Mêlée", a: 5, h: 3, w: 3, r: 2, d: "2", crit: "none" }],

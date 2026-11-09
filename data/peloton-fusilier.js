@@ -4,7 +4,7 @@
   name: "Peloton Fusilier",
   faction: "Cités de Sigmar",
   cover: "img/peloton-fusilier/armee.jpg",
-  photos: { armee: "img/peloton-fusilier/armee.jpg", chasseurs: "img/peloton-fusilier/chasseurs.jpg", forgeguerre: "img/peloton-fusilier/forgeguerre.jpg", fusil-major: "img/peloton-fusilier/fusil-major.jpg", fusiliers: "img/peloton-fusilier/fusiliers.jpg" },
+  photos: { armee: "img/peloton-fusilier/armee.jpg", chasseurs: "img/peloton-fusilier/chasseurs.jpg", forgeguerre: "img/peloton-fusilier/forgeguerre.jpg", "fusil-major": "img/peloton-fusilier/fusil-major.jpg", fusiliers: "img/peloton-fusilier/fusiliers.jpg" },
   units: [
     {
       id: "fusil-major",
