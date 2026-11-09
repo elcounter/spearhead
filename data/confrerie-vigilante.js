@@ -4,10 +4,10 @@
   name: "Confrérie Vigilante",
   faction: "Éternels de l'Orage",
   cover: "img/confrerie-vigilante/armee.jpg",
-  photos: { armee: "img/confrerie-vigilante/armee.jpg", liberators: "img/confrerie-vigilante/liberators.jpg", prosecutors: "img/confrerie-vigilante/prosecutors.jpg", "seigneur-veritant": "img/confrerie-vigilante/seigneur-veritant.jpg" },
+  photos: { armee: "img/confrerie-vigilante/armee.jpg", liberators: "img/confrerie-vigilante/liberators.jpg", "seigneur-vigilant": "img/confrerie-vigilante/seigneur-vigilant.jpg", prosecutors: "img/confrerie-vigilante/prosecutors.jpg", "seigneur-veritant": "img/confrerie-vigilante/seigneur-veritant.jpg" },
   units: [
     {
-      id: "seigneur-vigilant",
+      id: "seigneurvigilant",
       en: "Seigneur-Vigilant sur Gryph-rôdeur",
       stats: { M: '12\"', S: 8, C: 2, Sv: "3+" },
       weapons: [
