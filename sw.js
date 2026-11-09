@@ -1,7 +1,7 @@
 // Service worker : fonctionnement hors ligne.
 // Changer VERSION à chaque mise à jour du site pour forcer le rafraîchissement du cache.
 // Ajouter ici tout nouveau fichier de données (data/) et photo (img/).
-const VERSION = "spearcounter-2.0.2";
+const VERSION = "spearcounter-2.0.3";
 const ASSETS = [
   "./",
   "./index.html",
@@ -62,6 +62,11 @@ const ASSETS = [
   "./data/volee-ailes-fielleuses.js",
   "./data/yndrasta.js",
   "./data/zelotes-zenestra.js",
+  "./img/avant-garde-hurakaine/armee.jpg",
+  "./img/avant-garde-hurakaine/charge-vent.jpg",
+  "./img/avant-garde-hurakaine/esprit-vent.jpg",
+  "./img/avant-garde-hurakaine/gardes-auraliens.jpg",
+  "./img/avant-garde-hurakaine/mage-vent.jpg",
   "./img/bagnehorde-maudite/armee.jpg",
   "./img/bagnehorde-maudite/carognes.jpg",
   "./img/bagnehorde-maudite/ecumeurs.jpg",
@@ -153,6 +158,10 @@ const ASSETS = [
   "./img/grossbande-machefers/durboyz.jpg",
   "./img/grossbande-machefers/megaboss.jpg",
   "./img/grossbande-machefers/rageux-brutes.jpg",
+  "./img/hachebande-saga/armee.jpg",
+  "./img/hachebande-saga/atregardes.jpg",
+  "./img/hachebande-saga/belliforgeron.jpg",
+  "./img/hachebande-saga/vulkites.jpg",
   "./img/hashut/armee.jpg",
   "./img/hashut/bombarde.jpg",
   "./img/hashut/cohorte.jpg",
@@ -190,6 +199,7 @@ const ASSETS = [
   "./img/peloton-fusilier/forgeguerre.jpg",
   "./img/peloton-fusilier/fusil-major.jpg",
   "./img/peloton-fusilier/fusiliers.jpg",
+  "./img/phalange-etincelante/gardes-auraliens.jpg",
   "./img/pietine-fracasse-murs/armee.jpg",
   "./img/pietine-fracasse-murs/gargant-broyeur.jpg",
   "./img/pietine-fracasse-murs/gargant.jpg",

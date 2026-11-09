@@ -4,7 +4,7 @@
  "name": "Phalange Étincelante",
  "faction": "Suzerains Lumineths",
  "cover": null,
- "photos": {},
+ "photos": {"gardes-auraliens": "img/phalange-etincelante/gardes-auraliens.jpg"},
  "units": [
   {
    "id": "cathallar",
