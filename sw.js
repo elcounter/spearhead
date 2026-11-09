@@ -1,7 +1,7 @@
 // Service worker : fonctionnement hors ligne.
 // Changer VERSION à chaque mise à jour du site pour forcer le rafraîchissement du cache.
 // Ajouter ici tout nouveau fichier de données (data/) et photo (img/).
-const VERSION = "spearcounter-2.0.8";
+const VERSION = "spearcounter-2.0.9";
 const ASSETS = [
   "./",
   "./index.html",
@@ -74,6 +74,12 @@ const ASSETS = [
   "./img/bagnehorde-maudite/esprit-tourmenteur.jpg",
   "./img/bagnehorde-maudite/lamemanes.jpg",
   "./img/bagnehorde-maudite/manes.jpg",
+  "./img/beuglement-tyran/armee.jpg",
+  "./img/beuglement-tyran/boute-fer.jpg",
+  "./img/beuglement-tyran/crache-plomb.jpg",
+  "./img/beuglement-tyran/gloutons.jpg",
+  "./img/beuglement-tyran/mornecrocs.jpg",
+  "./img/beuglement-tyran/tyran.jpg",
   "./img/bosquet-aigrecorce/armee.jpg",
   "./img/bosquet-aigrecorce/branchanteresse.jpg",
   "./img/bosquet-aigrecorce/chasseurs-kurnoth.jpg",
@@ -180,6 +186,11 @@ const ASSETS = [
   "./img/legion-soufflesang/chevaliers-chaos.jpg",
   "./img/legion-soufflesang/guerriers-chaos.jpg",
   "./img/legion-soufflesang/seigneur-chaos.jpg",
+  "./img/mangeferraille/armee.jpg",
+  "./img/mangeferraille/gnoblars.jpg",
+  "./img/mangeferraille/lance-ferraille.jpg",
+  "./img/mangeferraille/trappeurs.jpg",
+  "./img/mangeferraille/ventres-durs.jpg",
   "./img/meutegriffe-maletincelle/armee.jpg",
   "./img/meutegriffe-maletincelle/canon-malefoudre.jpg",
   "./img/meutegriffe-maletincelle/colosses-choc.jpg",
