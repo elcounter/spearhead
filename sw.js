@@ -1,7 +1,8 @@
 // Service worker : fonctionnement hors ligne.
 // Changer VERSION à chaque mise à jour du site pour forcer le rafraîchissement du cache.
-// Ajouter ici tout nouveau fichier de données (data/) et photo (img/).
-const VERSION = "spearcounter-2.0.9";
+// ASSETS (app et données, légers) : mis en cache à l'installation. IMAGES : cache séparé et durable, rempli en arrière-plan.
+// Ces deux listes sont régénérées par sync.py.
+const VERSION = "spearcounter-2.1.0";
 const ASSETS = [
   "./",
   "./index.html",
@@ -62,7 +63,9 @@ const ASSETS = [
   "./data/troupeau-tzaangors.js",
   "./data/volee-ailes-fielleuses.js",
   "./data/yndrasta.js",
-  "./data/zelotes-zenestra.js",
+  "./data/zelotes-zenestra.js"
+];
+const IMAGES = [
   "./img/avant-garde-hurakaine/armee.jpg",
   "./img/avant-garde-hurakaine/charge-vent.jpg",
   "./img/avant-garde-hurakaine/esprit-vent.jpg",
@@ -262,17 +265,28 @@ const ASSETS = [
   "./img/zelotes-zenestra/prestelame.jpg",
   "./img/zelotes-zenestra/zenestra.jpg"
 ];
+const IMG = "spearcounter-img";
 
 self.addEventListener("install", e => {
   e.waitUntil(caches.open(VERSION).then(c => c.addAll(ASSETS.map(u => new Request(u, {cache: "reload"})))).then(() => self.skipWaiting()));
 });
 
+// Photos : téléchargées une par une en arrière-plan, sans bloquer la mise à jour ; les anciennes sont retirées
+async function prefetchImages(){
+  const c = await caches.open(IMG), want = new Set(IMAGES.map(u => new URL(u, location).href));
+  for (const k of await c.keys()) if (!want.has(k.url)) await c.delete(k);
+  for (const u of IMAGES) {
+    try { if (!(await c.match(u))) { const r = await fetch(u, {cache: "reload"}); if (r.ok) await c.put(u, r); } } catch (err) { return; }
+  }
+}
+
 self.addEventListener("activate", e => {
   e.waitUntil(
     caches.keys()
-      .then(keys => Promise.all(keys.filter(k => k !== VERSION).map(k => caches.delete(k))))
+      .then(keys => Promise.all(keys.filter(k => k !== VERSION && k !== IMG).map(k => caches.delete(k))))
       .then(() => self.clients.claim())
   );
+  prefetchImages();
 });
 
 self.addEventListener("fetch", e => {
@@ -301,14 +315,30 @@ self.addEventListener("fetch", e => {
     return;
   }
 
+  if (url.origin !== location.origin) return;
+
   // Manifeste : réseau d'abord (nom et icône toujours à jour)
-  if (url.origin === location.origin && url.pathname.endsWith(".webmanifest")) {
+  if (url.pathname.endsWith(".webmanifest")) {
     e.respondWith(fetch(req, {cache: "no-store"}).catch(() => caches.match(req, {ignoreSearch: true})));
     return;
   }
 
-  // Fichiers du site : cache d'abord
-  if (url.origin === location.origin) {
-    e.respondWith(caches.match(req).then(hit => hit || fetch(req)));
+  // Photos : cache durable d'abord, sinon réseau (et mise en cache)
+  if (url.pathname.includes("/img/")) {
+    e.respondWith(caches.open(IMG).then(c => c.match(req).then(hit => hit || fetch(req).then(res => { if (res.ok) c.put(req, res.clone()); return res; }))));
+    return;
   }
+
+  // Scripts et données : réseau d'abord (toujours à jour avec la page), cache si hors ligne
+  if (url.pathname.endsWith(".js")) {
+    e.respondWith(
+      fetch(req, {cache: "no-cache"})
+        .then(res => { if (res.ok) { const copy = res.clone(); caches.open(VERSION).then(c => c.put(req, copy)); } return res; })
+        .catch(() => caches.match(req, {ignoreSearch: true}))
+    );
+    return;
+  }
+
+  // Autres fichiers du site (icônes) : cache d'abord
+  e.respondWith(caches.match(req).then(hit => hit || fetch(req)));
 });
