@@ -2,7 +2,7 @@
 (window.SPEARHEADS = window.SPEARHEADS || []).push({
   id: "pietine-fracasse-murs",
   name: "Piétine de Fracasse-murs",
-  faction: "Fils de Behemat",
+  faction: "Fils de Béhémat",
   cover: "img/pietine-fracasse-murs/armee.jpg",
   photos: { armee: "img/pietine-fracasse-murs/armee.jpg", gargant: "img/pietine-fracasse-murs/gargant.jpg", "gargant-broyeur": "img/pietine-fracasse-murs/gargant-broyeur.jpg" },
   units: [
