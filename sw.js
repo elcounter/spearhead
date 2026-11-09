@@ -1,11 +1,12 @@
 // Service worker : fonctionnement hors ligne.
 // Changer VERSION à chaque mise à jour du site pour forcer le rafraîchissement du cache.
 // Ajouter ici tout nouveau fichier de données (data/) et photo (img/).
-const VERSION = "spearcounter-1.9.9";
+const VERSION = "spearcounter-2.0.0";
 const ASSETS = [
   "./",
   "./index.html",
   "./partie.js",
+  "./compte.js",
   "./icons/sc-apple-touch-icon.png",
   "./icons/sc-icon-192.png",
   "./icons/sc-icon-512.png",

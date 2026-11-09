@@ -268,6 +268,45 @@ body.g-has-foot{padding-bottom:calc(var(--navh) + 66px)}
 .btn-warcounter b{display:block;color:#d4ae3f;font:700 15px/1.2 var(--display);letter-spacing:.06em;text-transform:uppercase}
 .btn-warcounter small{display:block;margin-top:2px;font-size:13px;opacity:.9}
 /* Soutenir */
+.panel{background:var(--card);border-radius:10px;box-shadow:0 1px 2px rgba(0,0,0,.12);overflow:hidden;margin:0 0 14px}
+.panel .sec{margin:0;background:var(--khaki);color:#fff;font:700 15px var(--display);text-transform:uppercase;letter-spacing:.06em;padding:12px 16px}
+.panel .body{padding:14px 16px}
+.acc{display:grid;gap:10px}
+.acc p{margin:0}
+.acc .hint{padding:0;font-size:13px}
+.acc input{width:100%;box-sizing:border-box;padding:12px;border:1px solid #d6cfc3;border-radius:8px;font:16px var(--body)}
+.acc input[type=checkbox]{width:auto;padding:0}
+.acc .lbl{display:block;margin:4px 0 -4px;font:600 12px var(--body);text-transform:uppercase;letter-spacing:.05em;color:var(--muted)}
+.acc .btn{width:100%;padding:12px 14px;border:2px solid #d6cfc3;border-radius:8px;background:#fff;color:#2a2a2a;font:700 15px var(--body);cursor:pointer}
+.acc .btn.primary{background:var(--bar);border-color:var(--bar);color:#fff}
+.acc .btn.danger{color:#8a2a1c;border-color:#e3b9b2}
+.acc .btn:disabled{opacity:.5}
+.acc-msg{margin:0 0 12px;padding:10px 12px;border-radius:8px;background:#e7f1e8;color:#2d5c35;font-size:14px}
+.acc-msg.err{background:#f6e3e0;color:#8a2a1c}
+.sup-thanks{text-align:center;margin:16px 0 0;line-height:1.5}
+.sup-thanks a{color:var(--bar)}
+.pf-cityw{position:relative}
+.pf-sug{display:grid;margin-top:4px;border:1px solid #d6cfc3;border-radius:8px;background:#fff;overflow:hidden}
+.pf-sug[hidden]{display:none}
+.pf-sug button{text-align:left;padding:10px 12px;border:0;border-top:1px solid #eee5d8;background:#fff;font:15px var(--body);cursor:pointer}
+.pf-sug button:first-child{border-top:0}
+.pf-sug small{color:var(--muted)}
+.pf-new{margin:0;padding:8px 12px}
+.pf-facs{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:6px 10px;font-size:14px}
+.pf-facs label{display:flex;align-items:center;gap:6px}
+.pf-vis{display:flex;gap:10px;align-items:flex-start;padding:10px 12px;background:#f7f2ea;border-radius:8px;font-size:14px}
+.pf-vis input{margin-top:3px;width:20px;height:20px;flex:none}
+.pf-fold summary{cursor:pointer;list-style:none;display:flex;flex-direction:column;gap:2px;padding:10px 12px;border:1px solid #d6cfc3;border-radius:8px}
+.pf-fold summary::-webkit-details-marker{display:none}
+.pf-fold[open] summary{margin-bottom:10px}
+.pf-count{font-size:14px}
+.blk{margin:0;display:grid;gap:10px}
+.blk dd{margin:2px 0 0;line-height:1.45}
+.mapw{display:grid;gap:10px}
+.mapw .hint{padding:0}
+.mapw select{padding:10px;border:1px solid #d6cfc3;border-radius:8px;font:15px var(--body);background:#fff}
+.map{height:62vh;min-height:320px;border-radius:10px;overflow:hidden;box-shadow:0 1px 2px rgba(0,0,0,.12);z-index:0}
+.mp{margin-top:6px}
 .sup-hero{text-align:center;padding:6px 4px 14px}
 .sup-hero .mark{width:64px;height:64px;display:block;margin:0 auto}
 .sup-hero h2{font:700 24px/1.1 var(--display);text-transform:uppercase;margin:8px 0 10px}
@@ -312,6 +351,11 @@ body.g-has-foot{padding-bottom:calc(var(--navh) + 66px)}
   <!-- Soutenir le projet -->
   <section id="view-soutenir" hidden><div id="soutenir"></div></section>
 
+  <!-- Compte, carte communautaire, confidentialité (compte.js) -->
+  <section id="view-compte" hidden><div id="compte"></div></section>
+  <section id="view-carte" hidden><div id="carte"></div></section>
+  <section id="view-confidentialite" hidden><div id="confidentialite"></div></section>
+
   <!-- Onglet Spearhead : choix de la Spearhead -->
   <section id="view-home" hidden>
     <p class="home-intro">Choisis ta Spearhead</p><div class="list" id="home"></div>
@@ -348,7 +392,7 @@ body.g-has-foot{padding-bottom:calc(var(--navh) + 66px)}
 <footer class="foot">
   <a class="sup-link" href="#soutenir">Si tu veux soutenir le projet</a>
   <p>© 2026 elcounter. Tous droits réservés.</p>
-  <p>SpearCounter version 1.9.9 · MAJ 09-11-2026</p>
+  <p>SpearCounter version 2.0.0 · MAJ 09-11-2026</p>
   <p>Application non officielle, non affiliée à Games Workshop.</p>
   <p>Spearhead est une marque de Games Workshop Ltd.</p>
 </footer>
@@ -416,6 +460,7 @@ body.g-has-foot{padding-bottom:calc(var(--navh) + 66px)}
 <script src="data/troupeau-tzaangors.js"></script>
 <script src="data/volee-ailes-fielleuses.js"></script>
 <script src="data/lapideurs.js"></script>
+<script src="compte.js"></script>
 <script src="partie.js"></script>
 <script>
 (function(){
@@ -446,8 +491,10 @@ body.g-has-foot{padding-bottom:calc(var(--navh) + 66px)}
   const MARK = inner => `<svg class="mark" viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="30" fill="#6b2119"/><circle cx="32" cy="32" r="25" fill="none" stroke="#d4ae3f" stroke-width="2.5"/>${inner}</svg>`;
   const STANDALONE = window.matchMedia("(display-mode: standalone)").matches || window.navigator.standalone === true;
   const FEATURES = [
+    ["compte","Mon compte","Retrouve tes parties sur tous tes appareils.",'<circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-7 8-7s8 3 8 7"/>'],
     ["regles","Règles","Les règles des packs de bataille : Le Feu et le Jade, Le Sable et l'Os, Cité de Cendre, Double.",'<path d="M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2z"/><path d="M4 19V5"/><path d="M9 7h6"/>'],
     ["spearheads","Spearhead","Choisis ta Spearhead : mémo des unités, règles d'armée et phases.",'<path d="M12 2l3 7-3 13-3-13z"/><path d="M7 9h10"/>'],
+    ["carte","Carte des joueurs","Trouve des joueurs et des clubs près de chez toi.",'<path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/>'],
     ["partie","Partie","Suis le score de tes parties entre amis, round par round.",'<rect x="4" y="4" width="16" height="16" rx="3"/><circle cx="9" cy="9" r="1.2" fill="currentColor"/><circle cx="15" cy="15" r="1.2" fill="currentColor"/><circle cx="15" cy="9" r="1.2" fill="currentColor"/><circle cx="9" cy="15" r="1.2" fill="currentColor"/>']
   ];
   const EXTRA = [
@@ -707,6 +754,7 @@ body.g-has-foot{padding-bottom:calc(var(--navh) + 66px)}
     if (shId === "regles") { show("rules"); return; }
     if (shId === "spearheads") { show("home"); return; }
     if (shId === "soutenir") { show("soutenir"); return; }
+    if (["compte","carte","confidentialite"].includes(shId)) { show(shId); window.SC_COMPTE.open(shId); return; }
     if (shId === "pack") {
       PK = PACKS.find(x => x.id === part);
       if (PK) {
@@ -723,14 +771,21 @@ body.g-has-foot{padding-bottom:calc(var(--navh) + 66px)}
     show(unit ? "unit" : (["regles","phases"].includes(part) ? part : "memo"), unit);
   }
   function show(view, unit, doc){
-    ["accueil","soutenir","home","rules","partie","memo","regles","phases","unit","pack","doc"].forEach(k => { $("view-" + k).hidden = k !== view; });
-    $("tabs").hidden = ["accueil","soutenir","home","rules","partie","unit","pack","doc"].includes(view);
+    const ACC = ["compte","carte","confidentialite"];
+    ["accueil","soutenir","home","rules","partie","memo","regles","phases","unit","pack","doc"].concat(ACC).forEach(k => { $("view-" + k).hidden = k !== view; });
+    $("tabs").hidden = ["accueil","soutenir","home","rules","partie","unit","pack","doc"].concat(ACC).includes(view);
     $("back").hidden = ["accueil","home","rules","partie"].includes(view);
     if (view !== "partie") $("g-score").hidden = true;
     document.body.classList.toggle("g-has-foot", view === "partie" && !$("g-foot").hidden);
     const inPack = view === "pack" || view === "doc";
     if (view === "partie") { $("bn-partie").setAttribute("aria-current", "page"); ["accueil","regles","spearhead"].forEach(k => $("bn-" + k).removeAttribute("aria-current")); window.scrollTo(0, 0); return; }
     const top = ["accueil","soutenir","home","rules"].includes(view);
+    if (ACC.includes(view)) {
+      $("kicker").textContent = "SpearCounter";
+      $("title").textContent = {compte:"Mon compte", carte:"Carte des joueurs", confidentialite:"Confidentialité"}[view];
+      ["regles","spearhead","partie"].forEach(k => $("bn-" + k).removeAttribute("aria-current")); $("bn-accueil").setAttribute("aria-current", "page");
+      window.scrollTo(0, 0); return;
+    }
     $("kicker").textContent = top ? "Warhammer Spearhead" : inPack ? (doc ? PK.name : "Règles") : (view === "unit" ? SH.name : "SpearCounter");
     $("title").textContent = top ? "SpearCounter" : inPack ? (doc ? doc.en : PK.name) : (unit ? unit.en : SH.name);
     const tab = view === "accueil" || view === "soutenir" ? "accueil" : (view === "rules" || inPack) ? "regles" : "spearhead";
@@ -743,7 +798,8 @@ body.g-has-foot{padding-bottom:calc(var(--navh) + 66px)}
     const [shId, part, sub] = location.hash.slice(1).split("/");
     if (shId === "partie") return window.SC_PARTIE.back();
     if (shId === "pack") location.hash = sub ? "pack/" + part : "regles";
-    else if (shId === "soutenir") location.hash = "";
+    else if (shId === "soutenir" || shId === "compte" || shId === "carte") location.hash = "";
+    else if (shId === "confidentialite") location.hash = "compte";
     else location.hash = part === "u" ? shId + "/memo" : "spearheads";
   });
   window.addEventListener("hashchange", route);
