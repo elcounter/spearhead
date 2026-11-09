@@ -4,7 +4,7 @@
   name: "Lapideurs",
   faction: "Fils de Behemat",
   cover: "img/lapideurs/armee.jpg",
-  photos: { armee: "img/lapideurs/armee.jpg" },
+  photos: {  },
   units: [
     {
       id: "lance-rochers",

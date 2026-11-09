@@ -4,7 +4,7 @@
   name: "Grognemeute de Chasse",
   faction: "Vils du Fielobscur",
   cover: "img/grognemeute-chasse/armee.jpg",
-  photos: { armee: "img/grognemeute-chasse/armee.jpg" },
+  photos: { armee: "img/grognemeute-chasse/armee.jpg", cavalerie-grognemeute: "img/grognemeute-chasse/cavalerie-grognemeute.jpg", grogneboss: "img/grognemeute-chasse/grogneboss.jpg", suite-vils-leus: "img/grognemeute-chasse/suite-vils-leus.jpg" },
   units: [
     {
       id: "grogneboss",

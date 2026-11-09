@@ -4,7 +4,7 @@
   name: "Fer de Lance d'Yndrasta",
   faction: "Éternels de l'Orage",
   cover: "img/yndrasta/armee.jpg",
-  photos: { armee: "img/yndrasta/armee.jpg" },
+  photos: { armee: "img/yndrasta/armee.jpg", char-foudroyeur: "img/yndrasta/char-foudroyeur.jpg", vexillor: "img/yndrasta/vexillor.jpg", vincitors: "img/yndrasta/vincitors.jpg", yndrasta: "img/yndrasta/yndrasta.jpg" },
   units: [
     {
       id: "yndrasta",

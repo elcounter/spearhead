@@ -4,7 +4,7 @@
   name: "Meutegriffe Rongefestin",
   faction: "Skavens",
   cover: "img/meutegriffe-rongefestin/armee.jpg",
-  photos: { armee: "img/meutegriffe-rongefestin/armee.jpg" },
+  photos: { armee: "img/meutegriffe-rongefestin/armee.jpg", griffarque: "img/meutegriffe-rongefestin/griffarque.jpg", prophete-gris: "img/meutegriffe-rongefestin/prophete-gris.jpg", rats-clans: "img/meutegriffe-rongefestin/rats-clans.jpg" },
   units: [
     {
       id: "griffarque",

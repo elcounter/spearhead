@@ -4,7 +4,7 @@
   name: "Compagnie Castelaine",
   faction: "Cités de Sigmar",
   cover: "img/compagnie-castelaine/armee.jpg",
-  photos: { armee: "img/compagnie-castelaine/armee.jpg" },
+  photos: { armee: "img/compagnie-castelaine/armee.jpg", cavaliers: "img/compagnie-castelaine/cavaliers.jpg", grand-canon: "img/compagnie-castelaine/grand-canon.jpg", heaumefers: "img/compagnie-castelaine/heaumefers.jpg", marechal-cavalier: "img/compagnie-castelaine/marechal-cavalier.jpg" },
   units: [
     {
       id: "marechal-cavalier",

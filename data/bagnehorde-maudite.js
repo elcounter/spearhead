@@ -4,7 +4,7 @@
   name: "Bagnehorde Maudite",
   faction: "Hantenuits",
   cover: "img/bagnehorde-maudite/armee.jpg",
-  photos: { armee: "img/bagnehorde-maudite/armee.jpg" },
+  photos: { armee: "img/bagnehorde-maudite/armee.jpg", carognes: "img/bagnehorde-maudite/carognes.jpg", esprit-tourmenteur: "img/bagnehorde-maudite/esprit-tourmenteur.jpg", manes: "img/bagnehorde-maudite/manes.jpg" },
   units: [
     {
       id: "esprit-tourmenteur",

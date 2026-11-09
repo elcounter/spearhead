@@ -4,7 +4,7 @@
   name: "Force Opérationnelle du Marteau Céleste",
   faction: "Magnats Kharadrons",
   cover: "img/force-marteau-celeste/armee.jpg",
-  photos: { armee: "img/force-marteau-celeste/armee.jpg" },
+  photos: { amiral-arkanaute: "img/force-marteau-celeste/amiral-arkanaute.jpg", armee: "img/force-marteau-celeste/armee.jpg", compagnie-arkanautes: "img/force-marteau-celeste/compagnie-arkanautes.jpg", stratogardes: "img/force-marteau-celeste/stratogardes.jpg" },
   units: [
     { id: "amiral-arkanaute", en: "Amiral Arkanaute", stats: { M: '4\"', S: 5, C: 2, Sv: "3+" },
       weapons: [{ n: "Pistolet à Salve", range: '12\"', a: 3, h: 3, w: 3, r: 1, d: "1", crit: "none" }, { n: "Hache ou Épée", range: "Mêlée", a: 3, h: 3, w: 3, r: 1, d: "2", crit: "none" }],
