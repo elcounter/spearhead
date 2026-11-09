@@ -1,8 +1,13 @@
 // Service worker : fonctionnement hors ligne.
 // Changer VERSION à chaque mise à jour du site pour forcer le rafraîchissement du cache.
 // Ajouter ici tout nouveau fichier de données (data/) et photo (img/).
-const VERSION = "spearcounter-1.8.9";
+const VERSION = "spearcounter-1.8.10";
 const ASSETS = [
+  "./img/bagnehorde-maudite/ecumeurs.jpg",
+  "./img/bagnehorde-maudite/lamemanes.jpg",
+  "./img/coterie-ombre-khainite/rodeurs-ombre.jpg",
+  "./img/coterie-ombre-khainite/meduse.jpg",
+  "./img/coterie-lameflux/hurleurs.jpg",
   "./img/delicieux-epicuriens/triple-discorde.jpg",
   "./img/force-marteau-celeste/fregate-arkanaute.jpg",
   "./img/grognemeute-chasse/rouleur-fauchesoleil.jpg",
