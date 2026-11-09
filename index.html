@@ -350,7 +350,7 @@ body.g-has-foot{padding-bottom:calc(var(--navh) + 66px)}
 <footer class="foot">
   <a class="sup-link" href="#soutenir">Si tu veux soutenir le projet</a>
   <p>© 2026 elcounter. Tous droits réservés.</p>
-  <p>SpearCounter version 1.8.12 · MAJ 09-11-2026</p>
+  <p>SpearCounter version 1.9.0 · MAJ 09-11-2026</p>
   <p>Application non officielle, non affiliée à Games Workshop.</p>
   <p>Spearhead est une marque de Games Workshop Ltd.</p>
 </footer>
@@ -395,6 +395,10 @@ body.g-has-foot{padding-bottom:calc(var(--navh) + 66px)}
 <script src="data/grossbande-machefers.js"></script>
 <script src="data/force-marteau-celeste.js"></script>
 <script src="data/defricheurs-grundstok.js"></script>
+<script src="data/avant-garde-hurakaine.js"></script>
+<script src="data/carnepelerins-sang-lies.js"></script>
+<script src="data/crocs-dieu-sang.js"></script>
+<script src="data/phalange-etincelante.js"></script>
 <script src="partie.js"></script>
 <script>
 (function(){
@@ -405,7 +409,8 @@ body.g-has-foot{padding-bottom:calc(var(--navh) + 66px)}
   // Couleur par phase (code couleur de l'application officielle)
   const PHASE = {
     hero:"var(--ph-hero)", shoot:"var(--ph-shoot)", fight:"var(--ph-fight)", charge:"var(--ph-charge)",
-    passive:"var(--ph-passive)", end:"var(--ph-end)", defense:"var(--ph-defense)", move:"var(--ph-move)"
+    passive:"var(--ph-passive)", end:"var(--ph-end)", defense:"var(--ph-defense)", move:"var(--ph-move)",
+    deploy:"var(--ph-passive)", start:"var(--ph-passive)"
   };
   const PHASE_LABEL = {hero:"Phase des héros", move:"Mouvement", shoot:"Tir", charge:"Charge", fight:"Combat", end:"Fin de tour", defense:"Défense", passive:"Passif général"};
 
@@ -561,7 +566,8 @@ body.g-has-foot{padding-bottom:calc(var(--navh) + 66px)}
     return `<div class="${ranged ? "ranged" : "melee"}"><h3 class="sec">${ranged ? "Armes de tir" : "Armes de mêlée"}</h3>
       <div class="colhead">${head.map(x => `<span>${x}</span>`).join("")}</div>` +
       list.map(({w,i}) => {
-        const vals = [w.a, w.h + "+", w.w + "+", w.r || "-", w.d];
+        const pl = v => typeof v === "number" ? v + "+" : v;
+        const vals = [w.a, pl(w.h), pl(w.w), w.r || "-", w.d];
         if (ranged) vals.unshift(w.range);
         const chips = [w.crit !== "none" ? CRIT_LABEL[w.crit] : null, ...(w.extra || [])].filter(Boolean);
         return `<div class="weapon"><div class="wname">${esc(w.n)}</div>
