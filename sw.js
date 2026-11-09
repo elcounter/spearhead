@@ -1,7 +1,7 @@
 // Service worker : fonctionnement hors ligne.
 // Changer VERSION à chaque mise à jour du site pour forcer le rafraîchissement du cache.
 // Ajouter ici tout nouveau fichier de données (data/) et photo (img/).
-const VERSION = "spearcounter-2.0.6";
+const VERSION = "spearcounter-2.0.7";
 const ASSETS = [
   "./",
   "./index.html",
@@ -180,6 +180,11 @@ const ASSETS = [
   "./img/legion-soufflesang/chevaliers-chaos.jpg",
   "./img/legion-soufflesang/guerriers-chaos.jpg",
   "./img/legion-soufflesang/seigneur-chaos.jpg",
+  "./img/meutegriffe-maletincelle/armee.jpg",
+  "./img/meutegriffe-maletincelle/canon-malefoudre.jpg",
+  "./img/meutegriffe-maletincelle/colosses-choc.jpg",
+  "./img/meutegriffe-maletincelle/prophete-gris.jpg",
+  "./img/meutegriffe-maletincelle/rats-clans.jpg",
   "./img/meutegriffe-rongefestin/armee.jpg",
   "./img/meutegriffe-rongefestin/griffarque.jpg",
   "./img/meutegriffe-rongefestin/ingenieur.jpg",
