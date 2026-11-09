@@ -3,8 +3,8 @@
  "id": "lames-songe-criard",
  "name": "Lames du Songe Criard",
  "faction": "Hédonites de Slaanesh",
- "cover": null,
- "photos": {},
+ "cover": "img/lames-songe-criard/armee.jpg",
+ "photos": {"armee": "img/lames-songe-criard/armee.jpg", "eclatoracle": "img/lames-songe-criard/eclatoracle.jpg", "traqueurs-fluidelames": "img/lames-songe-criard/traqueurs-fluidelames.jpg", "slaangors": "img/lames-songe-criard/slaangors.jpg", "archers-ardillons": "img/lames-songe-criard/archers-ardillons.jpg"},
  "units": [
   {
    "id": "eclatoracle",

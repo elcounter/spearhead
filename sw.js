@@ -2,7 +2,7 @@
 // Changer VERSION à chaque mise à jour du site pour forcer le rafraîchissement du cache.
 // ASSETS (app et données, légers) : mis en cache à l'installation. IMAGES : cache séparé et durable, rempli en arrière-plan.
 // Ces deux listes sont régénérées par sync.py.
-const VERSION = "spearcounter-2.1.2";
+const VERSION = "spearcounter-2.1.3";
 const ASSETS = [
   "./",
   "./index.html",
@@ -88,6 +88,11 @@ const IMAGES = [
   "./img/bosquet-aigrecorce/chasseurs-kurnoth.jpg",
   "./img/bosquet-aigrecorce/sylve-revenants.jpg",
   "./img/bosquet-aigrecorce/sylviarque.jpg",
+  "./img/cellule-bubonique/armee.jpg",
+  "./img/cellule-bubonique/bete-nurgle.jpg",
+  "./img/cellule-bubonique/credo-putrefange.jpg",
+  "./img/cellule-bubonique/nurglings.jpg",
+  "./img/cellule-bubonique/sorcier-gangreneur.jpg",
   "./img/chasse-pillemanes/allopex.jpg",
   "./img/chasse-pillemanes/armee.jpg",
   "./img/chasse-pillemanes/gardes-morrarr-2.jpg",
@@ -182,6 +187,11 @@ const IMAGES = [
   "./img/khazalite/canon.jpg",
   "./img/khazalite/gholems.jpg",
   "./img/khazalite/hjulda.jpg",
+  "./img/lames-songe-criard/archers-ardillons.jpg",
+  "./img/lames-songe-criard/armee.jpg",
+  "./img/lames-songe-criard/eclatoracle.jpg",
+  "./img/lames-songe-criard/slaangors.jpg",
+  "./img/lames-songe-criard/traqueurs-fluidelames.jpg",
   "./img/lapideurs/armee.jpg",
   "./img/lapideurs/lance-rochers.jpg",
   "./img/legion-soufflesang/armee.jpg",
@@ -214,6 +224,11 @@ const IMAGES = [
   "./img/ost-ecailles-etoiles/guerriers-saurus.jpg",
   "./img/ost-ecailles-etoiles/kroxigor.jpg",
   "./img/ost-ecailles-etoiles/sang-ancien-carnosaure.jpg",
+  "./img/ost-lugubre/armee.jpg",
+  "./img/ost-lugubre/pesticrates.jpg",
+  "./img/ost-lugubre/portepestes.jpg",
+  "./img/ost-lugubre/rouillarque.jpg",
+  "./img/ost-lugubre/scribe-avarieur.jpg",
   "./img/peloton-fusilier/armee.jpg",
   "./img/peloton-fusilier/chasseurs.jpg",
   "./img/peloton-fusilier/forgeguerre.jpg",

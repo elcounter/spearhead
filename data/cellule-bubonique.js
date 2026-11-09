@@ -3,8 +3,8 @@
  "id": "cellule-bubonique",
  "name": "Cellule Bubonique",
  "faction": "Putrescents de Nurgle",
- "cover": null,
- "photos": {},
+ "cover": "img/cellule-bubonique/armee.jpg",
+ "photos": {"armee": "img/cellule-bubonique/armee.jpg", "sorcier-gangreneur": "img/cellule-bubonique/sorcier-gangreneur.jpg", "nurglings": "img/cellule-bubonique/nurglings.jpg", "bete-nurgle": "img/cellule-bubonique/bete-nurgle.jpg", "credo-putrefange": "img/cellule-bubonique/credo-putrefange.jpg"},
  "units": [
   {
    "id": "sorcier-gangreneur",
