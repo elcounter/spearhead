@@ -1,7 +1,7 @@
 // Service worker : fonctionnement hors ligne.
 // Changer VERSION à chaque mise à jour du site pour forcer le rafraîchissement du cache.
 // Ajouter ici tout nouveau fichier de données (data/) et photo (img/).
-const VERSION = "spearcounter-1.9.6";
+const VERSION = "spearcounter-1.9.7";
 const ASSETS = [
   "./",
   "./index.html",
@@ -39,6 +39,7 @@ const ASSETS = [
   "./data/hashut.js",
   "./data/khazalite.js",
   "./data/lames-songe-criard.js",
+  "./data/lapideurs.js",
   "./data/legion-soufflesang.js",
   "./data/liges-charognards.js",
   "./data/mangeferraille.js",
@@ -161,6 +162,8 @@ const ASSETS = [
   "./img/khazalite/canon.jpg",
   "./img/khazalite/gholems.jpg",
   "./img/khazalite/hjulda.jpg",
+  "./img/lapideurs/armee.jpg",
+  "./img/lapideurs/lance-rochers.jpg",
   "./img/legion-soufflesang/armee.jpg",
   "./img/legion-soufflesang/char-chaos.jpg",
   "./img/legion-soufflesang/chevaliers-chaos.jpg",
