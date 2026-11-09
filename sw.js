@@ -1,7 +1,7 @@
 // Service worker : fonctionnement hors ligne.
 // Changer VERSION à chaque mise à jour du site pour forcer le rafraîchissement du cache.
 // Ajouter ici tout nouveau fichier de données (data/) et photo (img/).
-const VERSION = "spearcounter-1.8.10";
+const VERSION = "spearcounter-1.8.11";
 const ASSETS = [
   "./img/bagnehorde-maudite/ecumeurs.jpg",
   "./img/bagnehorde-maudite/lamemanes.jpg",
