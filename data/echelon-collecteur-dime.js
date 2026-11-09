@@ -3,8 +3,8 @@
  "id": "echelon-collecteur-dime",
  "name": "Échelon Collecteur de Dîme",
  "faction": "Collecteurs Ossiarques",
- "cover": null,
- "photos": {},
+ "cover": "img/echelon-collecteur-dime/armee.jpg",
+ "photos": {"armee": "img/echelon-collecteur-dime/armee.jpg", "faucheur-ames": "img/echelon-collecteur-dime/faucheur-ames.jpg", "garde-mortek": "img/echelon-collecteur-dime/garde-mortek.jpg", "juchemorts": "img/echelon-collecteur-dime/juchemorts.jpg", "gothizzar": "img/echelon-collecteur-dime/gothizzar.jpg"},
  "units": [
   {
    "id": "faucheur-ames",

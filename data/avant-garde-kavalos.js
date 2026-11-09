@@ -3,8 +3,8 @@
  "id": "avant-garde-kavalos",
  "name": "Avant-garde Kavalos",
  "faction": "Collecteurs Ossiarques",
- "cover": null,
- "photos": {},
+ "cover": "img/avant-garde-kavalos/armee.jpg",
+ "photos": {"armee": "img/avant-garde-kavalos/armee.jpg", "suzerain-kavalos": "img/avant-garde-kavalos/suzerain-kavalos.jpg", "cohorte-teratique": "img/avant-garde-kavalos/cohorte-teratique.jpg", "juchemorts": "img/avant-garde-kavalos/juchemorts.jpg"},
  "units": [
   {
    "id": "suzerain-kavalos",

@@ -2,7 +2,7 @@
 // Changer VERSION à chaque mise à jour du site pour forcer le rafraîchissement du cache.
 // ASSETS (app et données, légers) : mis en cache à l'installation. IMAGES : cache séparé et durable, rempli en arrière-plan.
 // Ces deux listes sont régénérées par sync.py.
-const VERSION = "spearcounter-2.1.4";
+const VERSION = "spearcounter-2.1.5";
 const ASSETS = [
   "./",
   "./index.html",
@@ -71,6 +71,10 @@ const IMAGES = [
   "./img/avant-garde-hurakaine/esprit-vent.jpg",
   "./img/avant-garde-hurakaine/gardes-auraliens.jpg",
   "./img/avant-garde-hurakaine/mage-vent.jpg",
+  "./img/avant-garde-kavalos/armee.jpg",
+  "./img/avant-garde-kavalos/cohorte-teratique.jpg",
+  "./img/avant-garde-kavalos/juchemorts.jpg",
+  "./img/avant-garde-kavalos/suzerain-kavalos.jpg",
   "./img/bagnehorde-maudite/armee.jpg",
   "./img/bagnehorde-maudite/carognes.jpg",
   "./img/bagnehorde-maudite/ecumeurs.jpg",
@@ -158,6 +162,16 @@ const IMAGES = [
   "./img/double/bataille-gauche.jpg",
   "./img/double/bataille.jpg",
   "./img/double/deux-plateaux.jpg",
+  "./img/echelon-collecteur-dime/armee.jpg",
+  "./img/echelon-collecteur-dime/faucheur-ames.jpg",
+  "./img/echelon-collecteur-dime/garde-mortek.jpg",
+  "./img/echelon-collecteur-dime/gothizzar.jpg",
+  "./img/echelon-collecteur-dime/juchemorts.jpg",
+  "./img/elite-mortisans/armee.jpg",
+  "./img/elite-mortisans/immortis.jpg",
+  "./img/elite-mortisans/morghasts.jpg",
+  "./img/elite-mortisans/ossifacteur.jpg",
+  "./img/elite-mortisans/rodeurs-necropole.jpg",
   "./img/feu-et-jade/art.jpg",
   "./img/feu-et-jade/bataille.jpg",
   "./img/feu-et-jade/decors.jpg",
