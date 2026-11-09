@@ -4,7 +4,7 @@
   name: "Coterie de Lameflux",
   faction: "Disciples de Tzeentch",
   cover: "img/coterie-lameflux/armee.jpg",
-  photos: { acolytes: "img/coterie-lameflux/acolytes.jpg", armee: "img/coterie-lameflux/armee.jpg", incendiaires: "img/coterie-lameflux/incendiaires.jpg", "magister-disque": "img/coterie-lameflux/magister-disque.jpg", tzaangors: "img/coterie-lameflux/tzaangors.jpg" },
+  photos: { acolytes: "img/coterie-lameflux/acolytes.jpg", armee: "img/coterie-lameflux/armee.jpg", incendiaires: "img/coterie-lameflux/incendiaires.jpg", "magister-disque": "img/coterie-lameflux/magister-disque.jpg", tzaangors: "img/coterie-lameflux/tzaangors.jpg", "hurleurs": "img/coterie-lameflux/hurleurs.jpg" },
   units: [
     {
       id: "magister-disque",
