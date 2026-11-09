@@ -1,7 +1,7 @@
 // Service worker : fonctionnement hors ligne.
 // Changer VERSION à chaque mise à jour du site pour forcer le rafraîchissement du cache.
 // Ajouter ici tout nouveau fichier de données (data/) et photo (img/).
-const VERSION = "spearcounter-2.0.3";
+const VERSION = "spearcounter-2.0.4";
 const ASSETS = [
   "./",
   "./index.html",
@@ -199,7 +199,10 @@ const ASSETS = [
   "./img/peloton-fusilier/forgeguerre.jpg",
   "./img/peloton-fusilier/fusil-major.jpg",
   "./img/peloton-fusilier/fusiliers.jpg",
+  "./img/phalange-etincelante/cathallar.jpg",
   "./img/phalange-etincelante/gardes-auraliens.jpg",
+  "./img/phalange-etincelante/maitres-lames.jpg",
+  "./img/phalange-etincelante/sentinelles.jpg",
   "./img/pietine-fracasse-murs/armee.jpg",
   "./img/pietine-fracasse-murs/gargant-broyeur.jpg",
   "./img/pietine-fracasse-murs/gargant.jpg",
@@ -208,6 +211,12 @@ const ASSETS = [
   "./img/pillards-noir-serment/maraudeurs.jpg",
   "./img/pillards-noir-serment/reine.jpg",
   "./img/pillards-noir-serment/saccageurs.jpg",
+  "./img/rodeurs-sang-solaire/armee.jpg",
+  "./img/rodeurs-sang-solaire/chasseurs-huanchi.jpg",
+  "./img/rodeurs-sang-solaire/guerriers-saurus.jpg",
+  "./img/rodeurs-sang-solaire/meute-sang-solaire.jpg",
+  "./img/rodeurs-sang-solaire/rejeton-chotec.jpg",
+  "./img/rodeurs-sang-solaire/terrapteres.jpg",
   "./img/sable-et-os/art.jpg",
   "./img/sable-et-os/bataille.jpg",
   "./img/sable-et-os/decors.jpg",
@@ -217,6 +226,11 @@ const ASSETS = [
   "./img/troupe-ecorche-coeur/erinyes.jpg",
   "./img/troupe-ecorche-coeur/ferecaille.jpg",
   "./img/troupe-ecorche-coeur/rodeuses.jpg",
+  "./img/volee-ailes-fielleuses/archers-diaphanes.jpg",
+  "./img/volee-ailes-fielleuses/archi-revenant.jpg",
+  "./img/volee-ailes-fielleuses/armee.jpg",
+  "./img/volee-ailes-fielleuses/lanciers-coursefiel.jpg",
+  "./img/volee-ailes-fielleuses/veneurs-revenants.jpg",
   "./img/yndrasta/annihilators.jpg",
   "./img/yndrasta/armee.jpg",
   "./img/yndrasta/char-foudroyeur.jpg",

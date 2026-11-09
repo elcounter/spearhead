@@ -3,8 +3,8 @@
  "id": "volee-ailes-fielleuses",
  "name": "Volée d'Ailes Fielleuses",
  "faction": "Sylvaneths",
- "cover": null,
- "photos": {},
+ "cover": "img/volee-ailes-fielleuses/armee.jpg",
+ "photos": {"armee": "img/volee-ailes-fielleuses/armee.jpg", "archi-revenant": "img/volee-ailes-fielleuses/archi-revenant.jpg", "archers-diaphanes": "img/volee-ailes-fielleuses/archers-diaphanes.jpg", "lanciers-coursefiel": "img/volee-ailes-fielleuses/lanciers-coursefiel.jpg", "veneurs-revenants": "img/volee-ailes-fielleuses/veneurs-revenants.jpg"},
  "units": [
   {
    "id": "archi-revenant",
