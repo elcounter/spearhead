@@ -3,8 +3,8 @@
  "id": "rodeurs-marecages",
  "name": "Rôdeurs des Marécages",
  "faction": "Clans Guerriers Orruks",
- "cover": null,
- "photos": {},
+ "cover": "img/rodeurs-marecages/armee.jpg",
+ "photos": {"armee": "img/rodeurs-marecages/armee.jpg", "bosskitu": "img/rodeurs-marecages/bosskitu.jpg", "empaleuse": "img/rodeurs-marecages/empaleuse.jpg", "nobskur": "img/rodeurs-marecages/nobskur.jpg", "eventreurs": "img/rodeurs-marecages/eventreurs.jpg", "embrocheurs": "img/rodeurs-marecages/embrocheurs.jpg"},
  "units": [
   {
    "id": "bosskitu",

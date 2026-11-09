@@ -2,7 +2,7 @@
 // Changer VERSION à chaque mise à jour du site pour forcer le rafraîchissement du cache.
 // ASSETS (app et données, légers) : mis en cache à l'installation. IMAGES : cache séparé et durable, rempli en arrière-plan.
 // Ces deux listes sont régénérées par sync.py.
-const VERSION = "spearcounter-2.1.0";
+const VERSION = "spearcounter-2.1.1";
 const ASSETS = [
   "./",
   "./index.html",
@@ -232,6 +232,12 @@ const IMAGES = [
   "./img/pillards-noir-serment/maraudeurs.jpg",
   "./img/pillards-noir-serment/reine.jpg",
   "./img/pillards-noir-serment/saccageurs.jpg",
+  "./img/rodeurs-marecages/armee.jpg",
+  "./img/rodeurs-marecages/bosskitu.jpg",
+  "./img/rodeurs-marecages/embrocheurs.jpg",
+  "./img/rodeurs-marecages/empaleuse.jpg",
+  "./img/rodeurs-marecages/eventreurs.jpg",
+  "./img/rodeurs-marecages/nobskur.jpg",
   "./img/rodeurs-sang-solaire/armee.jpg",
   "./img/rodeurs-sang-solaire/chasseurs-huanchi.jpg",
   "./img/rodeurs-sang-solaire/guerriers-saurus.jpg",
@@ -242,6 +248,11 @@ const IMAGES = [
   "./img/sable-et-os/bataille.jpg",
   "./img/sable-et-os/decors.jpg",
   "./img/sable-et-os/objectifs.jpg",
+  "./img/sifonnes-mauvaise-lune/armee.jpg",
+  "./img/sifonnes-mauvaise-lune/loufboss.jpg",
+  "./img/sifonnes-mauvaise-lune/squigaliers.jpg",
+  "./img/sifonnes-mauvaise-lune/troggoths.jpg",
+  "./img/sifonnes-mauvaise-lune/troueurs.jpg",
   "./img/troupe-ecorche-coeur/armee.jpg",
   "./img/troupe-ecorche-coeur/conjurateurs.jpg",
   "./img/troupe-ecorche-coeur/erinyes.jpg",
