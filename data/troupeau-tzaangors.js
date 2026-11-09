@@ -3,8 +3,8 @@
  "id": "troupeau-tzaangors",
  "name": "Troupeau de Guerre de Tzaangors",
  "faction": "Disciples de Tzeentch",
- "cover": null,
- "photos": {},
+ "cover": "img/troupeau-tzaangors/armee.jpg",
+ "photos": {"armee": "img/troupeau-tzaangors/armee.jpg", "chamane-tzaangor": "img/troupeau-tzaangors/chamane-tzaangor.jpg", "tzaangors-eclaires": "img/troupeau-tzaangors/tzaangors-eclaires.jpg", "tzaangors-flambeciel": "img/troupeau-tzaangors/tzaangors-flambeciel.jpg", "tzaangors": "img/troupeau-tzaangors/tzaangors.jpg"},
  "units": [
   {
    "id": "chamane-tzaangor",

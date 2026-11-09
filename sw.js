@@ -2,7 +2,7 @@
 // Changer VERSION à chaque mise à jour du site pour forcer le rafraîchissement du cache.
 // ASSETS (app et données, légers) : mis en cache à l'installation. IMAGES : cache séparé et durable, rempli en arrière-plan.
 // Ces deux listes sont régénérées par sync.py.
-const VERSION = "spearcounter-2.1.3";
+const VERSION = "spearcounter-2.1.4";
 const ASSETS = [
   "./",
   "./index.html",
@@ -88,6 +88,11 @@ const IMAGES = [
   "./img/bosquet-aigrecorce/chasseurs-kurnoth.jpg",
   "./img/bosquet-aigrecorce/sylve-revenants.jpg",
   "./img/bosquet-aigrecorce/sylviarque.jpg",
+  "./img/carnepelerins-sang-lies/armee.jpg",
+  "./img/carnepelerins-sang-lies/guerriers-sang.jpg",
+  "./img/carnepelerins-sang-lies/massacreurs.jpg",
+  "./img/carnepelerins-sang-lies/pillards-sang.jpg",
+  "./img/carnepelerins-sang-lies/pretre-carnage.jpg",
   "./img/cellule-bubonique/armee.jpg",
   "./img/cellule-bubonique/bete-nurgle.jpg",
   "./img/cellule-bubonique/credo-putrefange.jpg",
@@ -135,6 +140,10 @@ const IMAGES = [
   "./img/crixxit/egouts.jpg",
   "./img/crixxit/maitremort.jpg",
   "./img/crixxit/nocturnes.jpg",
+  "./img/crocs-dieu-sang/armee.jpg",
+  "./img/crocs-dieu-sang/griffes-karanak.jpg",
+  "./img/crocs-dieu-sang/karanak.jpg",
+  "./img/crocs-dieu-sang/molosses.jpg",
   "./img/defricheurs-grundstok/armee.jpg",
   "./img/defricheurs-grundstok/canonniere.jpg",
   "./img/defricheurs-grundstok/endringreeurs.jpg",
@@ -273,6 +282,11 @@ const IMAGES = [
   "./img/troupe-ecorche-coeur/erinyes.jpg",
   "./img/troupe-ecorche-coeur/ferecaille.jpg",
   "./img/troupe-ecorche-coeur/rodeuses.jpg",
+  "./img/troupeau-tzaangors/armee.jpg",
+  "./img/troupeau-tzaangors/chamane-tzaangor.jpg",
+  "./img/troupeau-tzaangors/tzaangors-eclaires.jpg",
+  "./img/troupeau-tzaangors/tzaangors-flambeciel.jpg",
+  "./img/troupeau-tzaangors/tzaangors.jpg",
   "./img/volee-ailes-fielleuses/archers-diaphanes.jpg",
   "./img/volee-ailes-fielleuses/archi-revenant.jpg",
   "./img/volee-ailes-fielleuses/armee.jpg",
