@@ -4,7 +4,7 @@
   name: "Confrérie Vigilante",
   faction: "Éternels de l'Orage",
   cover: "img/confrerie-vigilante/armee.jpg",
-  photos: { armee: "img/confrerie-vigilante/armee.jpg" },
+  photos: { armee: "img/confrerie-vigilante/armee.jpg", liberators: "img/confrerie-vigilante/liberators.jpg", prosecutors: "img/confrerie-vigilante/prosecutors.jpg", "seigneur-veritant": "img/confrerie-vigilante/seigneur-veritant.jpg" },
   units: [
     {
       id: "seigneur-vigilant",
