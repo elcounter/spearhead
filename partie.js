@@ -94,9 +94,6 @@
 
   function vSetup(){
     let h = `<div class="g-panel"><h2 class="g-sec">Partie</h2><div class="g-body">
-      <div><span class="g-lbl">Pack de bataille</span><div class="g-packs">${PACKS.map(k => `<button class="g-pick" type="button" data-act="pack" data-k="${k.id}" aria-pressed="${G.pack === k.id}">${esc(k.n)}</button>`).join("")}</div></div>
-      ${G.pack ? `<div><span class="g-lbl">Face du plateau</span><div class="g-two">${Object.entries(packOf(G).faces).map(([k, n]) => `<button class="g-pick" type="button" data-act="face" data-f="${k}" aria-pressed="${G.face === k}">${esc(n)}</button>`).join("")}</div>
-        <button class="g-btn ghost" type="button" data-act="rface">Face aléatoire</button></div>` : ""}
       <div><label class="g-lbl" for="g-label">Nom de la partie (facultatif)</label><input type="text" id="g-label" data-set="label" value="${esc(G.label)}" placeholder="Ex. Partie avec ..."></div>
     </div></div>`;
     [0,1].forEach(p => {
@@ -111,19 +108,33 @@
   }
   function missing(){
     const m = [];
-    if (!G.pack) m.push("pack de bataille");
-    else if (!G.face) m.push("face du plateau");
     if (!(G.players[0].name || "").trim()) m.push("nom du joueur");
     if (!(G.players[1].name || "").trim()) m.push("nom de l'adversaire");
     return m;
   }
+  function missingStart(){
+    const m = [];
+    if (!G.pack) m.push("pack de bataille");
+    if (G.attacker == null) m.push("attaquant");
+    if (G.pack && !G.face) m.push("face du plateau");
+    if (G.rounds[0].first == null) m.push("premier joueur");
+    return m;
+  }
 
   function vStart(){
-    return `<div class="g-panel"><h2 class="g-sec">Qui est l'attaquant ?</h2><div class="g-body">${pick("attacker", G.attacker)}
-        <p class="g-hint">Tirez au dé : le gagnant choisit qui est l'attaquant.</p></div></div>
-      <div class="g-panel"><h2 class="g-sec">Qui joue en premier au round 1 ?</h2><div class="g-body">${pick("first", G.rounds[0].first, 1)}
+    const def = G.attacker == null ? null : 1 - G.attacker;
+    return `<div class="g-panel"><h2 class="g-sec">1. Pack de bataille</h2><div class="g-body">
+        <div class="g-packs">${PACKS.map(k => `<button class="g-pick" type="button" data-act="pack" data-k="${k.id}" aria-pressed="${G.pack === k.id}">${esc(k.n)}</button>`).join("")}</div></div></div>
+      <div class="g-panel"><h2 class="g-sec">2. Qui est l'attaquant ?</h2><div class="g-body">${pick("attacker", G.attacker)}
+        <p class="g-hint">Tirez au dé : le gagnant choisit qui est l'attaquant et qui est le défenseur.</p></div></div>
+      ${G.pack && def != null ? `<div class="g-panel"><h2 class="g-sec">3. Face du plateau</h2><div class="g-body">
+        <div class="g-two">${Object.entries(packOf(G).faces).map(([k, n]) => `<button class="g-pick" type="button" data-act="face" data-f="${k}" aria-pressed="${G.face === k}">${esc(n)}</button>`).join("")}</div>
+        <button class="g-btn ghost" type="button" data-act="rface">Face aléatoire</button>
+        <p class="g-hint">C'est le défenseur (${pname(def)}) qui choisit.</p></div></div>` : ""}
+      <div class="g-panel"><h2 class="g-sec">${G.pack && def != null ? "4" : "3"}. Qui joue en premier au round 1 ?</h2><div class="g-body">${pick("first", G.rounds[0].first, 1)}
         <p class="g-hint">C'est l'attaquant qui choisit.</p></div></div>
-      <a class="g-btn" href="#pack/${packOf(G).id}/avant">Revoir la séquence de pré-bataille</a>`;
+      <p class="g-missing" id="g-missing2" aria-live="polite"></p>
+      ${G.pack ? `<a class="g-btn" href="#pack/${packOf(G).id}/avant">Revoir la séquence de pré-bataille</a>` : ""}`;
   }
 
   function vRound(r){
@@ -199,7 +210,8 @@
     document.body.classList.toggle("g-has-foot", !$("g-foot").hidden);
     $("g-prev").textContent = i <= 0 ? "Parties" : "Précédent";
     $("g-next").textContent = view === "r4" ? "Récapitulatif" : view === "start" ? "Commencer" : view === "setup" ? "Suivant" : "Round suivant";
-    $("g-next").disabled = (view === "setup" && missing().length > 0) || (view === "start" && (G.attacker == null || G.rounds[0].first == null));
+    $("g-next").disabled = (view === "setup" && missing().length > 0) || (view === "start" && missingStart().length > 0);
+    const m2 = $("g-missing2"); if (m2) { const l = missingStart(); m2.textContent = l.length ? "Il manque : " + l.join(", ") + "." : ""; }
     const m = $("g-missing"); if (m) { const l = missing(); m.textContent = l.length ? "Il manque : " + l.join(", ") + "." : ""; }
     if (hv) G = saved;
     else if (G && view !== "home") { G.view = view; save(); } else remember();
