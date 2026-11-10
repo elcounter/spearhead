@@ -77,6 +77,7 @@
   const pick = (act, val, r) => `<div class="g-two">${[0,1].map(p => `<button class="g-pick" type="button" data-act="${act}" data-p="${p}"${r != null ? ` data-r="${r}"` : ""} aria-pressed="${val === p}">${pname(p)}</button>`).join("")}</div>`;
   const stepper = (act, p, r, v, label) => `<div class="g-switch"><span><b>${label}</b></span><div class="g-stepper"><button type="button" data-act="${act}" data-p="${p}" data-r="${r}" data-d="-1" aria-label="Moins">−</button><output>${v}</output><button type="button" data-act="${act}" data-p="${p}" data-r="${r}" data-d="1" aria-label="Plus">+</button></div></div>`;
 
+  const res = (m, o) => m > o ? `<b class="g-win">(Victoire)</b>` : m < o ? `<b class="g-loss">(Défaite)</b>` : `<b class="g-draw">(Égalité)</b>`;
   function vHome(){
     const hist = load(HKEY, []);
     let h = `<button class="g-btn primary" type="button" data-act="new">Nouvelle partie</button>`;
@@ -88,7 +89,7 @@
         <div class="g-row"><span class="g-tag">${where}</span><span class="g-grow"></span><button class="g-del" type="button" data-act="del" data-id="${g.id}" aria-label="Supprimer cette partie">${TRASH}</button><button class="g-btn gold" type="button" data-act="resume" data-id="${g.id}">Reprendre</button></div>
       </div></div>`; })).join("")}</div></div>`;
     else h += `<div class="g-panel g-hero"><h2>Aucune partie en cours</h2><p class="g-hint">Pack de bataille, joueurs et Spearheads, puis le score round par round.</p></div>`;
-    if (hist.length) h += `<div><span class="g-lbl">Parties terminées</span><div class="g-hist">${hist.slice(0,15).map((x, i) => `<div><button class="g-grow g-hopen" type="button" data-act="hopen" data-i="${i}"><b>${esc(x.a)}</b> ${x.sa} - ${x.sb} <b>${esc(x.b)}</b><br><span class="g-hint">${esc(x.f)} · ${esc(x.d)}</span></button><button class="g-del" type="button" data-act="hdel" data-i="${i}" aria-label="Supprimer cette partie">${TRASH}</button></div>`).join("")}</div></div>`;
+    if (hist.length) h += `<div><span class="g-lbl">Parties terminées</span><div class="g-hist">${hist.slice(0,15).map((x, i) => `<div><button class="g-grow g-hopen" type="button" data-act="hopen" data-i="${i}"><b>${esc(x.a)}</b> ${res(x.sa, x.sb)} ${x.sa} - ${x.sb} <b>${esc(x.b)}</b> ${res(x.sb, x.sa)}<br><span class="g-hint">${esc(x.f)} · ${esc(x.d)}</span></button><button class="g-del" type="button" data-act="hdel" data-i="${i}" aria-label="Supprimer cette partie">${TRASH}</button></div>`).join("")}</div></div>`;
     return h;
   }
 
