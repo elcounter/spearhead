@@ -204,7 +204,7 @@
       </div></div>
       ${profileHtml()}
       <div class="panel"><div class="body acc">
-        <p class="hint">Supprimer ton compte efface définitivement tes données sur le serveur, pour SpearCounter et WarCounter. Les données de cet appareil sont conservées.</p>
+        <p class="hint"><b class="acc-warn">Attention !</b> Supprimer ton compte efface définitivement tes données sur le serveur, pour SpearCounter et WarCounter. Les données de cet appareil sont conservées.</p>
         <button type="button" class="btn danger" id="acc-del">${delArmed ? "Confirmer la suppression définitive" : "Supprimer mon compte"}</button>
       </div></div>
       <p class="sup-thanks"><a href="#confidentialite">Confidentialité et données personnelles</a></p>`;
