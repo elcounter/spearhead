@@ -107,6 +107,14 @@ main{padding-block:16px 40px}
 .cost{flex:none;font:700 16px var(--body);white-space:nowrap}
 .unit-link.has-photo{place-items:end start;text-align:left;background:linear-gradient(to top, rgba(0,0,0,.9) 0%, rgba(0,0,0,.55) 35%, rgba(0,0,0,0) 70%), var(--img) center 30%/cover no-repeat, #e8e5df;text-shadow:0 1px 3px rgba(0,0,0,.8)}
 .hero-photo{background:radial-gradient(ellipse at center, #fbfaf7 0%, #e3dfd8 100%);display:flex;justify-content:center}
+.hero-photo.has-renf{position:relative}
+.renf{position:absolute;top:0;right:14px;z-index:2;width:30px;filter:drop-shadow(0 2px 3px rgba(0,0,0,.45));pointer-events:none}
+.renf svg{display:block;width:100%;height:auto}
+.renf.big{right:18px;width:64px}
+.renf-top{position:relative;height:0}
+.renf-top .renf.big{top:0}
+#list .unit-link{position:relative}
+#list .renf{top:0;right:8px}
 .hero-photo img{display:block;width:100%;max-width:640px;max-height:300px;object-fit:contain}
 .army-link{background:var(--bar)}
 .ab-name{padding:12px 16px;font:700 15px var(--body);border-bottom:2px solid #dcdcdc}
@@ -440,7 +448,7 @@ body.g-has-foot{padding-bottom:calc(var(--navh) + 66px)}
 <footer class="foot">
   <a class="sup-link" href="#soutenir">Si tu veux soutenir le projet</a>
   <p>© 2026 elcounter. Tous droits réservés.</p>
-  <p>SpearCounter version 2.4.0 · MAJ 11-11-2026</p>
+  <p>SpearCounter version 2.4.1 · MAJ 11-11-2026</p>
   <p>Application non officielle, non affiliée à Games Workshop.</p>
   <p>Spearhead est une marque de Games Workshop Ltd.</p>
 </footer>
@@ -713,7 +721,7 @@ body.g-has-foot{padding-bottom:calc(var(--navh) + 66px)}
 
   // ---------- Mémo ----------
   function renderMemo(){
-    $("list").innerHTML = SH.units.map(u => `<button type="button" class="unit-link${SH.photos[u.id] ? " has-photo" : ""}" data-id="${u.id}"${photoAttr(SH.photos[u.id])}><span>${esc(u.en).replace(/-/g, "\u2011")}</span></button>`).join("");
+    $("list").innerHTML = SH.units.map(u => `<button type="button" class="unit-link${SH.photos[u.id] ? " has-photo" : ""}" data-id="${u.id}"${photoAttr(SH.photos[u.id])}>${renfBadge(u, false)}<span>${esc(u.en).replace(/-/g, "\u2011")}</span></button>`).join("");
   }
   $("list").addEventListener("click", e => { const t = e.target.closest(".unit-link"); if (t) location.hash = SH.id + "/u/" + t.dataset.id; });
 
@@ -815,9 +823,15 @@ body.g-has-foot{padding-bottom:calc(var(--navh) + 66px)}
     ["memo","regles","phases"].forEach(k => { $("nav-" + k).href = "#" + sh.id + "/" + k; });
   }
 
+  // Fanion « Renforts »
+  const isRenf = u => /\bRENFORTS?\b/i.test(u.kw || "");
+  const RENF = '<svg viewBox="0 0 60 84" aria-hidden="true"><path d="M3 0h54v62L30 84 3 62z" fill="#b3261e"/><path d="M3 0h54v4H3z" fill="#8f1d17"/>'
+    + '<g fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round"><path d="M17 33a13 13 0 0 1 23-7"/><path d="M43 39a13 13 0 0 1-23 7"/></g>'
+    + '<path d="M44 17v13H31z" fill="#fff"/><path d="M16 55V42h13z" fill="#fff"/></svg>';
+  const renfBadge = (u, big) => isRenf(u) ? `<span class="renf${big ? " big" : ""}" role="img" aria-label="Renforts" title="Renforts">${RENF}</span>` : "";
   function showUnit(u){
     const s = u.stats;
-    let h = SH.photos[u.id] ? `<div class="hero-photo"><img src="${SH.photos[u.id]}" alt="${esc(u.en)}"></div>` : "";
+    let h = SH.photos[u.id] ? `<div class="hero-photo has-renf">${renfBadge(u, true)}<img src="${SH.photos[u.id]}" alt="${esc(u.en)}"></div>` : (isRenf(u) ? `<div class="renf-top">${renfBadge(u, true)}</div>` : "");
     h += `<div class="statband"><div class="stats" style="--n:${s.W ? 5 : 4}">` +
       [[s.M,"Mouv.",""],[s.S,"Santé",""],[s.C,"Contrôle",""],[s.Sv,"Sauv."," sv"]].concat(s.W ? [[s.W,"Prot."," wd"]] : []).map(([v,l,c]) =>
         `<div><div class="disc${c}">${esc(v)}</div><div class="l">${l}</div></div>`).join("") + `</div></div>`;
