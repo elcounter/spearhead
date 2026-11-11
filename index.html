@@ -44,9 +44,10 @@ button,select,input{font-family:inherit}
 .back:hover{background:rgba(255,255,255,.12)}
 .back[hidden]{display:none}
 .ttl{min-width:0;display:grid;gap:2px}
-#splash{position:fixed;inset:0;z-index:9999;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;background:#6b2119;transition:opacity .35s ease}
-#splash img{width:120px;height:120px;animation:sc-spin 1.2s linear infinite}
-#splash span{width:52px;height:8px;background:#c9a24a}
+#splash{position:fixed;inset:0;z-index:9999;display:flex;align-items:center;justify-content:center;background:#f1f1f1;transition:opacity .35s ease}
+#splash .sp-c{position:relative;width:192px;height:192px;border-radius:50%;background:#6b2119;overflow:hidden}
+#splash img{position:absolute;left:50%;top:91px;width:101px;height:101px;margin:-50.5px 0 0 -50.5px;animation:sc-spin 1.2s linear infinite}
+#splash span{position:absolute;left:71px;top:146px;width:50px;height:7px;background:#c9a24a}
 #splash.out{opacity:0;pointer-events:none}
 @keyframes sc-spin{to{transform:rotate(360deg)}}
 @media (prefers-reduced-motion:reduce){#splash img{animation-duration:3s}}
@@ -363,7 +364,7 @@ body.g-has-foot{padding-bottom:calc(var(--navh) + 66px)}
 </style>
 </head>
 <body>
-<div id="splash" aria-hidden="true"><img src="icons/splash-s.png" alt="" width="120" height="120"><span></span></div>
+<div id="splash" aria-hidden="true"><div class="sp-c"><img src="icons/splash-s.png" alt="" width="291" height="291"><span></span></div></div>
 <script>window.SPLASH_T0 = Date.now();</script>
 
 <header class="bar">
@@ -432,7 +433,7 @@ body.g-has-foot{padding-bottom:calc(var(--navh) + 66px)}
 <footer class="foot">
   <a class="sup-link" href="#soutenir">Si tu veux soutenir le projet</a>
   <p>© 2026 elcounter. Tous droits réservés.</p>
-  <p>SpearCounter version 2.3.5 · MAJ 11-11-2026</p>
+  <p>SpearCounter version 2.3.6 · MAJ 11-11-2026</p>
   <p>Application non officielle, non affiliée à Games Workshop.</p>
   <p>Spearhead est une marque de Games Workshop Ltd.</p>
 </footer>
