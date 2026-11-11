@@ -111,11 +111,15 @@
     SHS().forEach(x => { const a = AL ? AL.of(x) : "Spearheads"; (by[a] = by[a] || []).push(x); });
     const keys = (AL ? AL.order.filter(a => by[a]) : []).concat(Object.keys(by).filter(a => !AL || !AL.order.includes(a)));
     const cur = P.sh && !P.fac ? P.sh : (shMatch(P) || {}).id || "";
+    const bySort = (x, y) => (x.faction || "").localeCompare(y.faction || "", "fr") || x.name.localeCompare(y.name, "fr");
+    const opt = (x, sel) => `<option value="${x.id}"${sel ? " selected" : ""}>${esc(x.faction)} · ${esc(x.name)}</option>`;
+    const favIds = load("spearcounter-favoris", []), F = SHS().filter(x => Array.isArray(favIds) && favIds.includes(x.id)).sort(bySort);
+    const curFav = F.some(x => x.id === cur);
     const legacy = P.fac && !shMatch(P) ? `<option value="__fac" selected>${esc(P.fac)}</option>` : "";
     return `<select id="g-s${p}" class="g-sel${cur || legacy ? "" : " empty"}" data-set="sh" data-p="${p}">
       <option value=""${cur || legacy ? "" : " selected"}>Choisir une Spearhead</option>${legacy}
-      ${keys.map(a => `<optgroup label="${esc(a)}">${by[a].sort((x, y) => (x.faction || "").localeCompare(y.faction || "", "fr") || x.name.localeCompare(y.name, "fr"))
-        .map(x => `<option value="${x.id}"${x.id === cur ? " selected" : ""}>${esc(x.faction)} · ${esc(x.name)}</option>`).join("")}</optgroup>`).join("")}
+      ${F.length ? `<optgroup label="Mes favorites">${F.map(x => opt(x, x.id === cur)).join("")}</optgroup>` : ""}
+      ${keys.map(a => `<optgroup label="${esc(a)}">${by[a].sort(bySort).map(x => opt(x, !curFav && x.id === cur)).join("")}</optgroup>`).join("")}
     </select>`;
   }
   function vHome(){
