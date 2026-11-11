@@ -6,6 +6,7 @@
 <title>SpearCounter</title>
 <link rel="manifest" href="manifest.webmanifest?v=1.2.1">
 <meta name="theme-color" content="#6b2119">
+<script>try { if (localStorage.getItem("sc-theme") === "dark") document.documentElement.dataset.theme = "dark"; } catch (e) {}</script>
 <link rel="icon" type="image/png" sizes="192x192" href="icons/sc3-icon-192.png">
 <link rel="apple-touch-icon" href="icons/sc3-apple-touch-icon.png">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -374,6 +375,68 @@ body.g-has-foot{padding-bottom:calc(var(--navh) + 66px)}
 /* Pied de page */
 .foot{padding:24px 16px calc(24px + env(safe-area-inset-bottom,0px));text-align:center;color:var(--muted);font-size:12px;line-height:1.6;border-top:1px solid var(--line)}
 .foot p{margin:0}
+.theme-btn{cursor:pointer;margin-left:6px;display:inline-flex;align-items:center;gap:6px;vertical-align:top}
+.theme-btn svg{width:13px;height:13px;fill:none;stroke:currentColor;stroke-width:2;stroke-linejoin:round}
+/* ---------- Mode sombre ---------- */
+html[data-theme="dark"]{
+  color-scheme: dark;
+  --page:#121212; --card:#1e1e1e; --colhead:#2c2c2c; --namebar:#2a2a2a;
+  --ink:#ececec; --muted:#a8a8a8; --line:#3a3a3a;
+  --khaki:#6f6340; --disc:#0c0c0c; --ph-passive:#3a3a3a;
+}
+html[data-theme="dark"] body{background:var(--page);color:var(--ink)}
+html[data-theme="dark"] #view-partie{--soft:#2a2a2a}
+html[data-theme="dark"] #splash{background:#121212}
+html[data-theme="dark"] #sp-msg{color:#e9c96b}
+html[data-theme="dark"] .bnav{background:#1a1a1a;border-top-color:#333}
+html[data-theme="dark"] .bnav a{color:#a0a0a0}
+html[data-theme="dark"] .bnav a[aria-current="page"]{color:#e9c96b;border-top-color:#e9c96b}
+html[data-theme="dark"] .sh-search,
+html[data-theme="dark"] select.g-sel,
+html[data-theme="dark"] #view-partie input[type=text],
+html[data-theme="dark"] #view-partie select,
+html[data-theme="dark"] .acc input,
+html[data-theme="dark"] .mapw select{background:#262626;color:var(--ink);border-color:#444}
+html[data-theme="dark"] select.g-sel.empty{color:#8f8f8f}
+html[data-theme="dark"] .g-btn,
+html[data-theme="dark"] .g-pick,
+html[data-theme="dark"] .g-chip,
+html[data-theme="dark"] .g-stepper button,
+html[data-theme="dark"] .acc .btn,
+html[data-theme="dark"] .pf-sug,
+html[data-theme="dark"] .pf-sug button,
+html[data-theme="dark"] .sup-link{background:#262626;color:var(--ink);border-color:#444}
+html[data-theme="dark"] .g-btn.gold,
+html[data-theme="dark"] .g-pick[aria-pressed="true"]{background:var(--gold);border-color:var(--gold-dk);color:#1b1b1b}
+html[data-theme="dark"] .g-btn.primary{background:var(--bar);border-color:var(--bar);color:#fff}
+html[data-theme="dark"] .g-btn.ghost{background:none;border-color:transparent;color:#e9c96b}
+html[data-theme="dark"] .acc .btn.primary{background:var(--bar);border-color:var(--bar);color:#fff}
+html[data-theme="dark"] .acc .btn.danger{color:#ff9a8f;border-color:#6b2a24}
+html[data-theme="dark"] .sup-link,
+html[data-theme="dark"] .sup-thanks a,
+html[data-theme="dark"] .under b,
+html[data-theme="dark"] .mapw a{color:#e9c96b}
+html[data-theme="dark"] .g-note,
+html[data-theme="dark"] .g-hist > div,
+html[data-theme="dark"] .steps li,
+html[data-theme="dark"] .pf-vis,
+html[data-theme="dark"] .under{background:#1e1e1e}
+html[data-theme="dark"] .fcard:hover{background:#262626}
+html[data-theme="dark"] .doc .ab-img{background:#e8e5df;border-bottom-color:#333}
+html[data-theme="dark"] .acc-msg{background:#1d3322;color:#a9dcb2}
+html[data-theme="dark"] .acc-msg.err{background:#3a1c18;color:#ffb1a7}
+html[data-theme="dark"] .g-st th,
+html[data-theme="dark"] .g-st td,
+html[data-theme="dark"] .pf-sug button{border-color:#333}
+html[data-theme="dark"] .pf-fold summary,
+html[data-theme="dark"] .kw,
+html[data-theme="dark"] .chip{border-color:#555}
+html[data-theme="dark"] .g-win{color:#6fcf7a}
+html[data-theme="dark"] .g-loss{color:#ff7b72}
+html[data-theme="dark"] .g-draw{color:#a8a8a8}
+html[data-theme="dark"] .g-missing{color:#ff9a8f}
+html[data-theme="dark"] .alliance-title{background:#4a1711}
+html[data-theme="dark"] .fav-block .alliance-title{background:#8f2a2d}
 .who{font:700 12px var(--display);text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin:0 0 4px 2px}
 .ab-wrap + .ab-wrap{margin-top:12px}
 </style>
@@ -447,8 +510,9 @@ body.g-has-foot{padding-bottom:calc(var(--navh) + 66px)}
 
 <footer class="foot">
   <a class="sup-link" href="#soutenir">Si tu veux soutenir le projet</a>
+  <button type="button" class="sup-link theme-btn" id="theme-btn" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg><span>Mode sombre</span></button>
   <p>© 2026 elcounter. Tous droits réservés.</p>
-  <p>SpearCounter version 2.4.1 · MAJ 11-11-2026</p>
+  <p>SpearCounter version 2.5.0 · MAJ 11-11-2026</p>
   <p>Application non officielle, non affiliée à Games Workshop.</p>
   <p>Spearhead est une marque de Games Workshop Ltd.</p>
 </footer>
@@ -905,6 +969,19 @@ body.g-has-foot{padding-bottom:calc(var(--navh) + 66px)}
 })();
 </script>
 <script>
+// Mode sombre : préférence gardée sur cet appareil
+(function(){
+  const btn = document.getElementById("theme-btn"), root = document.documentElement;
+  const paint = () => { const d = root.dataset.theme === "dark"; btn.querySelector("span").textContent = d ? "Mode clair" : "Mode sombre"; btn.setAttribute("aria-pressed", d); };
+  btn.addEventListener("click", () => {
+    const d = root.dataset.theme !== "dark";
+    if (d) root.dataset.theme = "dark"; else delete root.dataset.theme;
+    try { localStorage.setItem("sc-theme", d ? "dark" : "light"); } catch (e) {}
+    paint();
+  });
+  paint();
+})();
+
 // PWA : service worker + bouton « Installer »
 (function(){
   const btn = document.getElementById("install");
