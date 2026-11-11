@@ -153,6 +153,12 @@ main{padding-block:16px 40px}
 .sh-search{width:100%;box-sizing:border-box;margin:0 0 14px;padding:12px 14px;border:1px solid #d6cfc3;border-radius:8px;font:16px var(--body);background:#fff}
 .sh-none{margin:0 0 14px;text-align:center;color:var(--muted);font-style:italic}
 .sh-link[hidden],.alliance-block[hidden]{display:none}
+#home .sh-link{position:relative;padding-right:56px}
+.fav{position:absolute;top:8px;right:8px;display:grid;place-items:center;width:40px;height:40px;border-radius:50%;background:rgba(0,0,0,.35);cursor:pointer}
+.fav svg{width:22px;height:22px;fill:none;stroke:#fff;stroke-width:2;stroke-linejoin:round}
+.fav.on svg{fill:#e5484d;stroke:#e5484d}
+.fav:active{transform:scale(.9)}
+.fav-block .alliance-title{background:#e5484d}
 .home-intro{margin:0 0 12px;font:500 14px var(--display);letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
 .sh-link small{display:block;margin-top:4px;font:500 12px var(--display);letter-spacing:.08em;text-transform:uppercase;color:#e9c96b}
 .home-sep{margin-top:28px}
@@ -434,7 +440,7 @@ body.g-has-foot{padding-bottom:calc(var(--navh) + 66px)}
 <footer class="foot">
   <a class="sup-link" href="#soutenir">Si tu veux soutenir le projet</a>
   <p>© 2026 elcounter. Tous droits réservés.</p>
-  <p>SpearCounter version 2.3.7 · MAJ 11-11-2026</p>
+  <p>SpearCounter version 2.4.0 · MAJ 11-11-2026</p>
   <p>Application non officielle, non affiliée à Games Workshop.</p>
   <p>Spearhead est une marque de Games Workshop Ltd.</p>
 </footer>
@@ -610,8 +616,13 @@ body.g-has-foot{padding-bottom:calc(var(--navh) + 66px)}
     return FA_NORM[normF(sh.faction)] || "Autres";
   }  window.SC_ALLIANCE = { of: allianceOf, order: ALLIANCE_ORDER };
 
+  // Favoris (clé synchronisée avec le compte)
+  const FAV_KEY = "spearcounter-favoris";
+  const favs = () => { try { const v = JSON.parse(localStorage.getItem(FAV_KEY)); return Array.isArray(v) ? v : []; } catch (e) { return []; } };
+  const HEART = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7.5-4.6-9.6-9.2C.9 8.4 3 4.5 6.8 4.5c2.1 0 3.6 1.2 5.2 3.1 1.6-1.9 3.1-3.1 5.2-3.1 3.8 0 5.9 3.9 4.4 7.3C19.5 16.4 12 21 12 21z"/></svg>';
   function shBtn(sh) {
-    return `<button type="button" class="unit-link sh-link${sh.cover ? " has-photo" : ""}" data-id="${sh.id}" data-q="${esc(normF(sh.name + " " + (sh.faction || "") + " " + allianceOf(sh)))}"${photoAttr(sh.cover)}><span>${esc(sh.name)}${sh.faction ? `<small>${esc(sh.faction)}</small>` : ""}</span></button>`;
+    const on = favs().includes(sh.id);
+    return `<button type="button" class="unit-link sh-link${sh.cover ? " has-photo" : ""}" data-id="${sh.id}" data-q="${esc(normF(sh.name + " " + (sh.faction || "") + " " + allianceOf(sh)))}"${photoAttr(sh.cover)}><span>${esc(sh.name)}${sh.faction ? `<small>${esc(sh.faction)}</small>` : ""}</span><span class="fav${on ? " on" : ""}" role="button" tabindex="0" data-fav="${sh.id}" aria-pressed="${on}" aria-label="${on ? "Retirer des favoris" : "Ajouter aux favoris"}">${HEART}</span></button>`;
   }
   const byAlliance = {};
   SPEARHEADS.forEach(sh => {
@@ -621,19 +632,35 @@ body.g-has-foot{padding-bottom:calc(var(--navh) + 66px)}
   Object.values(byAlliance).forEach(list => list.sort((a, b) => (a.faction || "").localeCompare(b.faction || "", "fr") || a.name.localeCompare(b.name, "fr")));
   const allianceKeys = ALLIANCE_ORDER.filter(a => byAlliance[a] && byAlliance[a].length)
     .concat(Object.keys(byAlliance).filter(a => !ALLIANCE_ORDER.includes(a)));
-  $("home").innerHTML = allianceKeys.map(a =>
-    `<div class="alliance-block"><h3 class="alliance-title">${esc(a)}</h3><div class="list">${byAlliance[a].map(shBtn).join("")}</div></div>`
-  ).join("");
-  $("home").addEventListener("click", e => { const t = e.target.closest(".sh-link"); if (t) location.hash = t.dataset.id + "/memo"; });
-  $("sh-search").addEventListener("input", e => {
-    const q = normF(e.target.value).split(/\s+/).filter(Boolean); let n = 0;
+  function renderHome(){
+    const F = favs().map(id => SPEARHEADS.find(x => x.id === id)).filter(Boolean)
+      .sort((a, b) => (a.faction || "").localeCompare(b.faction || "", "fr") || a.name.localeCompare(b.name, "fr"));
+    $("home").innerHTML = (F.length ? `<div class="alliance-block fav-block"><h3 class="alliance-title">Mes Spearheads favorites</h3><div class="list">${F.map(shBtn).join("")}</div></div>` : "")
+      + allianceKeys.map(a => `<div class="alliance-block"><h3 class="alliance-title">${esc(a)}</h3><div class="list">${byAlliance[a].map(shBtn).join("")}</div></div>`).join("");
+    filterHome();
+  }
+  function toggleFav(id){
+    const f = favs(), i = f.indexOf(id);
+    if (i < 0) f.push(id); else f.splice(i, 1);
+    try { localStorage.setItem(FAV_KEY, JSON.stringify(f)); } catch (e) {}
+    renderHome();
+  }
+  $("home").addEventListener("click", e => {
+    const h = e.target.closest(".fav"); if (h) { e.preventDefault(); e.stopPropagation(); toggleFav(h.dataset.fav); return; }
+    const t = e.target.closest(".sh-link"); if (t) location.hash = t.dataset.id + "/memo";
+  });
+  $("home").addEventListener("keydown", e => { const h = e.target.closest(".fav"); if (h && (e.key === "Enter" || e.key === " ")) { e.preventDefault(); e.stopPropagation(); toggleFav(h.dataset.fav); } });
+  $("sh-search").addEventListener("input", filterHome);
+  function filterHome(){
+    const q = normF($("sh-search").value).split(/\s+/).filter(Boolean); let n = 0;
     document.querySelectorAll("#home .alliance-block").forEach(b => {
       let k = 0;
       b.querySelectorAll(".sh-link").forEach(l => { const ok = q.every(w => l.dataset.q.includes(w)); l.hidden = !ok; if (ok) k++; });
-      b.hidden = !k; n += k;
+      b.hidden = !k; if (!b.classList.contains("fav-block")) n += k;
     });
     $("sh-none").hidden = n > 0;
-  });
+  }
+  renderHome();
 
   // ---------- Règles (packs de bataille) ----------
   let PK = null;
