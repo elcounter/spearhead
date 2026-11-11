@@ -78,6 +78,33 @@
   const stepper = (act, p, r, v, label) => `<div class="g-switch"><span><b>${label}</b></span><div class="g-stepper"><button type="button" data-act="${act}" data-p="${p}" data-r="${r}" data-d="-1" aria-label="Moins">−</button><output>${v}</output><button type="button" data-act="${act}" data-p="${p}" data-r="${r}" data-d="1" aria-label="Plus">+</button></div></div>`;
 
   const res = (m, o) => m > o ? `<b class="g-win">(Victoire)</b>` : m < o ? `<b class="g-loss">(Défaite)</b>` : `<b class="g-draw">(Égalité)</b>`;
+  // ---------- Statistiques (parties terminées) ----------
+  function statsHtml(hist){
+    if (!hist.length) return "";
+    const P = {}, S = {}, K = {};
+    const add = (M, k, r) => { if (!k) return; const o = M[k] = M[k] || {n:0, v:0, d:0, e:0}; o.n++; o[r]++; };
+    hist.forEach(x => {
+      const g = x.g, sc = [x.sa, x.sb], nm = [x.a, x.b];
+      [0,1].forEach(p => {
+        const r = sc[p] > sc[1-p] ? "v" : sc[p] < sc[1-p] ? "d" : "e";
+        add(P, (nm[p] || "").trim(), r);
+        if (g && g.players && g.players[p]) { const m = shMatch(g.players[p]); add(S, m ? m.name : facOf(g.players[p]), r); }
+      });
+      if (g) add(K, packOf(g).n, "v");
+    });
+    const pct = o => Math.round(100 * o.v / o.n) + " %";
+    const tab = (title, M, cols) => {
+      const rows = Object.entries(M).sort((a, b) => b[1].n - a[1].n || b[1].v - a[1].v || a[0].localeCompare(b[0], "fr"));
+      if (!rows.length) return "";
+      return `<span class="g-lbl">${title}</span><div class="g-scroll"><table class="g-st"><thead><tr><th></th>${cols.map(c => `<th>${c[0]}</th>`).join("")}</tr></thead><tbody>
+        ${rows.map(([k, o]) => `<tr><td>${esc(k)}</td>${cols.map(c => `<td>${c[1](o)}</td>`).join("")}</tr>`).join("")}</tbody></table></div>`;
+    };
+    const full = [["Parties", o => o.n], ["V", o => `<b class="g-win">${o.v}</b>`], ["D", o => `<b class="g-loss">${o.d}</b>`], ["É", o => o.e], ["Taux", pct]];
+    return `<details class="g-panel g-stats"><summary class="g-sec">Statistiques</summary><div class="g-body">
+      <p class="g-hint">Sur ${hist.length} partie${hist.length > 1 ? "s" : ""} terminée${hist.length > 1 ? "s" : ""}. Taux = part de victoires.</p>
+      ${tab("Par joueur", P, full)}${tab("Par Spearhead", S, full)}${tab("Par pack de bataille", K, [["Parties", o => o.n]])}
+    </div></details>`;
+  }
   function vHome(){
     const hist = load(HKEY, []);
     let h = `<button class="g-btn primary" type="button" data-act="new">Nouvelle partie</button>`;
@@ -90,6 +117,7 @@
       </div></div>`; })).join("")}</div></div>`;
     else h += `<div class="g-panel g-hero"><h2>Aucune partie en cours</h2><p class="g-hint">Pack de bataille, joueurs et Spearheads, puis le score round par round.</p></div>`;
     if (hist.length) h += `<div><span class="g-lbl">Parties terminées</span><div class="g-hist">${hist.slice(0,15).map((x, i) => `<div><button class="g-grow g-hopen" type="button" data-act="hopen" data-i="${i}"><b>${esc(x.a)}</b> ${res(x.sa, x.sb)} ${x.sa} - ${x.sb} <b>${esc(x.b)}</b> ${res(x.sb, x.sa)}<br><span class="g-hint">${esc(x.f)} · ${esc(x.d)}</span></button><button class="g-del" type="button" data-act="hdel" data-i="${i}" aria-label="Supprimer cette partie">${TRASH}</button></div>`).join("")}</div></div>`;
+    h += statsHtml(hist);
     return h;
   }
 
@@ -182,6 +210,7 @@
     });
     h += `<div class="g-stack">
       ${ro ? `<button class="g-btn primary" type="button" data-act="home">Retour aux parties</button>` : `<button class="g-btn primary" type="button" data-act="finish">Terminer la partie</button><button class="g-btn" type="button" data-act="home">Retour aux parties</button>`}
+      <button class="g-btn gold" type="button" data-act="share">Partager en image</button>
       <button class="g-btn" type="button" data-act="copy">Copier le résumé</button>
       ${ro ? "" : `<button class="g-btn ghost" type="button" data-act="del">Supprimer la partie</button>`}
       <p class="g-hint" id="g-copy" style="text-align:center" aria-live="polite"></p></div>`;
@@ -272,12 +301,71 @@
       GAMES = GAMES.filter(x => x.id !== G.id); store(LKEY, GAMES); G = null;
       closeModal(); return go("hist:0");
     }
+    if (a === "share") {
+      const keep = G; if (view.startsWith("hist:") && histG) G = histG;
+      const snap = shareData(); G = keep;
+      shareImage(snap).catch(() => { $("g-copy").textContent = "Partage impossible sur cet appareil."; });
+      return;
+    }
     if (a === "copy") {
       const keep = G; if (view.startsWith("hist:") && histG) G = histG; const txt = summaryText(); G = keep;
       const fallback = () => openModal("Résumé de la partie", `<textarea readonly style="width:100%;min-height:200px;font:14px var(--body);padding:10px;border:2px solid var(--line);border-radius:6px">${esc(txt)}</textarea><p class="g-hint">Sélectionne le texte pour le copier.</p>`);
       try { navigator.clipboard.writeText(txt).then(() => { $("g-copy").textContent = "Résumé copié."; }, fallback); } catch (err) { fallback(); }
     }
   });
+  function shareData(){
+    const a = total(0), b = total(1);
+    return {names:[rawName(0), rawName(1)], facs:[0,1].map(p => facOf(G.players[p]) || ""), sc:[a, b],
+      rounds:[1,2,3,4].map(r => [roundScore(0, r), roundScore(1, r)]), pack:packLine(G), label:G.label || "",
+      date:new Date(G.updated || Date.now()).toLocaleDateString("fr-FR")};
+  }
+  async function shareImage(D){
+    const W = 1080, H = 1350, c = document.createElement("canvas"); c.width = W; c.height = H;
+    const x = c.getContext("2d");
+    try { await Promise.all(["700 60px Oswald", "400 30px Bitter", "700 30px Bitter"].map(f => document.fonts.load(f))); } catch (e) {}
+    const DISP = "Oswald, 'Arial Narrow', sans-serif", BODY = "Bitter, Georgia, serif";
+    const BG = "#6b2119", CREAM = "#f3ead8", GOLD = "#c9a24a", INK = "#1f1a17", MUT = "#7a6f66";
+    const txt = (t, X, Y, f, col, al) => { x.font = f; x.fillStyle = col; x.textAlign = al || "center"; x.fillText(t, X, Y); };
+    const fit = (t, f, max) => { let s = f.size; do { x.font = `${f.w} ${s}px ${f.fam}`; s -= 2; } while (x.measureText(t).width > max && s > 20); return `${f.w} ${s + 2}px ${f.fam}`; };
+    x.fillStyle = "#efe9df"; x.fillRect(0, 0, W, H);
+    x.fillStyle = BG; x.fillRect(0, 0, W, 260);
+    txt("S", 120, 175, `700 130px ${DISP}`, CREAM); x.fillStyle = GOLD; x.fillRect(88, 198, 64, 10);
+    txt("SPEARCOUNTER", 210, 130, `700 64px ${DISP}`, CREAM, "left");
+    txt("FEUILLE DE PARTIE · WARHAMMER SPEARHEAD", 212, 185, `400 28px ${DISP}`, GOLD, "left");
+    const [a, b] = D.sc, win = a === b ? -1 : a > b ? 0 : 1;
+    x.fillStyle = "#fff"; x.beginPath(); x.roundRect(60, 310, W - 120, 560, 28); x.fill();
+    txt(win < 0 ? "ÉGALITÉ" : "VICTOIRE DE " + D.names[win].toUpperCase(), W / 2, 395, fit(win < 0 ? "ÉGALITÉ" : "VICTOIRE DE " + D.names[win].toUpperCase(), {w:700, size:52, fam:DISP}, W - 200), win < 0 ? MUT : "#2e7d32");
+    [0,1].forEach(p => {
+      const X = p ? W * 0.75 : W * 0.25;
+      txt(D.names[p], X, 490, fit(D.names[p], {w:700, size:50, fam:BODY}, 400), INK);
+      txt(D.facs[p] || "", X, 540, fit(D.facs[p] || "", {w:400, size:30, fam:BODY}, 420), MUT);
+      txt(win < 0 ? "Égalité" : win === p ? "Victoire" : "Défaite", X, 590, `700 32px ${BODY}`, win < 0 ? MUT : win === p ? "#2e7d32" : "#c62828");
+    });
+    txt(`${a}  -  ${b}`, W / 2, 760, `700 170px ${DISP}`, BG);
+    txt("points de victoire", W / 2, 830, `400 30px ${BODY}`, MUT);
+    // Tableau des rounds
+    const top = 920, cw = (W - 120) / 6;
+    x.fillStyle = "#fff"; x.beginPath(); x.roundRect(60, top, W - 120, 260, 28); x.fill();
+    ["", "R1", "R2", "R3", "R4", "Total"].forEach((h, i) => txt(h, 60 + cw * i + cw / 2, top + 65, `700 32px ${DISP}`, MUT));
+    [0,1].forEach(p => {
+      const Y = top + 140 + p * 80;
+      txt(D.names[p], 60 + cw / 2, Y, fit(D.names[p], {w:700, size:30, fam:BODY}, cw - 16), INK);
+      D.rounds.forEach((r, i) => txt(String(r[p]), 60 + cw * (i + 1) + cw / 2, Y, `400 36px ${BODY}`, INK));
+      txt(String(D.sc[p]), 60 + cw * 5 + cw / 2, Y, `700 40px ${BODY}`, BG);
+    });
+    txt(D.pack + (D.label ? " · " + D.label : "") + " · " + D.date, W / 2, 1250, fit(D.pack + (D.label ? " · " + D.label : "") + " · " + D.date, {w:400, size:32, fam:BODY}, W - 120), INK);
+    txt("elcounter.github.io/spearhead", W / 2, 1305, `700 30px ${DISP}`, BG);
+    const blob = await new Promise(r => c.toBlob(r, "image/png"));
+    const name = `SpearCounter-${D.names[0]}-${D.names[1]}.png`.replace(/[^\w.-]+/g, "_");
+    const file = new File([blob], name, {type:"image/png"});
+    if (navigator.canShare && navigator.canShare({files:[file]})) {
+      try { await navigator.share({files:[file], title:"SpearCounter", text:`${D.names[0]} ${a} - ${b} ${D.names[1]}`}); return; }
+      catch (e) { if (e && e.name === "AbortError") return; }
+    }
+    const u = URL.createObjectURL(blob), l = document.createElement("a"); l.href = u; l.download = name; document.body.appendChild(l); l.click(); l.remove();
+    setTimeout(() => URL.revokeObjectURL(u), 4000);
+    $("g-copy").textContent = "Image téléchargée.";
+  }
   function summaryText(){
     const L = [`${rawName(0)} ${total(0)} - ${total(1)} ${rawName(1)}`, `${packLine(G)}${G.label ? " · " + G.label : ""}`];
     [0,1].forEach(p => {

@@ -140,6 +140,9 @@ main{padding-block:16px 40px}
 .ios-hint p{margin:0 0 10px}
 .ios-hint button{background:#e9c96b;color:#1b1b1b;border:0;border-radius:6px;padding:6px 12px;font:700 13px var(--body);cursor:pointer}
 /* Accueil */
+.sh-search{width:100%;box-sizing:border-box;margin:0 0 14px;padding:12px 14px;border:1px solid #d6cfc3;border-radius:8px;font:16px var(--body);background:#fff}
+.sh-none{margin:0 0 14px;text-align:center;color:var(--muted);font-style:italic}
+.sh-link[hidden],.alliance-block[hidden]{display:none}
 .home-intro{margin:0 0 12px;font:500 14px var(--display);letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
 .sh-link small{display:block;margin-top:4px;font:500 12px var(--display);letter-spacing:.08em;text-transform:uppercase;color:#e9c96b}
 .home-sep{margin-top:28px}
@@ -230,6 +233,15 @@ body.g-has-foot{padding-bottom:calc(var(--navh) + 66px)}
 .g-live{gap:10px}
 .g-big{font:700 26px var(--display);font-variant-numeric:tabular-nums;white-space:nowrap}
 .g-hist{display:grid;gap:8px}
+.g-stats summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between}
+.g-stats summary::-webkit-details-marker{display:none}
+.g-stats summary::after{content:"+";font-weight:700}
+.g-stats[open] summary::after{content:"-"}
+.g-stats .g-body{display:grid;gap:8px}
+.g-st{width:100%;border-collapse:collapse;font-size:14px}
+.g-st th,.g-st td{padding:6px 6px;border-bottom:1px solid #eee5d8;text-align:center;white-space:nowrap}
+.g-st td:first-child,.g-st th:first-child{text-align:left;white-space:normal}
+.g-st th{font-size:12px;text-transform:uppercase;color:var(--muted)}
 .g-hist > div{display:flex;justify-content:space-between;gap:8px;padding:10px 12px;background:#fff;border-radius:8px;font-size:14px}
 .g-hopen{text-align:left;background:none;border:0;padding:0;font:inherit;color:inherit;cursor:pointer}
 .g-del{flex:none;width:40px;height:40px;border-radius:8px;border:0;background:none;color:var(--bar);display:grid;place-items:center;cursor:pointer}
@@ -371,7 +383,7 @@ body.g-has-foot{padding-bottom:calc(var(--navh) + 66px)}
 
   <!-- Onglet Spearhead : choix de la Spearhead -->
   <section id="view-home" hidden>
-    <p class="home-intro">Choisis ta Spearhead</p><div class="list" id="home"></div>
+    <p class="home-intro">Choisis ta Spearhead</p><input type="search" id="sh-search" class="sh-search" placeholder="Rechercher une Spearhead ou une faction" autocomplete="off" aria-label="Rechercher une Spearhead ou une faction"><p class="sh-none" id="sh-none" hidden>Aucune Spearhead trouvée.</p><div class="list" id="home"></div>
   </section>
 
   <!-- Onglet Règles : packs de bataille -->
@@ -405,7 +417,7 @@ body.g-has-foot{padding-bottom:calc(var(--navh) + 66px)}
 <footer class="foot">
   <a class="sup-link" href="#soutenir">Si tu veux soutenir le projet</a>
   <p>© 2026 elcounter. Tous droits réservés.</p>
-  <p>SpearCounter version 2.2.2 · MAJ 11-11-2026</p>
+  <p>SpearCounter version 2.3.0 · MAJ 11-11-2026</p>
   <p>Application non officielle, non affiliée à Games Workshop.</p>
   <p>Spearhead est une marque de Games Workshop Ltd.</p>
 </footer>
@@ -577,7 +589,7 @@ body.g-has-foot{padding-bottom:calc(var(--navh) + 66px)}
     return FA_NORM[normF(sh.faction)] || "Autres";
   }
   function shBtn(sh) {
-    return `<button type="button" class="unit-link sh-link${sh.cover ? " has-photo" : ""}" data-id="${sh.id}"${photoAttr(sh.cover)}><span>${esc(sh.name)}${sh.faction ? `<small>${esc(sh.faction)}</small>` : ""}</span></button>`;
+    return `<button type="button" class="unit-link sh-link${sh.cover ? " has-photo" : ""}" data-id="${sh.id}" data-q="${esc(normF(sh.name + " " + (sh.faction || "") + " " + allianceOf(sh)))}"${photoAttr(sh.cover)}><span>${esc(sh.name)}${sh.faction ? `<small>${esc(sh.faction)}</small>` : ""}</span></button>`;
   }
   const byAlliance = {};
   SPEARHEADS.forEach(sh => {
@@ -591,6 +603,15 @@ body.g-has-foot{padding-bottom:calc(var(--navh) + 66px)}
     `<div class="alliance-block"><h3 class="alliance-title">${esc(a)}</h3><div class="list">${byAlliance[a].map(shBtn).join("")}</div></div>`
   ).join("");
   $("home").addEventListener("click", e => { const t = e.target.closest(".sh-link"); if (t) location.hash = t.dataset.id + "/memo"; });
+  $("sh-search").addEventListener("input", e => {
+    const q = normF(e.target.value).split(/\s+/).filter(Boolean); let n = 0;
+    document.querySelectorAll("#home .alliance-block").forEach(b => {
+      let k = 0;
+      b.querySelectorAll(".sh-link").forEach(l => { const ok = q.every(w => l.dataset.q.includes(w)); l.hidden = !ok; if (ok) k++; });
+      b.hidden = !k; n += k;
+    });
+    $("sh-none").hidden = n > 0;
+  });
 
   // ---------- Règles (packs de bataille) ----------
   let PK = null;
