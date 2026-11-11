@@ -282,6 +282,14 @@ body.g-has-foot{padding-bottom:calc(var(--navh) + 66px)}
 .g-rt td:first-child,.g-rt th:first-child{text-align:left}
 .g-rt td.tot{font-weight:700}
 .g-rt td.cell span{display:inline-block;min-width:26px;padding:2px 0;border:1px solid var(--line);border-radius:5px}
+.back-game{position:fixed;left:0;right:0;bottom:var(--navh);z-index:7;display:flex;align-items:center;gap:8px;padding:12px 16px;background:var(--bar);color:#fff;font:700 15px var(--body);text-decoration:none;box-shadow:0 -2px 8px rgba(0,0,0,.25)}
+.back-game[hidden]{display:none}
+.back-game svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
+.back-game b{margin-left:auto;font:700 16px var(--display);letter-spacing:.04em;color:#e9c96b}
+body.has-back-game{padding-bottom:calc(var(--navh) + 48px)}
+.g-memo{display:flex;align-items:center;justify-content:center;gap:10px;border-color:var(--gold);text-align:left}
+.g-memo svg{flex:none;width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:2;stroke-linejoin:round;stroke-linecap:round}
+.g-memo small{display:block;font:500 12px var(--body);color:var(--muted)}
 .g-foot{position:fixed;left:0;right:0;bottom:var(--navh);z-index:6;background:var(--namebar)}
 .g-foot[hidden]{display:none}
 .g-foot .in{display:flex;justify-content:space-between;align-items:center;gap:10px;padding-block:10px}
@@ -512,11 +520,12 @@ html[data-theme="dark"] .fav-block .alliance-title{background:#8f2a2d}
   <a class="sup-link" href="#soutenir">Si tu veux soutenir le projet</a>
   <button type="button" class="sup-link theme-btn" id="theme-btn" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg><span>Mode sombre</span></button>
   <p>© 2026 elcounter. Tous droits réservés.</p>
-  <p>SpearCounter version 2.6.0 · MAJ 11-11-2026</p>
+  <p>SpearCounter version 2.7.0 · MAJ 11-11-2026</p>
   <p>Application non officielle, non affiliée à Games Workshop.</p>
   <p>Spearhead est une marque de Games Workshop Ltd.</p>
 </footer>
 
+<a id="back-game" class="back-game" href="#partie" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg><span>Retour à la partie</span><b id="back-score"></b></a>
 <nav class="bnav" aria-label="Navigation principale"><div class="in">
   <a href="#" id="bn-accueil"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11l9-7 9 7"/><path d="M5 10v10h5v-6h4v6h5V10"/></svg><span>Accueil</span></a>
   <a href="#regles" id="bn-regles"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2z"/><path d="M4 19V5"/><path d="M9 7h6"/></svg><span>Règles</span></a>
@@ -910,8 +919,15 @@ html[data-theme="dark"] .fav-block .alliance-title{background:#8f2a2d}
 
   // ---------- Navigation ----------
   // #  : accueil · #<spearhead>/memo|regles|phases · #<spearhead>/u/<unité>
+  // Mémo ouvert depuis la feuille de score : barre « Retour à la partie »
+  let fromGame = false;
+  document.addEventListener("click", e => { if (e.target.closest("a[data-memo]")) fromGame = true; });
   function route(){
     const [shId, part, unitId] = location.hash.slice(1).split("/");
+    if (["", "partie", "spearheads", "regles", "pack", "soutenir", "compte", "carte", "confidentialite"].includes(shId)) fromGame = false;
+    $("back-game").hidden = !fromGame;
+    document.body.classList.toggle("has-back-game", fromGame);
+    if (fromGame) $("back-score").textContent = window.SC_PARTIE.scoreLine ? window.SC_PARTIE.scoreLine() : "";
     if (shId === "partie") { show("partie"); window.SC_PARTIE.open((t, sub) => { const pn = window.SC_PARTIE.packName(); $("kicker").textContent = pn ? "Partie · " + pn : "Partie"; $("title").textContent = t; $("back").hidden = !sub; }); return; }
     if (shId === "regles") { show("rules"); return; }
     if (shId === "spearheads") { show("home"); return; }

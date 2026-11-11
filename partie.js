@@ -201,7 +201,7 @@
         <div><span class="g-lbl">Fin de son tour : objectifs contrôlés</span><div class="g-chips">${OBJ.map((n, i) => `<button class="g-chip" type="button" data-act="obj" data-p="${p}" data-r="${r}" data-i="${i}" aria-pressed="${!!s[i]}">${n}<span class="v">1</span></button>`).join("")}</div></div>
         ${stepper("tac", p, r, s[3], "Tactiques exécutées")}
         ${stepper("extra", p, r, s[4], "PV des péripéties")}
-        ${(m => m ? `<a class="g-btn ghost" href="#${m.id}/phases">Phases de ${esc(m.name)}</a>` : "")(shMatch(P))}
+        ${(m => m ? `<a class="g-btn g-memo" data-memo="1" href="#${m.id}/phases"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h11l3 3v13H5z"/><path d="M9 10h6M9 14h6"/></svg><span>Mémo des phases<small>${esc(m.name)}</small></span></a>` : `<p class="g-hint">Choisis une Spearhead dans la préparation pour ouvrir ici son mémo des phases.</p>`)(shMatch(P))}
         <div class="g-sub"><span>Points ce round</span><b>${roundScore(p, r)} PV</b></div>
       </div></div>`;
     });
@@ -394,6 +394,7 @@
     open(head){ setHead = head; render(false); },
     packName: () => G && G.pack && !view.startsWith("hist:") && view !== "home" ? packOf(G).n : "",
     back(){ if (view.startsWith("hist:")) go("home"); else back(); },
-    atHome: () => view === "home"
+    atHome: () => view === "home",
+    scoreLine: () => { const r = /^r(\d)$/.exec(view); return G && r ? `Round ${r[1]} · ${total(0)} - ${total(1)}` : (G ? `${total(0)} - ${total(1)}` : ""); }
   };
 })();
