@@ -3,13 +3,13 @@
  "id": "ogors",
  "name": "Maraudeurs Mangeguerres",
  "faction": "Hordegueules Ogors",
- "cover": "img/ogors/armee.jpg",
+ "cover": "img/ogors/armee.webp",
  "photos": {
-  "armee": "img/ogors/armee.jpg",
-  "cavalerie": "img/ogors/cavalerie.jpg",
-  "gloutons": "img/ogors/gloutons.jpg",
-  "tyran": "img/ogors/tyran.jpg",
-  "ventres-durs": "img/ogors/ventres-durs.jpg"
+  "armee": "img/ogors/armee.webp",
+  "cavalerie": "img/ogors/cavalerie.webp",
+  "gloutons": "img/ogors/gloutons.webp",
+  "tyran": "img/ogors/tyran.webp",
+  "ventres-durs": "img/ogors/ventres-durs.webp"
  },
  "units": [
   {

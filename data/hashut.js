@@ -3,8 +3,8 @@
   id:"hashut",
   name:"Forgeruines de Hashut",
   faction:"Helsmiths of Hashut",
-  cover:"img/hashut/armee.jpg",
-  photos:{armee:"img/hashut/armee.jpg", bombarde:"img/hashut/bombarde.jpg", cohorte:"img/hashut/cohorte.jpg", despote:"img/hashut/despote.jpg", dominotaure:"img/hashut/dominotaure.jpg"},
+  cover:"img/hashut/armee.webp",
+  photos:{armee:"img/hashut/armee.webp", bombarde:"img/hashut/bombarde.webp", cohorte:"img/hashut/cohorte.webp", despote:"img/hashut/despote.webp", dominotaure:"img/hashut/dominotaure.webp"},
   units: [
     {id:"despote", en:"Despote de Guerre",
       stats:{M:'4"', S:6, C:2, Sv:"3+"},

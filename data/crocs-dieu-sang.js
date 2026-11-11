@@ -3,8 +3,8 @@
  "id": "crocs-dieu-sang",
  "name": "Crocs du Dieu du Sang",
  "faction": "Lames de Khorne",
- "cover": "img/crocs-dieu-sang/armee.jpg",
- "photos": {"armee": "img/crocs-dieu-sang/armee.jpg", "karanak": "img/crocs-dieu-sang/karanak.jpg", "molosses": "img/crocs-dieu-sang/molosses.jpg", "griffes-karanak": "img/crocs-dieu-sang/griffes-karanak.jpg"},
+ "cover": "img/crocs-dieu-sang/armee.webp",
+ "photos": {"armee": "img/crocs-dieu-sang/armee.webp", "karanak": "img/crocs-dieu-sang/karanak.webp", "molosses": "img/crocs-dieu-sang/molosses.webp", "griffes-karanak": "img/crocs-dieu-sang/griffes-karanak.webp"},
  "units": [
   {
    "id": "karanak",

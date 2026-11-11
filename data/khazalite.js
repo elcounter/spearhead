@@ -3,13 +3,13 @@
  "id": "khazalite",
  "name": "Gardes Claniques de Drakkblud",
  "faction": "Forts Khazalites",
- "cover": "img/khazalite/armee.jpg",
+ "cover": "img/khazalite/armee.webp",
  "photos": {
-  "armee": "img/khazalite/armee.jpg",
-  "boucliers": "img/khazalite/boucliers.jpg",
-  "canon": "img/khazalite/canon.jpg",
-  "gholems": "img/khazalite/gholems.jpg",
-  "hjulda": "img/khazalite/hjulda.jpg"
+  "armee": "img/khazalite/armee.webp",
+  "boucliers": "img/khazalite/boucliers.webp",
+  "canon": "img/khazalite/canon.webp",
+  "gholems": "img/khazalite/gholems.webp",
+  "hjulda": "img/khazalite/hjulda.webp"
  },
  "units": [
   {

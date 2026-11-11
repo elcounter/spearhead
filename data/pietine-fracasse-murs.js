@@ -3,8 +3,8 @@
   id: "pietine-fracasse-murs",
   name: "Piétine de Fracasse-murs",
   faction: "Fils de Béhémat",
-  cover: "img/pietine-fracasse-murs/armee.jpg",
-  photos: { armee: "img/pietine-fracasse-murs/armee.jpg", gargant: "img/pietine-fracasse-murs/gargant.jpg", "gargant-broyeur": "img/pietine-fracasse-murs/gargant-broyeur.jpg" },
+  cover: "img/pietine-fracasse-murs/armee.webp",
+  photos: { armee: "img/pietine-fracasse-murs/armee.webp", gargant: "img/pietine-fracasse-murs/gargant.webp", "gargant-broyeur": "img/pietine-fracasse-murs/gargant-broyeur.webp" },
   units: [
     {
       id: "gargant-broyeur",

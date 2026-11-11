@@ -3,8 +3,8 @@
  "id": "mangeferraille",
  "name": "Mangeferraille",
  "faction": "Hordegueules Ogors",
- "cover": "img/mangeferraille/armee.jpg",
- "photos": {"armee": "img/mangeferraille/armee.jpg", "trappeurs": "img/mangeferraille/trappeurs.jpg", "lance-ferraille": "img/mangeferraille/lance-ferraille.jpg", "gnoblars": "img/mangeferraille/gnoblars.jpg", "ventres-durs": "img/mangeferraille/ventres-durs.jpg"},
+ "cover": "img/mangeferraille/armee.webp",
+ "photos": {"armee": "img/mangeferraille/armee.webp", "trappeurs": "img/mangeferraille/trappeurs.webp", "lance-ferraille": "img/mangeferraille/lance-ferraille.webp", "gnoblars": "img/mangeferraille/gnoblars.webp", "ventres-durs": "img/mangeferraille/ventres-durs.webp"},
  "units": [
   {
    "id": "trappeurs",

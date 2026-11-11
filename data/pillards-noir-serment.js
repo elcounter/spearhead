@@ -3,8 +3,8 @@
   id: "pillards-noir-serment",
   name: "Pillards Noir-serment",
   faction: "Héros Esclaves des Ténèbres",
-  cover: "img/pillards-noir-serment/armee.jpg",
-  photos: { armee: "img/pillards-noir-serment/armee.jpg", "cavaliers-cruels": "img/pillards-noir-serment/cavaliers-cruels.jpg", maraudeurs: "img/pillards-noir-serment/maraudeurs.jpg", reine: "img/pillards-noir-serment/reine.jpg", saccageurs: "img/pillards-noir-serment/saccageurs.jpg" },
+  cover: "img/pillards-noir-serment/armee.webp",
+  photos: { armee: "img/pillards-noir-serment/armee.webp", "cavaliers-cruels": "img/pillards-noir-serment/cavaliers-cruels.webp", maraudeurs: "img/pillards-noir-serment/maraudeurs.webp", reine: "img/pillards-noir-serment/reine.webp", saccageurs: "img/pillards-noir-serment/saccageurs.webp" },
   units: [
     {
       id: "reine",

@@ -3,12 +3,12 @@
  "id": "feu-et-jade",
  "name": "Le Feu et le Jade",
  "sub": "Pack de bataille",
- "cover": "img/feu-et-jade/bataille.jpg",
+ "cover": "img/feu-et-jade/bataille.webp",
  "imgs": {
-  "decors": "img/feu-et-jade/decors.jpg",
-  "objectifs": "img/feu-et-jade/objectifs.jpg",
-  "art": "img/feu-et-jade/art.jpg",
-  "bataille": "img/feu-et-jade/bataille.jpg"
+  "decors": "img/feu-et-jade/decors.webp",
+  "objectifs": "img/feu-et-jade/objectifs.webp",
+  "art": "img/feu-et-jade/art.webp",
+  "bataille": "img/feu-et-jade/bataille.webp"
  },
  "groups": [
   {
@@ -236,12 +236,12 @@
  "id": "sable-et-os",
  "name": "Le Sable et l'Os",
  "sub": "Pack de bataille",
- "cover": "img/sable-et-os/bataille.jpg",
+ "cover": "img/sable-et-os/bataille.webp",
  "imgs": {
-  "art": "img/sable-et-os/art.jpg",
-  "decors": "img/sable-et-os/decors.jpg",
-  "objectifs": "img/sable-et-os/objectifs.jpg",
-  "bataille": "img/sable-et-os/bataille.jpg"
+  "art": "img/sable-et-os/art.webp",
+  "decors": "img/sable-et-os/decors.webp",
+  "objectifs": "img/sable-et-os/objectifs.webp",
+  "bataille": "img/sable-et-os/bataille.webp"
  },
  "groups": [
   {
@@ -519,12 +519,12 @@
  "id": "double",
  "name": "Fer de Lance en Double",
  "sub": "2 contre 2",
- "cover": "img/double/bataille.jpg",
+ "cover": "img/double/bataille.webp",
  "imgs": {
-  "bataille": "img/double/bataille.jpg",
-  "gauche": "img/double/bataille-gauche.jpg",
-  "droite": "img/double/bataille-droite.jpg",
-  "plateaux": "img/double/deux-plateaux.jpg"
+  "bataille": "img/double/bataille.webp",
+  "gauche": "img/double/bataille-gauche.webp",
+  "droite": "img/double/bataille-droite.webp",
+  "plateaux": "img/double/deux-plateaux.webp"
  },
  "groups": [
   {

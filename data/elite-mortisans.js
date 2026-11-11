@@ -3,8 +3,8 @@
  "id": "elite-mortisans",
  "name": "Élite des Mortisans",
  "faction": "Collecteurs Ossiarques",
- "cover": "img/elite-mortisans/armee.jpg",
- "photos": {"armee": "img/elite-mortisans/armee.jpg", "ossifacteur": "img/elite-mortisans/ossifacteur.jpg", "immortis": "img/elite-mortisans/immortis.jpg", "rodeurs-necropole": "img/elite-mortisans/rodeurs-necropole.jpg", "morghasts": "img/elite-mortisans/morghasts.jpg"},
+ "cover": "img/elite-mortisans/armee.webp",
+ "photos": {"armee": "img/elite-mortisans/armee.webp", "ossifacteur": "img/elite-mortisans/ossifacteur.webp", "immortis": "img/elite-mortisans/immortis.webp", "rodeurs-necropole": "img/elite-mortisans/rodeurs-necropole.webp", "morghasts": "img/elite-mortisans/morghasts.webp"},
  "units": [
   {
    "id": "ossifacteur",

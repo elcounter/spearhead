@@ -3,8 +3,8 @@
  "id": "carnepelerins-sang-lies",
  "name": "Carnepèlerins Sang-liés",
  "faction": "Lames de Khorne",
- "cover": "img/carnepelerins-sang-lies/armee.jpg",
- "photos": {"armee": "img/carnepelerins-sang-lies/armee.jpg", "pretre-carnage": "img/carnepelerins-sang-lies/pretre-carnage.jpg", "massacreurs": "img/carnepelerins-sang-lies/massacreurs.jpg", "guerriers-sang": "img/carnepelerins-sang-lies/guerriers-sang.jpg", "pillards-sang": "img/carnepelerins-sang-lies/pillards-sang.jpg"},
+ "cover": "img/carnepelerins-sang-lies/armee.webp",
+ "photos": {"armee": "img/carnepelerins-sang-lies/armee.webp", "pretre-carnage": "img/carnepelerins-sang-lies/pretre-carnage.webp", "massacreurs": "img/carnepelerins-sang-lies/massacreurs.webp", "guerriers-sang": "img/carnepelerins-sang-lies/guerriers-sang.webp", "pillards-sang": "img/carnepelerins-sang-lies/pillards-sang.webp"},
  "units": [
   {
    "id": "pretre-carnage",

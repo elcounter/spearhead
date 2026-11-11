@@ -3,8 +3,8 @@
  "id": "hachebande-saga",
  "name": "Hachebande de Saga",
  "faction": "Pyrotueurs",
- "cover": "img/hachebande-saga/armee.jpg",
- "photos": {"armee": "img/hachebande-saga/armee.jpg", "belliforgeron": "img/hachebande-saga/belliforgeron.jpg", "atregardes": "img/hachebande-saga/atregardes.jpg", "vulkites": "img/hachebande-saga/vulkites.jpg"},
+ "cover": "img/hachebande-saga/armee.webp",
+ "photos": {"armee": "img/hachebande-saga/armee.webp", "belliforgeron": "img/hachebande-saga/belliforgeron.webp", "atregardes": "img/hachebande-saga/atregardes.webp", "vulkites": "img/hachebande-saga/vulkites.webp"},
  "units": [
   {
    "id": "belliforgeron",

@@ -3,13 +3,13 @@
  "id": "crixxit",
  "name": "Meute-meurtrière de Crixxit",
  "faction": "Skavens",
- "cover": "img/crixxit/armee.jpg",
+ "cover": "img/crixxit/armee.webp",
  "photos": {
-  "crixxit": "img/crixxit/crixxit.jpg",
-  "maitremort": "img/crixxit/maitremort.jpg",
-  "egouts": "img/crixxit/egouts.jpg",
-  "nocturnes": "img/crixxit/nocturnes.jpg",
-  "armee": "img/crixxit/armee.jpg"
+  "crixxit": "img/crixxit/crixxit.webp",
+  "maitremort": "img/crixxit/maitremort.webp",
+  "egouts": "img/crixxit/egouts.webp",
+  "nocturnes": "img/crixxit/nocturnes.webp",
+  "armee": "img/crixxit/armee.webp"
  },
  "units": [
   {

@@ -3,8 +3,8 @@
   id: "grognemeute-chasse",
   name: "Grognemeute de Chasse",
   faction: "Vils du Fielobscur",
-  cover: "img/grognemeute-chasse/armee.jpg",
-  photos: { armee: "img/grognemeute-chasse/armee.jpg", "cavalerie-grognemeute": "img/grognemeute-chasse/cavalerie-grognemeute.jpg", grogneboss: "img/grognemeute-chasse/grogneboss.jpg", "suite-vils-leus": "img/grognemeute-chasse/suite-vils-leus.jpg", "rouleur-fauchesoleil": "img/grognemeute-chasse/rouleur-fauchesoleil.jpg" },
+  cover: "img/grognemeute-chasse/armee.webp",
+  photos: { armee: "img/grognemeute-chasse/armee.webp", "cavalerie-grognemeute": "img/grognemeute-chasse/cavalerie-grognemeute.webp", grogneboss: "img/grognemeute-chasse/grogneboss.webp", "suite-vils-leus": "img/grognemeute-chasse/suite-vils-leus.webp", "rouleur-fauchesoleil": "img/grognemeute-chasse/rouleur-fauchesoleil.webp" },
   units: [
     {
       id: "grogneboss",

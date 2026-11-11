@@ -3,8 +3,8 @@
   id: "meutegriffe-rongefestin",
   name: "Meutegriffe Rongefestin",
   faction: "Skavens",
-  cover: "img/meutegriffe-rongefestin/armee.jpg",
-  photos: { armee: "img/meutegriffe-rongefestin/armee.jpg", griffarque: "img/meutegriffe-rongefestin/griffarque.jpg", "prophete-gris": "img/meutegriffe-rongefestin/prophete-gris.jpg", "rats-clans": "img/meutegriffe-rongefestin/rats-clans.jpg", "ingenieur": "img/meutegriffe-rongefestin/ingenieur.jpg", "rats-ogors": "img/meutegriffe-rongefestin/rats-ogors.jpg" },
+  cover: "img/meutegriffe-rongefestin/armee.webp",
+  photos: { armee: "img/meutegriffe-rongefestin/armee.webp", griffarque: "img/meutegriffe-rongefestin/griffarque.webp", "prophete-gris": "img/meutegriffe-rongefestin/prophete-gris.webp", "rats-clans": "img/meutegriffe-rongefestin/rats-clans.webp", "ingenieur": "img/meutegriffe-rongefestin/ingenieur.webp", "rats-ogors": "img/meutegriffe-rongefestin/rats-ogors.webp" },
   units: [
     {
       id: "griffarque",

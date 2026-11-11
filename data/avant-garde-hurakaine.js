@@ -3,8 +3,8 @@
  "id": "avant-garde-hurakaine",
  "name": "Avant-garde Hurakaine",
  "faction": "Suzerains Lumineths",
- "cover": "img/avant-garde-hurakaine/armee.jpg",
- "photos": {"armee": "img/avant-garde-hurakaine/armee.jpg", "mage-vent": "img/avant-garde-hurakaine/mage-vent.jpg", "esprit-vent": "img/avant-garde-hurakaine/esprit-vent.jpg", "charge-vent": "img/avant-garde-hurakaine/charge-vent.jpg", "gardes-auraliens": "img/avant-garde-hurakaine/gardes-auraliens.jpg"},
+ "cover": "img/avant-garde-hurakaine/armee.webp",
+ "photos": {"armee": "img/avant-garde-hurakaine/armee.webp", "mage-vent": "img/avant-garde-hurakaine/mage-vent.webp", "esprit-vent": "img/avant-garde-hurakaine/esprit-vent.webp", "charge-vent": "img/avant-garde-hurakaine/charge-vent.webp", "gardes-auraliens": "img/avant-garde-hurakaine/gardes-auraliens.webp"},
  "units": [
   {
    "id": "mage-vent",

@@ -3,8 +3,8 @@
   id: "chasse-pillemanes",
   name: "Chasse Pillemânes",
   faction: "Abyssaux Idoneths",
-  cover: "img/chasse-pillemanes/armee.jpg",
-  photos: { allopex: "img/chasse-pillemanes/allopex.jpg", armee: "img/chasse-pillemanes/armee.jpg", "gardes-morrarr-2": "img/chasse-pillemanes/gardes-morrarr-2.jpg", "hilotes-namarti": "img/chasse-pillemanes/hilotes-namarti.jpg", "scruteur-ames": "img/chasse-pillemanes/scruteur-ames.jpg" },
+  cover: "img/chasse-pillemanes/armee.webp",
+  photos: { allopex: "img/chasse-pillemanes/allopex.webp", armee: "img/chasse-pillemanes/armee.webp", "gardes-morrarr-2": "img/chasse-pillemanes/gardes-morrarr-2.webp", "hilotes-namarti": "img/chasse-pillemanes/hilotes-namarti.webp", "scruteur-ames": "img/chasse-pillemanes/scruteur-ames.webp" },
   units: [
     { id: "scruteur-ames", en: "Scruteur d'Âmes Isharann", stats: { M: '6\"', S: 5, C: 2, Sv: "5+" },
       weapons: [{ n: "Bâton d'Âmes", range: "Mêlée", a: 3, h: 3, w: 3, r: 1, d: "D3", crit: "none" }],

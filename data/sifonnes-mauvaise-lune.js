@@ -3,8 +3,8 @@
  "id": "sifonnes-mauvaise-lune",
  "name": "Sifonnés de la Mauvaise Lune",
  "faction": "Vils du Fielobscur",
- "cover": "img/sifonnes-mauvaise-lune/armee.jpg",
- "photos": {"armee": "img/sifonnes-mauvaise-lune/armee.jpg", "loufboss": "img/sifonnes-mauvaise-lune/loufboss.jpg", "squigaliers": "img/sifonnes-mauvaise-lune/squigaliers.jpg", "troggoths": "img/sifonnes-mauvaise-lune/troggoths.jpg", "troueurs": "img/sifonnes-mauvaise-lune/troueurs.jpg"},
+ "cover": "img/sifonnes-mauvaise-lune/armee.webp",
+ "photos": {"armee": "img/sifonnes-mauvaise-lune/armee.webp", "loufboss": "img/sifonnes-mauvaise-lune/loufboss.webp", "squigaliers": "img/sifonnes-mauvaise-lune/squigaliers.webp", "troggoths": "img/sifonnes-mauvaise-lune/troggoths.webp", "troueurs": "img/sifonnes-mauvaise-lune/troueurs.webp"},
  "units": [
   {
    "id": "loufboss",

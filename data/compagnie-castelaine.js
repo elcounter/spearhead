@@ -3,8 +3,8 @@
   id: "compagnie-castelaine",
   name: "Compagnie Castelaine",
   faction: "Cités de Sigmar",
-  cover: "img/compagnie-castelaine/armee.jpg",
-  photos: { armee: "img/compagnie-castelaine/armee.jpg", cavaliers: "img/compagnie-castelaine/cavaliers.jpg", "grand-canon": "img/compagnie-castelaine/grand-canon.jpg", heaumefers: "img/compagnie-castelaine/heaumefers.jpg", "marechal-cavalier": "img/compagnie-castelaine/marechal-cavalier.jpg" },
+  cover: "img/compagnie-castelaine/armee.webp",
+  photos: { armee: "img/compagnie-castelaine/armee.webp", cavaliers: "img/compagnie-castelaine/cavaliers.webp", "grand-canon": "img/compagnie-castelaine/grand-canon.webp", heaumefers: "img/compagnie-castelaine/heaumefers.webp", "marechal-cavalier": "img/compagnie-castelaine/marechal-cavalier.webp" },
   units: [
     {
       id: "marechal-cavalier",

@@ -3,8 +3,8 @@
   id: "delicieux-epicuriens",
   name: "Délicieux Épicuriens",
   faction: "Hédonites de Slaanesh",
-  cover: "img/delicieux-epicuriens/armee.jpg",
-  photos: { armee: "img/delicieux-epicuriens/armee.jpg", charnelles: "img/delicieux-epicuriens/charnelles.jpg", demonettes: "img/delicieux-epicuriens/demonettes.jpg", veneuses: "img/delicieux-epicuriens/veneuses.jpg", "triple-discorde": "img/delicieux-epicuriens/triple-discorde.jpg" },
+  cover: "img/delicieux-epicuriens/armee.webp",
+  photos: { armee: "img/delicieux-epicuriens/armee.webp", charnelles: "img/delicieux-epicuriens/charnelles.webp", demonettes: "img/delicieux-epicuriens/demonettes.webp", veneuses: "img/delicieux-epicuriens/veneuses.webp", "triple-discorde": "img/delicieux-epicuriens/triple-discorde.webp" },
   units: [
     {
       id: "triple-discorde",

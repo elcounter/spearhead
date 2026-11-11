@@ -3,8 +3,8 @@
  "id": "liges-charognards",
  "name": "Liges Charognards",
  "faction": "Cours de Mangechairs",
- "cover": "img/liges-charognards/armee.jpg",
- "photos": {"armee": "img/liges-charognards/armee.jpg", "grand-regent": "img/liges-charognards/grand-regent.jpg", "prevots-cryptes": "img/liges-charognards/prevots-cryptes.jpg", "chevaliers-morbheg": "img/liges-charognards/chevaliers-morbheg.jpg", "varghulf": "img/liges-charognards/varghulf.jpg"},
+ "cover": "img/liges-charognards/armee.webp",
+ "photos": {"armee": "img/liges-charognards/armee.webp", "grand-regent": "img/liges-charognards/grand-regent.webp", "prevots-cryptes": "img/liges-charognards/prevots-cryptes.webp", "chevaliers-morbheg": "img/liges-charognards/chevaliers-morbheg.webp", "varghulf": "img/liges-charognards/varghulf.webp"},
  "units": [
   {
    "id": "grand-regent",

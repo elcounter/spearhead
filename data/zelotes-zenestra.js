@@ -3,8 +3,8 @@
   id: "zelotes-zenestra",
   name: "Zélotes de Zenestra",
   faction: "Cités de Sigmar",
-  cover: "img/zelotes-zenestra/armee.jpg",
-  photos: { armee: "img/zelotes-zenestra/armee.jpg", "chevalier-eminent": "img/zelotes-zenestra/chevalier-eminent.jpg", heaumefers: "img/zelotes-zenestra/heaumefers.jpg", marechal: "img/zelotes-zenestra/marechal.jpg", prestelame: "img/zelotes-zenestra/prestelame.jpg", zenestra: "img/zelotes-zenestra/zenestra.jpg" },
+  cover: "img/zelotes-zenestra/armee.webp",
+  photos: { armee: "img/zelotes-zenestra/armee.webp", "chevalier-eminent": "img/zelotes-zenestra/chevalier-eminent.webp", heaumefers: "img/zelotes-zenestra/heaumefers.webp", marechal: "img/zelotes-zenestra/marechal.webp", prestelame: "img/zelotes-zenestra/prestelame.webp", zenestra: "img/zelotes-zenestra/zenestra.webp" },
   units: [
     {
       id: "marechal",

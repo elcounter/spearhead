@@ -3,8 +3,8 @@
   id: "coterie-ombre-khainite",
   name: "Coterie de l'Ombre Khainite",
   faction: "Filles de Khaine",
-  cover: "img/coterie-ombre-khainite/armee.jpg",
-  photos: { armee: "img/coterie-ombre-khainite/armee.jpg", "reine-massacre": "img/coterie-ombre-khainite/reine-massacre.jpg", "reine-matriarche": "img/coterie-ombre-khainite/reine-matriarche.jpg", "soeurs-massacre": "img/coterie-ombre-khainite/soeurs-massacre.jpg", "meduse": "img/coterie-ombre-khainite/meduse.jpg", "rodeurs-ombre": "img/coterie-ombre-khainite/rodeurs-ombre.jpg" },
+  cover: "img/coterie-ombre-khainite/armee.webp",
+  photos: { armee: "img/coterie-ombre-khainite/armee.webp", "reine-massacre": "img/coterie-ombre-khainite/reine-massacre.webp", "reine-matriarche": "img/coterie-ombre-khainite/reine-matriarche.webp", "soeurs-massacre": "img/coterie-ombre-khainite/soeurs-massacre.webp", "meduse": "img/coterie-ombre-khainite/meduse.webp", "rodeurs-ombre": "img/coterie-ombre-khainite/rodeurs-ombre.webp" },
   units: [
     {
       id: "reine-massacre",

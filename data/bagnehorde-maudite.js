@@ -3,8 +3,8 @@
   id: "bagnehorde-maudite",
   name: "Bagnehorde Maudite",
   faction: "Hantenuits",
-  cover: "img/bagnehorde-maudite/armee.jpg",
-  photos: { armee: "img/bagnehorde-maudite/armee.jpg", carognes: "img/bagnehorde-maudite/carognes.jpg", "esprit-tourmenteur": "img/bagnehorde-maudite/esprit-tourmenteur.jpg", manes: "img/bagnehorde-maudite/manes.jpg", "lamemanes": "img/bagnehorde-maudite/lamemanes.jpg", "ecumeurs": "img/bagnehorde-maudite/ecumeurs.jpg" },
+  cover: "img/bagnehorde-maudite/armee.webp",
+  photos: { armee: "img/bagnehorde-maudite/armee.webp", carognes: "img/bagnehorde-maudite/carognes.webp", "esprit-tourmenteur": "img/bagnehorde-maudite/esprit-tourmenteur.webp", manes: "img/bagnehorde-maudite/manes.webp", "lamemanes": "img/bagnehorde-maudite/lamemanes.webp", "ecumeurs": "img/bagnehorde-maudite/ecumeurs.webp" },
   units: [
     {
       id: "esprit-tourmenteur",

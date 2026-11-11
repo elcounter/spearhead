@@ -3,8 +3,8 @@
  "id": "chasse-sanguivore",
  "name": "Chasse Sanguivore",
  "faction": "Seigneurs Ruinemânes",
- "cover": "img/chasse-sanguivore/armee.jpg",
- "photos": {"armee": "img/chasse-sanguivore/armee.jpg", "seigneur-vampire": "img/chasse-sanguivore/seigneur-vampire.jpg", "chevaliers-sang": "img/chasse-sanguivore/chevaliers-sang.jpg", "vargheists": "img/chasse-sanguivore/vargheists.jpg", "squelettes": "img/chasse-sanguivore/squelettes.jpg"},
+ "cover": "img/chasse-sanguivore/armee.webp",
+ "photos": {"armee": "img/chasse-sanguivore/armee.webp", "seigneur-vampire": "img/chasse-sanguivore/seigneur-vampire.webp", "chevaliers-sang": "img/chasse-sanguivore/chevaliers-sang.webp", "vargheists": "img/chasse-sanguivore/vargheists.webp", "squelettes": "img/chasse-sanguivore/squelettes.webp"},
  "units": [
   {
    "id": "seigneur-vampire",

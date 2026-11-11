@@ -3,8 +3,8 @@
  "id": "meutegriffe-maletincelle",
  "name": "Meutegriffe Malétincelle",
  "faction": "Skavens",
- "cover": "img/meutegriffe-maletincelle/armee.jpg",
- "photos": {"armee": "img/meutegriffe-maletincelle/armee.jpg", "prophete-gris": "img/meutegriffe-maletincelle/prophete-gris.jpg", "colosses-choc": "img/meutegriffe-maletincelle/colosses-choc.jpg", "canon-malefoudre": "img/meutegriffe-maletincelle/canon-malefoudre.jpg", "rats-clans": "img/meutegriffe-maletincelle/rats-clans.jpg"},
+ "cover": "img/meutegriffe-maletincelle/armee.webp",
+ "photos": {"armee": "img/meutegriffe-maletincelle/armee.webp", "prophete-gris": "img/meutegriffe-maletincelle/prophete-gris.webp", "colosses-choc": "img/meutegriffe-maletincelle/colosses-choc.webp", "canon-malefoudre": "img/meutegriffe-maletincelle/canon-malefoudre.webp", "rats-clans": "img/meutegriffe-maletincelle/rats-clans.webp"},
  "units": [
   {
    "id": "prophete-gris",

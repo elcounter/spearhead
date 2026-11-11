@@ -3,8 +3,8 @@
  "id": "phalange-etincelante",
  "name": "Phalange Étincelante",
  "faction": "Suzerains Lumineths",
- "cover": "img/phalange-etincelante/armee.jpg",
- "photos": {"armee": "img/phalange-etincelante/armee.jpg", "cathallar": "img/phalange-etincelante/cathallar.jpg", "maitres-lames": "img/phalange-etincelante/maitres-lames.jpg", "sentinelles": "img/phalange-etincelante/sentinelles.jpg", "gardes-auraliens": "img/phalange-etincelante/gardes-auraliens.jpg"},
+ "cover": "img/phalange-etincelante/armee.webp",
+ "photos": {"armee": "img/phalange-etincelante/armee.webp", "cathallar": "img/phalange-etincelante/cathallar.webp", "maitres-lames": "img/phalange-etincelante/maitres-lames.webp", "sentinelles": "img/phalange-etincelante/sentinelles.webp", "gardes-auraliens": "img/phalange-etincelante/gardes-auraliens.webp"},
  "units": [
   {
    "id": "cathallar",

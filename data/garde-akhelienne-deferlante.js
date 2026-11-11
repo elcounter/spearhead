@@ -3,8 +3,8 @@
   id: "garde-akhelienne-deferlante",
   name: "Garde Akhélienne Déferlante",
   faction: "Abyssaux Idoneths",
-  cover: "img/garde-akhelienne-deferlante/armee.jpg",
-  photos: { armee: "img/garde-akhelienne-deferlante/armee.jpg", "ecumeurs-namarti": "img/garde-akhelienne-deferlante/ecumeurs-namarti.jpg", "gardes-ishlaen": "img/garde-akhelienne-deferlante/gardes-ishlaen.jpg", "gardes-morrarr": "img/garde-akhelienne-deferlante/gardes-morrarr.jpg", "roi-akhelien": "img/garde-akhelienne-deferlante/roi-akhelien.jpg" },
+  cover: "img/garde-akhelienne-deferlante/armee.webp",
+  photos: { armee: "img/garde-akhelienne-deferlante/armee.webp", "ecumeurs-namarti": "img/garde-akhelienne-deferlante/ecumeurs-namarti.webp", "gardes-ishlaen": "img/garde-akhelienne-deferlante/gardes-ishlaen.webp", "gardes-morrarr": "img/garde-akhelienne-deferlante/gardes-morrarr.webp", "roi-akhelien": "img/garde-akhelienne-deferlante/roi-akhelien.webp" },
   units: [
     { id: "roi-akhelien", en: "Roi Akhélien", stats: { M: '14\"', S: 7, C: 2, Sv: "3+" },
       weapons: [{ n: "Épée ou Lance Akhélienne", range: "Mêlée", a: 5, h: 3, w: 3, r: 2, d: "2", crit: "none" }, { n: "Morsure d'Abîmar", range: "Mêlée", a: 3, h: 4, w: 3, r: 1, d: "2", crit: "none", extra: ["Compagnon"] }],

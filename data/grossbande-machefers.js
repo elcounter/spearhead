@@ -3,8 +3,8 @@
   id: "grossbande-machefers",
   name: "Gross'bande de Mâchefers",
   faction: "Clans Guerriers Orruks",
-  cover: "img/grossbande-machefers/armee.jpg",
-  photos: { armee: "img/grossbande-machefers/armee.jpg", brutes: "img/grossbande-machefers/brutes.jpg", durboyz: "img/grossbande-machefers/durboyz.jpg", megaboss: "img/grossbande-machefers/megaboss.jpg", "rageux-brutes": "img/grossbande-machefers/rageux-brutes.jpg" },
+  cover: "img/grossbande-machefers/armee.webp",
+  photos: { armee: "img/grossbande-machefers/armee.webp", brutes: "img/grossbande-machefers/brutes.webp", durboyz: "img/grossbande-machefers/durboyz.webp", megaboss: "img/grossbande-machefers/megaboss.webp", "rageux-brutes": "img/grossbande-machefers/rageux-brutes.webp" },
   units: [
     { id: "megaboss", en: "Mégaboss", stats: { M: '4\"', S: 7, C: 2, Sv: "3+" },
       weapons: [{ n: "Boss Choppa et Boss Shield", range: "Mêlée", a: 5, h: 3, w: 3, r: 1, d: "2", crit: "none" }],

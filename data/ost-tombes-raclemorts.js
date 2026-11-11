@@ -3,8 +3,8 @@
  "id": "ost-tombes-raclemorts",
  "name": "Ost des Tombes de Raclemorts",
  "faction": "Seigneurs Ruinemânes",
- "cover": "img/ost-tombes-raclemorts/armee.jpg",
- "photos": {"armee": "img/ost-tombes-raclemorts/armee.jpg", "roi-revenant": "img/ost-tombes-raclemorts/roi-revenant.jpg", "garde-tertres": "img/ost-tombes-raclemorts/garde-tertres.jpg", "chevaliers-tertres": "img/ost-tombes-raclemorts/chevaliers-tertres.jpg", "squelettes": "img/ost-tombes-raclemorts/squelettes.jpg"},
+ "cover": "img/ost-tombes-raclemorts/armee.webp",
+ "photos": {"armee": "img/ost-tombes-raclemorts/armee.webp", "roi-revenant": "img/ost-tombes-raclemorts/roi-revenant.webp", "garde-tertres": "img/ost-tombes-raclemorts/garde-tertres.webp", "chevaliers-tertres": "img/ost-tombes-raclemorts/chevaliers-tertres.webp", "squelettes": "img/ost-tombes-raclemorts/squelettes.webp"},
  "units": [
   {
    "id": "roi-revenant",

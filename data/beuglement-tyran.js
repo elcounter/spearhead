@@ -3,8 +3,8 @@
  "id": "beuglement-tyran",
  "name": "Beuglement du Tyran",
  "faction": "Hordegueules Ogors",
- "cover": "img/beuglement-tyran/armee.jpg",
- "photos": {"armee": "img/beuglement-tyran/armee.jpg", "tyran": "img/beuglement-tyran/tyran.jpg", "boute-fer": "img/beuglement-tyran/boute-fer.jpg", "crache-plomb": "img/beuglement-tyran/crache-plomb.jpg", "gloutons": "img/beuglement-tyran/gloutons.jpg", "mornecrocs": "img/beuglement-tyran/mornecrocs.jpg"},
+ "cover": "img/beuglement-tyran/armee.webp",
+ "photos": {"armee": "img/beuglement-tyran/armee.webp", "tyran": "img/beuglement-tyran/tyran.webp", "boute-fer": "img/beuglement-tyran/boute-fer.webp", "crache-plomb": "img/beuglement-tyran/crache-plomb.webp", "gloutons": "img/beuglement-tyran/gloutons.webp", "mornecrocs": "img/beuglement-tyran/mornecrocs.webp"},
  "units": [
   {
    "id": "tyran",

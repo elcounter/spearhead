@@ -3,8 +3,8 @@
  "id": "lapideurs",
  "name": "Lapideurs",
  "faction": "Fils de Béhémat",
- "cover": "img/lapideurs/armee.jpg",
- "photos": {"armee": "img/lapideurs/armee.jpg", "lance-rochers": "img/lapideurs/lance-rochers.jpg"},
+ "cover": "img/lapideurs/armee.webp",
+ "photos": {"armee": "img/lapideurs/armee.webp", "lance-rochers": "img/lapideurs/lance-rochers.webp"},
  "units": [
   {
    "id": "lance-rochers",

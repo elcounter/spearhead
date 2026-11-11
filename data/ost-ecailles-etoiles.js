@@ -3,8 +3,8 @@
   id: "ost-ecailles-etoiles",
   name: "Ost d'Écailles des Étoiles",
   faction: "Séraphons",
-  cover: "img/ost-ecailles-etoiles/armee.jpg",
-  photos: { armee: "img/ost-ecailles-etoiles/armee.jpg", "guerriers-saurus": "img/ost-ecailles-etoiles/guerriers-saurus.jpg", kroxigor: "img/ost-ecailles-etoiles/kroxigor.jpg", "sang-ancien-carnosaure": "img/ost-ecailles-etoiles/sang-ancien-carnosaure.jpg" },
+  cover: "img/ost-ecailles-etoiles/armee.webp",
+  photos: { armee: "img/ost-ecailles-etoiles/armee.webp", "guerriers-saurus": "img/ost-ecailles-etoiles/guerriers-saurus.webp", kroxigor: "img/ost-ecailles-etoiles/kroxigor.webp", "sang-ancien-carnosaure": "img/ost-ecailles-etoiles/sang-ancien-carnosaure.webp" },
   units: [
     {
       id: "sang-ancien-carnosaure",

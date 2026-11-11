@@ -3,8 +3,8 @@
   id: "defricheurs-grundstok",
   name: "Défricheurs Grundstok",
   faction: "Magnats Kharadrons",
-  cover: "img/defricheurs-grundstok/armee.jpg",
-  photos: { armee: "img/defricheurs-grundstok/armee.jpg", canonniere: "img/defricheurs-grundstok/canonniere.jpg", endringreeurs: "img/defricheurs-grundstok/endringreeurs.jpg", foudroyeurs: "img/defricheurs-grundstok/foudroyeurs.jpg", "maitre-endrinieur": "img/defricheurs-grundstok/maitre-endrinieur.jpg" },
+  cover: "img/defricheurs-grundstok/armee.webp",
+  photos: { armee: "img/defricheurs-grundstok/armee.webp", canonniere: "img/defricheurs-grundstok/canonniere.webp", endringreeurs: "img/defricheurs-grundstok/endringreeurs.webp", foudroyeurs: "img/defricheurs-grundstok/foudroyeurs.webp", "maitre-endrinieur": "img/defricheurs-grundstok/maitre-endrinieur.webp" },
   units: [
     { id: "maitre-endrinieur", en: "Maître-endrinieur avec Dirigeable Dorsal", stats: { M: '12\"', S: 5, C: 2, Sv: "3+" },
       weapons: [{ n: "Aethermatic Saw", range: "Mêlée", a: 3, h: 3, w: 3, r: 2, d: "2", crit: "none" }, { n: "Pistol", range: '9\"', a: 2, h: 3, w: 3, r: 1, d: "1", crit: "none" }],

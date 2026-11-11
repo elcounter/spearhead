@@ -3,8 +3,8 @@
   id: "confrerie-vigilante",
   name: "Confrérie Vigilante",
   faction: "Éternels de l'Orage",
-  cover: "img/confrerie-vigilante/armee.jpg",
-  photos: { armee: "img/confrerie-vigilante/armee.jpg", liberators: "img/confrerie-vigilante/liberators.jpg", "seigneur-vigilant": "img/confrerie-vigilante/seigneur-vigilant.jpg", prosecutors: "img/confrerie-vigilante/prosecutors.jpg", "seigneur-veritant": "img/confrerie-vigilante/seigneur-veritant.jpg" },
+  cover: "img/confrerie-vigilante/armee.webp",
+  photos: { armee: "img/confrerie-vigilante/armee.webp", liberators: "img/confrerie-vigilante/liberators.webp", "seigneur-vigilant": "img/confrerie-vigilante/seigneur-vigilant.webp", prosecutors: "img/confrerie-vigilante/prosecutors.webp", "seigneur-veritant": "img/confrerie-vigilante/seigneur-veritant.webp" },
   units: [
     {
       id: "seigneur-vigilant",

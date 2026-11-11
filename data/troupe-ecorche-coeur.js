@@ -3,8 +3,8 @@
   id: "troupe-ecorche-coeur",
   name: "Troupe Écorche-cœur",
   faction: "Filles de Khaine",
-  cover: "img/troupe-ecorche-coeur/armee.jpg",
-  photos: { armee: "img/troupe-ecorche-coeur/armee.jpg", conjurateurs: "img/troupe-ecorche-coeur/conjurateurs.jpg", erinyes: "img/troupe-ecorche-coeur/erinyes.jpg", ferecaille: "img/troupe-ecorche-coeur/ferecaille.jpg", rodeuses: "img/troupe-ecorche-coeur/rodeuses.jpg" },
+  cover: "img/troupe-ecorche-coeur/armee.webp",
+  photos: { armee: "img/troupe-ecorche-coeur/armee.webp", conjurateurs: "img/troupe-ecorche-coeur/conjurateurs.webp", erinyes: "img/troupe-ecorche-coeur/erinyes.webp", ferecaille: "img/troupe-ecorche-coeur/ferecaille.webp", rodeuses: "img/troupe-ecorche-coeur/rodeuses.webp" },
   units: [
     {
       id: "ferecaille",

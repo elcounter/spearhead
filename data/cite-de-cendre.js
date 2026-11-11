@@ -3,18 +3,18 @@
  "id": "cite-de-cendre",
  "name": "Cité de Cendre",
  "sub": "Pack de bataille",
- "cover": "img/cite/plateau.jpg",
+ "cover": "img/cite/plateau.webp",
  "imgs": {
-  "campagne": "img/cite/campagne.jpg",
-  "decors": "img/cite/decors.jpg",
-  "plan": "img/cite/deploiement.jpg",
-  "plateau": "img/cite/plateau.jpg",
-  "r-barricade": "img/cite/r-barricade.jpg",
-  "r-caisse": "img/cite/r-caisse.jpg",
-  "r-chausse": "img/cite/r-chausse.jpg",
-  "r-egout": "img/cite/r-egout.jpg",
-  "r-tonneau": "img/cite/r-tonneau.jpg",
-  "reliques": "img/cite/reliques.jpg"
+  "campagne": "img/cite/campagne.webp",
+  "decors": "img/cite/decors.webp",
+  "plan": "img/cite/deploiement.webp",
+  "plateau": "img/cite/plateau.webp",
+  "r-barricade": "img/cite/r-barricade.webp",
+  "r-caisse": "img/cite/r-caisse.webp",
+  "r-chausse": "img/cite/r-chausse.webp",
+  "r-egout": "img/cite/r-egout.webp",
+  "r-tonneau": "img/cite/r-tonneau.webp",
+  "reliques": "img/cite/reliques.webp"
  },
  "groups": [
   {

@@ -3,8 +3,8 @@
  "id": "rodeurs-sang-solaire",
  "name": "Rôdeurs au Sang Solaire",
  "faction": "Séraphons",
- "cover": "img/rodeurs-sang-solaire/armee.jpg",
- "photos": {"armee": "img/rodeurs-sang-solaire/armee.jpg", "meute-sang-solaire": "img/rodeurs-sang-solaire/meute-sang-solaire.jpg", "rejeton-chotec": "img/rodeurs-sang-solaire/rejeton-chotec.jpg", "guerriers-saurus": "img/rodeurs-sang-solaire/guerriers-saurus.jpg", "chasseurs-huanchi": "img/rodeurs-sang-solaire/chasseurs-huanchi.jpg", "terrapteres": "img/rodeurs-sang-solaire/terrapteres.jpg"},
+ "cover": "img/rodeurs-sang-solaire/armee.webp",
+ "photos": {"armee": "img/rodeurs-sang-solaire/armee.webp", "meute-sang-solaire": "img/rodeurs-sang-solaire/meute-sang-solaire.webp", "rejeton-chotec": "img/rodeurs-sang-solaire/rejeton-chotec.webp", "guerriers-saurus": "img/rodeurs-sang-solaire/guerriers-saurus.webp", "chasseurs-huanchi": "img/rodeurs-sang-solaire/chasseurs-huanchi.webp", "terrapteres": "img/rodeurs-sang-solaire/terrapteres.webp"},
  "units": [
   {
    "id": "meute-sang-solaire",

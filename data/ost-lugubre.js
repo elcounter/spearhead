@@ -3,8 +3,8 @@
  "id": "ost-lugubre",
  "name": "Ost Lugubre",
  "faction": "Putrescents de Nurgle",
- "cover": "img/ost-lugubre/armee.jpg",
- "photos": {"armee": "img/ost-lugubre/armee.jpg", "scribe-avarieur": "img/ost-lugubre/scribe-avarieur.jpg", "rouillarque": "img/ost-lugubre/rouillarque.jpg", "pesticrates": "img/ost-lugubre/pesticrates.jpg", "portepestes": "img/ost-lugubre/portepestes.jpg"},
+ "cover": "img/ost-lugubre/armee.webp",
+ "photos": {"armee": "img/ost-lugubre/armee.webp", "scribe-avarieur": "img/ost-lugubre/scribe-avarieur.webp", "rouillarque": "img/ost-lugubre/rouillarque.webp", "pesticrates": "img/ost-lugubre/pesticrates.webp", "portepestes": "img/ost-lugubre/portepestes.webp"},
  "units": [
   {
    "id": "scribe-avarieur",
