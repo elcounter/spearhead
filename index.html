@@ -45,6 +45,8 @@ button,select,input{font-family:inherit}
 .back[hidden]{display:none}
 .ttl{min-width:0;display:grid;gap:2px}
 .g-win{color:#2e7d32}
+select.g-sel{width:100%;box-sizing:border-box;padding:12px;border:2px solid var(--line, #d6cfc3);border-radius:8px;font:16px var(--body);background:#f7f7f7;color:#1f1a17}
+select.g-sel.empty{color:#8a8a8a}
 .g-loss{color:#c62828}
 .g-draw{color:#6b6b6b}
 .home-note{margin:4px 4px 14px;font-style:italic;color:var(--muted);font-size:14px;text-align:center}
@@ -417,7 +419,7 @@ body.g-has-foot{padding-bottom:calc(var(--navh) + 66px)}
 <footer class="foot">
   <a class="sup-link" href="#soutenir">Si tu veux soutenir le projet</a>
   <p>© 2026 elcounter. Tous droits réservés.</p>
-  <p>SpearCounter version 2.3.0 · MAJ 11-11-2026</p>
+  <p>SpearCounter version 2.3.1 · MAJ 11-11-2026</p>
   <p>Application non officielle, non affiliée à Games Workshop.</p>
   <p>Spearhead est une marque de Games Workshop Ltd.</p>
 </footer>
@@ -587,7 +589,8 @@ body.g-has-foot{padding-bottom:calc(var(--navh) + 66px)}
   const FA_NORM = Object.fromEntries(Object.entries(FACTION_ALLIANCE).map(([k, v]) => [normF(k), v]));
   function allianceOf(sh) {
     return FA_NORM[normF(sh.faction)] || "Autres";
-  }
+  }  window.SC_ALLIANCE = { of: allianceOf, order: ALLIANCE_ORDER };
+
   function shBtn(sh) {
     return `<button type="button" class="unit-link sh-link${sh.cover ? " has-photo" : ""}" data-id="${sh.id}" data-q="${esc(normF(sh.name + " " + (sh.faction || "") + " " + allianceOf(sh)))}"${photoAttr(sh.cover)}><span>${esc(sh.name)}${sh.faction ? `<small>${esc(sh.faction)}</small>` : ""}</span></button>`;
   }

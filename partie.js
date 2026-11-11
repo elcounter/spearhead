@@ -105,6 +105,19 @@
       ${tab("Par joueur", P, full)}${tab("Par Spearhead", S, full)}${tab("Par pack de bataille", K, [["Parties", o => o.n]])}
     </div></details>`;
   }
+  // Liste déroulante des Spearheads, groupées par alliance puis triées par faction
+  function facSelect(P, p){
+    const AL = window.SC_ALLIANCE, by = {};
+    SHS().forEach(x => { const a = AL ? AL.of(x) : "Spearheads"; (by[a] = by[a] || []).push(x); });
+    const keys = (AL ? AL.order.filter(a => by[a]) : []).concat(Object.keys(by).filter(a => !AL || !AL.order.includes(a)));
+    const cur = P.sh && !P.fac ? P.sh : (shMatch(P) || {}).id || "";
+    const legacy = P.fac && !shMatch(P) ? `<option value="__fac" selected>${esc(P.fac)}</option>` : "";
+    return `<select id="g-s${p}" class="g-sel${cur || legacy ? "" : " empty"}" data-set="sh" data-p="${p}">
+      <option value=""${cur || legacy ? "" : " selected"}>Choisir une Spearhead</option>${legacy}
+      ${keys.map(a => `<optgroup label="${esc(a)}">${by[a].sort((x, y) => (x.faction || "").localeCompare(y.faction || "", "fr") || x.name.localeCompare(y.name, "fr"))
+        .map(x => `<option value="${x.id}"${x.id === cur ? " selected" : ""}>${esc(x.faction)} · ${esc(x.name)}</option>`).join("")}</optgroup>`).join("")}
+    </select>`;
+  }
   function vHome(){
     const hist = load(HKEY, []);
     let h = `<button class="g-btn primary" type="button" data-act="new">Nouvelle partie</button>`;
@@ -129,7 +142,7 @@
       const P = G.players[p];
       h += `<div class="g-panel"><h2 class="g-sec">${p === 0 ? "Joueur" : "Adversaire"}</h2><div class="g-body">
         <div><label class="g-lbl" for="g-n${p}">Nom</label><input type="text" id="g-n${p}" data-set="name" data-p="${p}" value="${esc(P.name)}" placeholder="Joueur ${p+1}" autocomplete="off"></div>
-        <div><label class="g-lbl" for="g-s${p}">Faction</label><input type="text" id="g-s${p}" data-set="fac" data-p="${p}" value="${esc(P.fac || "")}" placeholder="${p === 0 ? "Ex. Forgeruines de Hashut" : "Ex. Maraudeurs Mangeguerres"}" autocomplete="off"></div>
+        <div><label class="g-lbl" for="g-s${p}">Faction</label>${facSelect(P, p)}</div>
       </div></div>`;
     });
     h += `<p class="g-missing" id="g-missing" aria-live="polite"></p>`;
@@ -262,6 +275,7 @@
     if (k === "name") { G.players[+el.dataset.p].name = el.value; save(); const m = missing(); $("g-next").disabled = m.length > 0; $("g-missing").textContent = m.length ? "Il manque : " + m.join(", ") + "." : ""; }
     else if (k === "label") { G.label = el.value; save(); }
     else if (k === "fac") { G.players[+el.dataset.p].fac = el.value; save(); }
+    else if (k === "sh") { const P = G.players[+el.dataset.p]; if (el.value !== "__fac") { P.sh = el.value; P.fac = ""; } el.classList.toggle("empty", !el.value); save(); }
   });
 
   document.getElementById("view-partie").addEventListener("click", e => {
