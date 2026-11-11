@@ -44,10 +44,11 @@ button,select,input{font-family:inherit}
 .back:hover{background:rgba(255,255,255,.12)}
 .back[hidden]{display:none}
 .ttl{min-width:0;display:grid;gap:2px}
-#splash{position:fixed;inset:0;z-index:9999;display:flex;align-items:center;justify-content:center;background:#f1f1f1;transition:opacity .35s ease}
+#splash{position:fixed;inset:0;z-index:9999;display:flex;flex-direction:column;gap:18px;align-items:center;justify-content:center;background:#f1f1f1;transition:opacity .35s ease}
 #splash .sp-c{position:relative;width:192px;height:192px;border-radius:50%;background:#6b2119;overflow:hidden}
 #splash img{position:absolute;left:50%;top:91px;width:101px;height:101px;margin:-50.5px 0 0 -50.5px;animation:sc-spin 1.2s linear infinite}
 #splash span{position:absolute;left:71px;top:146px;width:50px;height:7px;background:#c9a24a}
+#sp-msg{margin:0;min-height:20px;font:500 14px var(--display);letter-spacing:.08em;text-transform:uppercase;color:#6b2119}
 #splash.out{opacity:0;pointer-events:none}
 @keyframes sc-spin{to{transform:rotate(360deg)}}
 @media (prefers-reduced-motion:reduce){#splash img{animation-duration:3s}}
@@ -364,7 +365,7 @@ body.g-has-foot{padding-bottom:calc(var(--navh) + 66px)}
 </style>
 </head>
 <body>
-<div id="splash" aria-hidden="true"><div class="sp-c"><img src="icons/splash-s.png" alt="" width="291" height="291"><span></span></div></div>
+<div id="splash" aria-hidden="true"><div class="sp-c"><img src="icons/splash-s.png" alt="" width="291" height="291"><span></span></div><p id="sp-msg"></p></div>
 <script>window.SPLASH_T0 = Date.now();</script>
 
 <header class="bar">
@@ -433,7 +434,7 @@ body.g-has-foot{padding-bottom:calc(var(--navh) + 66px)}
 <footer class="foot">
   <a class="sup-link" href="#soutenir">Si tu veux soutenir le projet</a>
   <p>© 2026 elcounter. Tous droits réservés.</p>
-  <p>SpearCounter version 2.3.6 · MAJ 11-11-2026</p>
+  <p>SpearCounter version 2.3.7 · MAJ 11-11-2026</p>
   <p>Application non officielle, non affiliée à Games Workshop.</p>
   <p>Spearhead est une marque de Games Workshop Ltd.</p>
 </footer>
@@ -865,9 +866,6 @@ body.g-has-foot{padding-bottom:calc(var(--navh) + 66px)}
 <script>
 // PWA : service worker + bouton « Installer »
 (function(){
-  if ("serviceWorker" in navigator) {
-    window.addEventListener("load", () => navigator.serviceWorker.register("sw.js").catch(() => {}));
-  }
   const btn = document.getElementById("install");
   const hint = document.getElementById("ios-hint");
   const standalone = window.matchMedia("(display-mode: standalone)").matches || navigator.standalone === true;
@@ -898,11 +896,35 @@ body.g-has-foot{padding-bottom:calc(var(--navh) + 66px)}
 })();
 </script>
 <script>
+// Écran de chargement : pendant qu'il tourne, l'app vérifie et installe une éventuelle mise à jour
 (function(){
-  const el = document.getElementById("splash"); if (!el) return;
-  const hide = () => { const wait = Math.max(0, 600 - (Date.now() - (window.SPLASH_T0 || 0))); setTimeout(() => { el.classList.add("out"); setTimeout(() => el.remove(), 400); }, wait); };
-  if (document.readyState === "complete") hide(); else window.addEventListener("load", hide);
-  setTimeout(hide, 5000);
+  const el = document.getElementById("splash"), msg = document.getElementById("sp-msg");
+  let done = false, again = false;
+  try { again = sessionStorage.getItem("sc-upd") === "1"; sessionStorage.removeItem("sc-upd"); } catch (e) {}
+  const hide = () => {
+    if (done || !el) return; done = true;
+    const wait = Math.max(0, 900 - (Date.now() - (window.SPLASH_T0 || 0)));
+    setTimeout(() => { el.classList.add("out"); setTimeout(() => el.remove(), 400); }, wait);
+  };
+  const loaded = new Promise(r => document.readyState === "complete" ? r() : window.addEventListener("load", r));
+  const timeout = (ms) => new Promise(r => setTimeout(r, ms));
+  async function checkUpdate(){
+    if (!("serviceWorker" in navigator)) return;
+    const reg = await navigator.serviceWorker.register("sw.js");
+    if (!navigator.onLine || !navigator.serviceWorker.controller) return;   // premier lancement ou hors ligne : rien à remplacer
+    await Promise.race([reg.update(), timeout(3000)]);
+    const sw = reg.installing || reg.waiting;
+    if (!sw) return;
+    if (msg) msg.textContent = "Mise à jour en cours…";
+    const swap = new Promise(r => navigator.serviceWorker.addEventListener("controllerchange", r, {once:true}));
+    await Promise.race([swap, timeout(6000)]);
+    if (!again) {
+      try { sessionStorage.setItem("sc-upd", "1"); } catch (e) {}
+      location.reload(); return new Promise(() => {});   // l'écran reste affiché pendant le rechargement
+    }
+  }
+  Promise.all([loaded, checkUpdate().catch(() => {})]).then(hide);
+  setTimeout(hide, 8000);
 })();
 </script>
 </body>
