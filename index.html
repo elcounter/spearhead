@@ -419,7 +419,7 @@ body.g-has-foot{padding-bottom:calc(var(--navh) + 66px)}
 <footer class="foot">
   <a class="sup-link" href="#soutenir">Si tu veux soutenir le projet</a>
   <p>© 2026 elcounter. Tous droits réservés.</p>
-  <p>SpearCounter version 2.3.1 · MAJ 11-11-2026</p>
+  <p>SpearCounter version 2.3.2 · MAJ 11-11-2026</p>
   <p>Application non officielle, non affiliée à Games Workshop.</p>
   <p>Spearhead est une marque de Games Workshop Ltd.</p>
 </footer>
@@ -529,7 +529,7 @@ body.g-has-foot{padding-bottom:calc(var(--navh) + 66px)}
     ["#soutenir","Si tu veux soutenir le projet","Un don pour l'hébergement et le développement.",'<path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/>']
   ];
   const card = ([href, n, d, svg]) => `<a class="fcard" href="${href.startsWith("mailto:") || href.startsWith("#") ? href : "#" + href}"><span class="ficon">${I(svg)}</span><span><b>${n}</b><br>${d}</span></a>`;
-  $("accueil").innerHTML = `<div class="welcome">${MARK('<path d="M40 22c-2-3-5-4-8-4-5 0-8 3-8 6.5 0 8 16 5 16 13 0 3.5-3.5 6.5-8 6.5-3.5 0-6.5-1.5-8.5-4.5" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round"/>')}
+  $("accueil").innerHTML = `<div class="welcome">
       <h2>Bienvenue sur SpearCounter</h2><p>Ton compagnon pour Spearhead.</p></div>
     <a class="btn-install" href="#compte">${I('<circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/>')}<span>${window.SC_COMPTE && window.SC_COMPTE.connected ? "Mon compte" : "Créer mon compte"}</span></a>
     ${STANDALONE ? "" : `<button class="btn-install" type="button" id="home-install">${I('<path d="M12 3v12M7 10l5 5 5-5"/><path d="M5 19h14"/>')}<span>Installer l'app</span></button>`}
