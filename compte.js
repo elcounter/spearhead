@@ -157,7 +157,7 @@
   }
 
   // ---------- Carte communautaire (Leaflet + OpenStreetMap, chargés à la demande) ----------
-  let mapObj = null, mapFac = "";
+  let mapObj = null;
   function loadLeaflet(){
     if (window.L) return Promise.resolve();
     return new Promise((ok, ko) => {
@@ -166,28 +166,32 @@
     });
   }
   const mapHtml = () => `<div class="mapw"><p class="hint">Les joueurs qui ont choisi d'apparaître sur la carte, regroupés par ville. Pour y figurer : <a href="#compte">Mon compte</a>, puis Mon profil joueur.</p>
-    <select id="map-fac" aria-label="Filtrer par faction"><option value="">Toutes les factions</option>${FACS().map(f => `<option${f === mapFac ? " selected" : ""}>${esc(f)}</option>`).join("")}</select>
-    <div id="map" class="map"></div><p class="hint" id="map-info"></p></div>`;
+    <p class="map-total" id="map-info" aria-live="polite">Chargement des joueurs…</p>
+    <div id="map" class="map"></div></div>`;
   async function renderMap(){
     $("carte").innerHTML = mapHtml();
-    try { await loadLeaflet(); } catch(e) { $("map").innerHTML = `<p class="hint">Carte indisponible : vérifie ta connexion à Internet.</p>`; return; }
-    let rows = [];
+    // 1. Les joueurs et le total, même si le fond de carte ne charge pas
+    let rows = [], failed = false;
     try { rows = await api("/rest/v1/profiles?select=pseudo,city,lat,lng,club,factions&visible=eq.true&lat=not.is.null&limit=2000", {}, !!sess); }
-    catch(e) { $("map-info").textContent = "Joueurs indisponibles : " + frMsg(e.message); }
+    catch(e) { failed = true; }
+    if (!$("map")) return;
+    const R = rows, by = {};
+    R.forEach(r => { const k = r.lat.toFixed(4) + "," + r.lng.toFixed(4); (by[k] = by[k] || {lat:r.lat, lng:r.lng, city:r.city, P:[]}).P.push(r); });
+    const clubs = new Set(R.map(r => r.club).filter(Boolean)), nv = Object.keys(by).length;
+    $("map-info").innerHTML = failed ? "Joueurs indisponibles : vérifie ta connexion à Internet."
+      : `<b>${R.length}</b> joueur${R.length > 1 ? "s" : ""} sur la carte<small>${nv} ville${nv > 1 ? "s" : ""} · ${clubs.size} club${clubs.size > 1 ? "s" : ""}</small>`;
+    // 2. Le fond de carte
+    try { await loadLeaflet(); } catch(e) { if ($("map")) $("map").innerHTML = `<p class="hint">Carte indisponible : vérifie ta connexion à Internet.</p>`; return; }
     if (!$("map")) return;
     if (mapObj) { mapObj.remove(); mapObj = null; }
     const me = prof && prof.lat ? [prof.lat, prof.lng] : null;
     mapObj = L.map("map", {scrollWheelZoom:true}).setView(me || [46.6, 2.4], me ? 9 : 5);
     L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {maxZoom:18, attribution:'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'}).addTo(mapObj);
-    const R = rows.filter(r => !mapFac || (r.factions || []).includes(mapFac)), by = {};
-    R.forEach(r => { const k = r.lat.toFixed(4) + "," + r.lng.toFixed(4); (by[k] = by[k] || {lat:r.lat, lng:r.lng, city:r.city, P:[]}).P.push(r); });
     Object.values(by).forEach(g => {
       const n = g.P.length;
       L.circleMarker([g.lat, g.lng], {radius:7 + Math.min(n, 10) * 1.5, color:"#d4ae3f", weight:2, fillColor:"#6b2119", fillOpacity:.85}).addTo(mapObj)
         .bindPopup(`<b>${esc(g.city || "")}</b> · ${n} joueur${n > 1 ? "s" : ""}<br>` + g.P.map(p => `<div class="mp"><b>${esc(p.pseudo)}</b>${p.club ? ` · ${esc(p.club)}` : ""}${(p.factions || []).length ? `<br><small>${esc(p.factions.join(", "))}</small>` : ""}</div>`).join(""));
     });
-    const clubs = new Set(R.map(r => r.club).filter(Boolean));
-    $("map-info").textContent = `${R.length} joueur${R.length > 1 ? "s" : ""}, ${Object.keys(by).length} ville${Object.keys(by).length > 1 ? "s" : ""}, ${clubs.size} club${clubs.size > 1 ? "s" : ""}.`;
     if (!me && R.length) mapObj.fitBounds(L.latLngBounds(R.map(r => [r.lat, r.lng])).pad(.2), {maxZoom:9});
   }
 
@@ -248,7 +252,6 @@
     if (e.target.id === "pf-club") { profClub = null; clearTimeout(clubT); const q = e.target.value.trim(); clubT = setTimeout(() => clubSuggest(q), 300); return; }
     if (e.target.id === "pf-city") { profCity = null; clearTimeout(cityT); const q = e.target.value.trim(); cityT = setTimeout(() => citySuggest(q), 300); }
   });
-  document.addEventListener("change", e => { if (e.target.id === "map-fac") { mapFac = e.target.value; renderMap(); } });
   document.addEventListener("click", async e => {
     if (!e.target.closest("#view-compte")) return;
     const id = e.target.id;
