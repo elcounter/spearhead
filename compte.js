@@ -1,5 +1,5 @@
 // ---------- SpearCounter : compte (Supabase), synchronisation, profil joueur et carte communautaire ----------
-// Même projet Supabase que WarCounter : un seul compte pour les deux apps, profils et carte partagés.
+// Même projet Supabase que WarCounter et NecroCounter : un seul compte pour les trois apps, profils et carte partagés.
 (function(){
   const SB = "https://agqdwjkxeodxdrujphrv.supabase.co", SBK = "sb_publishable_B0a1M8wjrilqmHfGnAErMQ_iueIp0g8";
   const PFX = "spearcounter-", SK = {sess:"spearcounter-session", meta:"spearcounter-sync"};
@@ -115,7 +115,7 @@
     if (!profLoaded) return `<div class="panel"><h3 class="sec">Mon profil joueur</h3><div class="body acc"><p class="hint">Chargement…</p></div></div>`;
     const P = prof || {}, mine = new Set(P.factions || []), F = FACS(), shown = F.filter(f => mine.has(f));
     return `<div class="panel"><h3 class="sec">Mon profil joueur</h3><div class="body acc">
-      <p class="hint">Pour la carte communautaire : trouve des joueurs et des clubs près de chez toi. Ce profil est le même que sur WarCounter.</p>
+      <p class="hint">Pour la carte communautaire : trouve des joueurs et des clubs près de chez toi. Ce profil est le même que sur WarCounter et NecroCounter.</p>
       <label class="lbl" for="pf-pseudo">Pseudo</label><input id="pf-pseudo" maxlength="30" value="${esc(P.pseudo || "")}" autocomplete="nickname">
       <label class="lbl" for="pf-city">Ville</label>
       <div class="pf-cityw"><input id="pf-city" value="${esc(profCity ? profCity.city : "")}" autocomplete="off" placeholder="Tape le nom de ta commune"><div id="pf-sug" class="pf-sug" hidden></div></div>
@@ -208,11 +208,11 @@
       </div></div>
       ${profileHtml()}
       <div class="panel"><div class="body acc">
-        <p class="hint"><b class="acc-warn">Attention !</b> Supprimer ton compte efface définitivement tes données sur le serveur, pour SpearCounter et WarCounter. Les données de cet appareil sont conservées.</p>
+        <p class="hint"><b class="acc-warn">Attention !</b> Supprimer ton compte efface définitivement tes données sur le serveur, pour SpearCounter, WarCounter et NecroCounter. Les données de cet appareil sont conservées.</p>
         <button type="button" class="btn danger" id="acc-del">${delArmed ? "Confirmer la suppression définitive" : "Supprimer mon compte"}</button>
       </div></div>
       <p class="sup-thanks"><a href="#confidentialite">Confidentialité et données personnelles</a></p>`;
-    return `<div class="sup-hero"><h2>Mon compte</h2><p>Facultatif : sans compte, l'app fonctionne comme avant.<br>Avec un compte, tu retrouves tes parties sur tous tes appareils. Tu as déjà un compte WarCounter ? Utilise le même.</p></div>${msg}
+    return `<div class="sup-hero"><h2>Mon compte</h2><p>Facultatif : sans compte, l'app fonctionne comme avant.<br>Avec un compte, tu retrouves tes parties sur tous tes appareils. <br><b>Un seul compte pour les trois apps</b> : SpearCounter, WarCounter et NecroCounter. Tu as déjà un compte sur l'une d'elles ? Utilise le même.</p></div>${msg}
       <div class="panel"><div class="body acc">
         <label class="lbl" for="acc-mail">E-mail</label><input type="email" id="acc-mail" autocomplete="email" inputmode="email">
         <label class="lbl" for="acc-pass">Mot de passe (6 caractères minimum)</label><input type="password" id="acc-pass" autocomplete="current-password">
@@ -238,13 +238,13 @@
   const privacyHtml = () => `<div class="sup-hero"><h2>Confidentialité</h2><p>Ce que SpearCounter fait de tes données.</p></div>
     <div class="panel"><div class="body"><dl class="blk">
       <dt><b>Sans compte</b></dt><dd>Tes parties et tes choix restent uniquement sur ton appareil. Rien n'est envoyé.</dd>
-      <dt><b>Avec un compte (facultatif)</b></dt><dd>Sont enregistrés : ton adresse e-mail, ton mot de passe (chiffré, jamais lisible), tes parties, ton historique et tes choix d'aptitudes. Ils servent uniquement à te connecter et à synchroniser tes données entre tes appareils. Le compte est commun à SpearCounter et WarCounter.</dd>
+      <dt><b>Avec un compte (facultatif)</b></dt><dd>Sont enregistrés : ton adresse e-mail, ton mot de passe (chiffré, jamais lisible), tes parties, ton historique et tes choix d'aptitudes. Ils servent uniquement à te connecter et à synchroniser tes données entre tes appareils. Le compte est commun à SpearCounter, WarCounter et NecroCounter.</dd>
       <dt><b>Profil joueur (facultatif)</b></dt><dd>Pseudo, ville (centre de la commune, jamais d'adresse), club et factions jouées. Ils ne sont visibles des autres joueurs que si tu coches « Apparaître sur la carte communautaire », et tu peux décocher à tout moment.</dd>
       <dt><b>Hébergement</b></dt><dd>Supabase, sur des serveurs situés dans l'Union européenne.</dd>
       <dt><b>Durée de conservation</b></dt><dd>Jusqu'à la suppression de ton compte.</dd>
       <dt><b>Tes droits</b></dt><dd>Tu peux supprimer ton compte et toutes tes données en ligne à tout moment depuis la page Mon compte. Pour toute question (accès, rectification, suppression) : warcounter@proton.me.</dd>
       <dt><b>Ce qu'on ne fait pas</b></dt><dd>Aucune publicité, aucune revente, aucun partage de tes données.</dd>
-      <dt><b>Responsable</b></dt><dd>elcounter, éditeur de SpearCounter et WarCounter (warcounter@proton.me).</dd>
+      <dt><b>Responsable</b></dt><dd>elcounter, éditeur de SpearCounter, WarCounter et NecroCounter (warcounter@proton.me).</dd>
     </dl></div></div>`;
 
   // ---------- Événements ----------
