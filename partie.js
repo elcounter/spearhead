@@ -226,7 +226,7 @@
         <p class="g-hint">${G.rounds[0].first === p ? "A commencé la partie" : "A joué en second au round 1"}${G.attacker === p ? " · Attaquant" : ""}</p></div></div>`;
     });
     h += `<div class="g-stack">
-      ${ro ? `<button class="g-btn primary" type="button" data-act="home">Retour aux parties</button>` : `<button class="g-btn primary" type="button" data-act="finish">Terminer la partie</button><button class="g-btn" type="button" data-act="home">Retour aux parties</button>`}
+      ${ro ? `<button class="g-btn primary" type="button" data-act="home">Retour aux parties</button><button class="g-btn" type="button" data-act="hedit" data-i="${view.slice(5)}">Modifier la partie</button>` : `<button class="g-btn primary" type="button" data-act="finish">Terminer la partie</button><button class="g-btn" type="button" data-act="home">Retour aux parties</button>`}
       <button class="g-btn gold" type="button" data-act="share">Partager en image</button>
       <button class="g-btn" type="button" data-act="copy">Copier le résumé</button>
       ${ro ? "" : `<button class="g-btn ghost" type="button" data-act="del">Supprimer la partie</button>`}
@@ -290,6 +290,13 @@
     if (a === "resume") { const g = GAMES.find(x => x.id === b.dataset.id); if (!g) return; G = g; return go(g.view || "setup"); }
     if (a === "home") { closeModal(); return go("home"); }
     if (a === "hopen") return go("hist:" + b.dataset.i);
+    if (a === "hedit") return openModal("Modifier la partie ?", `<p style="margin:0">La partie revient en cours, au round 1, pour corriger les scores. Termine-la ensuite pour mettre à jour l'historique et les statistiques.</p><div class="g-two"><button class="g-btn" type="button" data-act="close">Annuler</button><button class="g-btn primary" type="button" data-act="hedit-ok" data-i="${b.dataset.i}">Modifier</button></div>`);
+    if (a === "hedit-ok") {
+      const x = load(HKEY, [])[+b.dataset.i]; if (!x || !x.g) return closeModal();
+      const g = JSON.parse(JSON.stringify(x.g)); delete g.status; g.edit = {id:g.id, d:x.d};
+      GAMES = GAMES.filter(y => y.id !== g.id); GAMES.unshift(g); G = g; save();
+      closeModal(); return go("r1");
+    }
     if (a === "pack") { if (G.pack !== b.dataset.k) { G.pack = b.dataset.k; G.face = null; } save(); return render(true); }
     if (a === "face") { G.face = b.dataset.f; save(); return render(true); }
     if (a === "rface") { const f = Object.keys(packOf(G).faces); G.face = f[Math.floor(Math.random() * f.length)]; save(); return render(true); }
@@ -312,11 +319,13 @@
     if (a === "finish") return openModal("Terminer la partie ?", `<p style="margin:0">La partie passera dans les parties terminées, et son récapitulatif ne sera plus modifiable.</p><div class="g-two"><button class="g-btn" type="button" data-act="close">Annuler</button><button class="g-btn primary" type="button" data-act="finish-ok">Terminer</button></div>`);
     if (a === "finish-ok") {
       G.status = "done";
-      const hist = load(HKEY, []);
-      hist.unshift({a:rawName(0), b:rawName(1), sa:total(0), sb:total(1), f:packLine(G), d:new Date().toLocaleDateString("fr-FR"), g:JSON.parse(JSON.stringify(G))});
+      const hist = load(HKEY, []), ed = G.edit; delete G.edit;
+      const entry = {a:rawName(0), b:rawName(1), sa:total(0), sb:total(1), f:packLine(G), d:ed ? ed.d : new Date().toLocaleDateString("fr-FR"), g:JSON.parse(JSON.stringify(G))};
+      const k = ed ? hist.findIndex(y => y.g && y.g.id === ed.id) : -1;
+      if (k >= 0) hist[k] = entry; else hist.unshift(entry);
       store(HKEY, hist.slice(0, 50));
       GAMES = GAMES.filter(x => x.id !== G.id); store(LKEY, GAMES); G = null;
-      closeModal(); return go("hist:0");
+      closeModal(); return go("hist:" + Math.max(0, k));
     }
     if (a === "share") {
       const keep = G; if (view.startsWith("hist:") && histG) G = histG;
