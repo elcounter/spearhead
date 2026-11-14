@@ -300,7 +300,6 @@
       S[p][i] = on ? 1 : 0;
       if (i === 1 && on) S[p][0] = 1;
       if (i === 0 && !on) S[p][1] = 0;
-      if (i === 2 && on) S[other(p)][2] = 0;
       save(); return render(true);
     }
     if (a === "tac" || a === "extra") { const S = G.rounds[r-1].s[p], k = a === "tac" ? 3 : 4; S[k] = Math.max(0, Math.min(a === "tac" ? 3 : 9, S[k] + +b.dataset.d)); save(); return render(true); }
