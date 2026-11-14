@@ -168,6 +168,9 @@
   const mapHtml = () => `<div class="mapw"><p class="hint">Les joueurs qui ont choisi d'apparaître sur la carte, regroupés par ville. Pour y figurer : <a href="#compte">Mon compte</a>, puis Mon profil joueur.</p>
     <p class="map-total" id="map-info" aria-live="polite">Chargement des joueurs…</p>
     <div id="map" class="map"></div></div>`;
+  // Sur la carte SpearCounter : seulement les factions des Spearheads (pas les gangs Necromunda ni les autres armées)
+  const nf = t => String(t || "").normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().trim();
+  const spFacs = L => { const S = new Set(FACS().map(nf)); return [...new Set((L || []).filter(f => S.has(nf(f))))]; };
   async function renderMap(){
     $("carte").innerHTML = mapHtml();
     // 1. Les joueurs et le total, même si le fond de carte ne charge pas
@@ -190,7 +193,7 @@
     Object.values(by).forEach(g => {
       const n = g.P.length;
       L.circleMarker([g.lat, g.lng], {radius:7 + Math.min(n, 10) * 1.5, color:"#d4ae3f", weight:2, fillColor:"#6b2119", fillOpacity:.85}).addTo(mapObj)
-        .bindPopup(`<b>${esc(g.city || "")}</b> · ${n} joueur${n > 1 ? "s" : ""}<br>` + g.P.map(p => `<div class="mp"><b>${esc(p.pseudo)}</b>${p.club ? ` · ${esc(p.club)}` : ""}${(p.factions || []).length ? `<br><small>${esc(p.factions.join(", "))}</small>` : ""}</div>`).join(""));
+        .bindPopup(`<b>${esc(g.city || "")}</b> · ${n} joueur${n > 1 ? "s" : ""}<br>` + g.P.map(p => `<div class="mp"><b>${esc(p.pseudo)}</b>${p.club ? ` · ${esc(p.club)}` : ""}${(f => f.length ? `<br><small>${esc(f.join(", "))}</small>` : "")(spFacs(p.factions))}</div>`).join(""));
     });
     if (!me && R.length) mapObj.fitBounds(L.latLngBounds(R.map(r => [r.lat, r.lng])).pad(.2), {maxZoom:9});
   }
