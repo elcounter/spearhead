@@ -77,7 +77,7 @@
   const pick = (act, val, r) => `<div class="g-two">${[0,1].map(p => `<button class="g-pick" type="button" data-act="${act}" data-p="${p}"${r != null ? ` data-r="${r}"` : ""} aria-pressed="${val === p}">${pname(p)}</button>`).join("")}</div>`;
   const stepper = (act, p, r, v, label) => `<div class="g-switch"><span><b>${label}</b></span><div class="g-stepper"><button type="button" data-act="${act}" data-p="${p}" data-r="${r}" data-d="-1" aria-label="Moins">−</button><output>${v}</output><button type="button" data-act="${act}" data-p="${p}" data-r="${r}" data-d="1" aria-label="Plus">+</button></div></div>`;
 
-  const res = (m, o) => m > o ? `<b class="g-win">(Victoire)</b>` : m < o ? `<b class="g-loss">(Défaite)</b>` : `<b class="g-draw">(Égalité)</b>`;
+  const res = (m, o) => m > o ? `<b class="g-win">(V)</b>` : m < o ? `<b class="g-loss">(D)</b>` : `<b class="g-draw">(É)</b>`;
   // ---------- Statistiques (parties terminées) ----------
   function statsHtml(hist){
     if (!hist.length) return "";
