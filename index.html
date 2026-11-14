@@ -205,7 +205,7 @@ main{padding-block:16px 40px}
 body{padding-bottom:var(--navh)}
 body.g-has-foot{padding-bottom:calc(var(--navh) + 66px)}
 .bnav{position:fixed;left:0;right:0;bottom:0;z-index:8;background:#fff;border-top:1px solid #d8d8d8;padding-bottom:env(safe-area-inset-bottom,0px);box-shadow:0 -2px 8px rgba(0,0,0,.08)}
-.bnav .in{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));max-width:820px;margin:0 auto}
+.bnav .in{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));max-width:820px;margin:0 auto}
 .bnav a{display:grid;justify-items:center;gap:3px;padding:8px 2px 9px;text-decoration:none;color:#6d6d6d;font:500 12px var(--display);text-transform:uppercase;letter-spacing:.06em;border-top:3px solid transparent;margin-top:-1px}
 .bnav a[aria-current="page"]{color:var(--bar);border-top-color:var(--bar)}
 .bnav svg{width:24px;height:24px}
@@ -526,16 +526,15 @@ html[data-theme="dark"] .fav-block .alliance-title{background:#8f2a2d}
   <a class="sup-link" href="#soutenir">Si tu veux soutenir le projet</a>
   <button type="button" class="sup-link theme-btn" id="theme-btn" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg><span>Mode sombre</span></button>
   <p>© 2026 elcounter. Tous droits réservés.</p>
-  <p>SpearCounter version 2.7.7 · MAJ 14-11-2026</p>
+  <p>SpearCounter version 2.7.8 · MAJ 14-11-2026</p>
   <p>Application non officielle, non affiliée à Games Workshop.</p>
   <p>Spearhead est une marque de Games Workshop Ltd.</p>
 </footer>
 
 <a id="back-game" class="back-game" href="#partie" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg><span>Retour à la partie</span><b id="back-score"></b></a>
 <nav class="bnav" aria-label="Navigation principale"><div class="in">
-  <a href="#" id="bn-accueil"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11l9-7 9 7"/><path d="M5 10v10h5v-6h4v6h5V10"/></svg><span>Accueil</span></a>
   <a href="#regles" id="bn-regles"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2z"/><path d="M4 19V5"/><path d="M9 7h6"/></svg><span>Règles</span></a>
-  <a href="#spearheads" id="bn-spearhead"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2l3 7-3 13-3-13z"/><path d="M7 9h10"/></svg><span>Spearhead</span></a>
+  <a href="#spearheads" id="bn-spearhead"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2l3 7-3 13-3-13z"/><path d="M7 9h10"/></svg><span>Factions</span></a>
   <a href="#partie" id="bn-partie"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="3"/><circle cx="9" cy="9" r="1.2" fill="currentColor"/><circle cx="15" cy="15" r="1.2" fill="currentColor"/><circle cx="15" cy="9" r="1.2" fill="currentColor"/><circle cx="9" cy="15" r="1.2" fill="currentColor"/></svg><span>Partie</span></a>
 </div></nav>
 
@@ -962,18 +961,18 @@ html[data-theme="dark"] .fav-block .alliance-title{background:#8f2a2d}
     if (view !== "partie") $("g-score").hidden = true;
     document.body.classList.toggle("g-has-foot", view === "partie" && !$("g-foot").hidden);
     const inPack = view === "pack" || view === "doc";
-    if (view === "partie") { $("bn-partie").setAttribute("aria-current", "page"); ["accueil","regles","spearhead"].forEach(k => $("bn-" + k).removeAttribute("aria-current")); window.scrollTo(0, 0); return; }
+    if (view === "partie") { $("bn-partie").setAttribute("aria-current", "page"); ["regles","spearhead"].forEach(k => $("bn-" + k).removeAttribute("aria-current")); window.scrollTo(0, 0); return; }
     const top = ["accueil","soutenir","home","rules"].includes(view);
     if (ACC.includes(view)) {
       $("kicker").textContent = "SpearCounter";
       $("title").textContent = {compte:"Mon compte", carte:"Carte des joueurs", confidentialite:"Confidentialité"}[view];
-      ["regles","spearhead","partie"].forEach(k => $("bn-" + k).removeAttribute("aria-current")); $("bn-accueil").setAttribute("aria-current", "page");
+      ["regles","spearhead","partie"].forEach(k => $("bn-" + k).removeAttribute("aria-current"));
       window.scrollTo(0, 0); return;
     }
     $("kicker").textContent = top ? "Warhammer Spearhead" : inPack ? (doc ? PK.name : "Règles") : (view === "unit" ? SH.name : "SpearCounter");
     $("title").textContent = top ? "SpearCounter" : inPack ? (doc ? doc.en : PK.name) : (unit ? unit.en : SH.name);
     const tab = view === "accueil" || view === "soutenir" ? "accueil" : (view === "rules" || inPack) ? "regles" : "spearhead";
-    ["accueil","regles","spearhead","partie"].forEach(k => { if (k === tab) $("bn-" + k).setAttribute("aria-current", "page"); else $("bn-" + k).removeAttribute("aria-current"); });
+    ["regles","spearhead","partie"].forEach(k => { if (k === tab) $("bn-" + k).setAttribute("aria-current", "page"); else $("bn-" + k).removeAttribute("aria-current"); });
     ["memo","regles","phases"].forEach(k => { if (k === view) $("nav-" + k).setAttribute("aria-current", "page"); else $("nav-" + k).removeAttribute("aria-current"); });
     if (unit) showUnit(unit);
     window.scrollTo(0, 0);
