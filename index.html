@@ -550,9 +550,16 @@ html[data-theme="dark"] .btn-warcounter,html[data-theme="dark"] .btn-warcounter.
 html[data-theme="dark"] .btn-warcounter small{color:#d3bfad}
 #splash .sp-c img{position:static;width:auto;height:160px;margin:0;animation-duration:1.4s}
 #splash .sp-c span{position:static;width:98px;height:11px;background:#d3bfad}
+/* Couleurs de phase pastel (WarCounter 2.27.0) */
+:root{--ph-hero:#e6d79a;--ph-shoot:#aac4d8;--ph-fight:#e0a69c;--ph-charge:#ebbd92;--ph-passive:#3a3633;--ph-end:#c8b6da;--ph-defense:#b9cd9c;--ph-move:#cfcac3}
+.ab-head,.phase > summary{color:var(--ct,#2e2a26)}
+.phase > summary .count{background:rgba(46,42,38,.15);color:inherit}
+.ab-head .cast,.ab-head .chant{color:#f1eadf}
+html[data-theme="dark"]{--ph-hero:#6b5f2e;--ph-shoot:#34536b;--ph-fight:#7a3d34;--ph-charge:#7f5330;--ph-passive:#2a2725;--ph-end:#54436a;--ph-defense:#43582d;--ph-move:#4f4a44}
+html[data-theme="dark"] .ab-head,html[data-theme="dark"] .phase > summary{color:#f1eadf}
+html[data-theme="dark"] .phase > summary .count{background:rgba(255,255,255,.15)}
 #splash span{background:#d3bfad}
-html[data-theme="dark"]{--page:#1a1714;--card:#25201c;--colhead:#3a2f27;--namebar:#3a2f27;--soft:#2e2823;--ink:#ece4d8;--muted:#b0a597;--line:#4a4038;--khaki:#3a2f27;--gold:#5a4a3c;--olive:#3a2f27;--disc:#120f0d;
---ph-hero:#3a2f27;--ph-shoot:#3a2f27;--ph-fight:#3a2f27;--ph-charge:#3a2f27;--ph-passive:#3a2f27;--ph-end:#3a2f27;--ph-defense:#3a2f27;--ph-move:#3a2f27}
+html[data-theme="dark"]{--page:#1a1714;--card:#25201c;--colhead:#3a2f27;--namebar:#3a2f27;--soft:#2e2823;--ink:#ece4d8;--muted:#b0a597;--line:#4a4038;--khaki:#3a2f27;--gold:#5a4a3c;--olive:#3a2f27;--disc:#120f0d}
 html[data-theme="dark"] body{color:#ece4d8;background-color:#1a1714;background-image:radial-gradient(ellipse at 20% 0%,rgba(255,240,220,.05),transparent 55%),url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 .95 0 0 0 0 .9 0 0 0 .035 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
 html[data-theme="dark"] .bar{background:linear-gradient(180deg,#5a2a17,#3a1c10);border-bottom-color:#5a4a3c}
 html[data-theme="dark"] .statband{background:linear-gradient(180deg,#2e2823,#3a2f27)}
@@ -651,7 +658,7 @@ html[data-theme="dark"] .btn-warcounter{background:linear-gradient(180deg,#5a2a1
   <a class="sup-link" href="#soutenir">Si tu veux soutenir le projet</a>
   <button type="button" class="sup-link theme-btn" id="theme-btn" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg><span>Mode sombre</span></button>
   <p>© 2026 elcounter. Tous droits réservés.</p>
-  <p>SpearCounter version 2.8.3 · MAJ 15-11-2026</p>
+  <p>SpearCounter version 2.8.4 · MAJ 15-11-2026</p>
   <p>Application non officielle, non affiliée à Games Workshop.</p>
   <p>Spearhead est une marque de Games Workshop Ltd.</p>
 </footer>
@@ -731,8 +738,8 @@ html[data-theme="dark"] .btn-warcounter{background:linear-gradient(180deg,#5a2a1
   // Couleur par phase (code couleur de l'application officielle)
   const PHASE = {
     hero:"var(--ph-hero)", shoot:"var(--ph-shoot)", fight:"var(--ph-fight)", charge:"var(--ph-charge)",
-    passive:"var(--ph-passive)", end:"var(--ph-end)", defense:"var(--ph-defense)", move:"var(--ph-move)",
-    deploy:"var(--ph-passive)", start:"var(--ph-passive)"
+    passive:"var(--ph-passive);--ct:#f1eadf", end:"var(--ph-end)", defense:"var(--ph-defense)", move:"var(--ph-move)",
+    deploy:"var(--ph-passive);--ct:#f1eadf", start:"var(--ph-passive);--ct:#f1eadf"
   };
   const PHASE_LABEL = {hero:"Phase des héros", move:"Mouvement", shoot:"Tir", charge:"Charge", fight:"Combat", end:"Fin de tour", defense:"Défense", passive:"Passif général"};
 
