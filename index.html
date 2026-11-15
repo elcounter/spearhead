@@ -4,17 +4,19 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>SpearCounter</title>
-<link rel="manifest" href="manifest.webmanifest?v=1.2.1">
-<meta name="theme-color" content="#6b2119">
+<link rel="manifest" href="manifest.webmanifest?v=1.3.0">
+<meta name="theme-color" content="#5a2a17" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#3a1c10" media="(prefers-color-scheme: dark)">
 <script>try { if (localStorage.getItem("sc-theme") === "dark") document.documentElement.dataset.theme = "dark"; } catch (e) {}</script>
-<link rel="icon" type="image/png" sizes="192x192" href="icons/sc3-icon-192.png">
-<link rel="apple-touch-icon" href="icons/sc3-apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="icons/sc4-favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="icons/sc4-icon-192.png">
+<link rel="apple-touch-icon" href="icons/sc4-apple-touch-icon.png">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="SpearCounter">
 <meta name="claude:viewport-fit-sides" content="cover">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Bitter:wght@400;600;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Source+Sans+3:wght@400;600;700&display=swap">
 <style>
 /* Layout : barre rouge en haut (titre + onglets), contenu clair façon fiche officielle, couleur des capacités = phase de jeu */
 :root{
@@ -453,6 +455,117 @@ html[data-theme="dark"] .alliance-title{background:#4a1711}
 html[data-theme="dark"] .fav-block .alliance-title{background:#8f2a2d}
 .who{font:700 12px var(--display);text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin:0 0 4px 2px}
 .ab-wrap + .ab-wrap{margin-top:12px}
+/* ==== CHARTE NC ==== */
+#sp-msg{color:#8e3420}
+select.g-sel{border:2px solid var(--line, #b6ab9c);background:#ebe7df;color:#2e2a26}
+select.g-sel.empty{color:#8a8077}
+.g-loss{color:#a3341f}
+.g-draw{color:#6b6259}
+.kicker{color:#f1eadf}
+.tabs a[aria-current="page"]{color:#f1eadf}
+.disc.wd{background:radial-gradient(circle at 40% 35%, #b5463a, #7a3b22 70%)}
+.hex{background:#f2efe9}
+.unit-link.has-photo{background:linear-gradient(to top, rgba(0,0,0,.9) 0%, rgba(0,0,0,.55) 35%, rgba(0,0,0,0) 70%), var(--img) center 30%/cover no-repeat, #e3d6c9}
+.hero-photo{background:radial-gradient(ellipse at center, #ebe7df 0%, #e3d6c9 100%)}
+.ab-name{border-bottom:2px solid #b6ab9c}
+.pick input:checked + .ab .tick{background:#f2efe9}
+.ios-hint button{background:#d3bfad;color:#2e2a26}
+.sh-search{border:1px solid #b6ab9c;background:#f2efe9}
+.sh-link small{color:#f1eadf}
+.doc .ab-img{background:#ebe7df;border-bottom:2px solid #b6ab9c}
+.under{background:#ebe7df}
+.bnav{background:#f2efe9;border-top:1px solid #b6ab9c}
+.bnav a{color:#6b6259}
+#view-partie input[type=text],#view-partie select{background:#ebe7df}
+.g-btn{background:#f2efe9}
+.g-btn.gold{color:#2e2a26}
+.g-pick{background:#f2efe9}
+.g-pick[aria-pressed="true"]{color:#2e2a26}
+.g-stepper button{background:#f2efe9}
+.g-tag.first{color:#2e2a26}
+.g-chip{background:#f2efe9}
+.g-note{background:#f2efe9}
+.g-missing{color:#a3341f}
+.g-st th,.g-st td{border-bottom:1px solid #b6ab9c}
+.g-hist > div{background:#f2efe9}
+.back-game b{color:#f1eadf}
+.g-foot .g-btn.ghost{color:#f1eadf}
+.fcard:hover{background:#ebe7df}
+.btn-warcounter{background:#7a3b22;border:1px solid #d3bfad}
+.btn-warcounter img{box-shadow:0 0 0 2px #d3bfad}
+.btn-warcounter b{color:#8e3420}
+.acc input{border:1px solid #b6ab9c}
+.acc .btn{border:2px solid #b6ab9c;background:#f2efe9;color:#2e2a26}
+.acc .btn.danger{color:#a3341f;border-color:#b6ab9c}
+.acc-warn{color:#a3341f}
+.acc-msg.err{color:#a3341f}
+.pf-sug{border:1px solid #b6ab9c;background:#f2efe9}
+.pf-sug button{border-top:1px solid #b6ab9c;background:#f2efe9}
+.pf-vis{background:#ebe7df}
+.pf-fold summary{border:1px solid #b6ab9c}
+.mapw select{border:1px solid #b6ab9c;background:#f2efe9}
+.steps li{background:#ebe7df}
+.sup-link{border:1px solid #b6ab9c;background:#f2efe9}
+:root{--bar:#7a3b22;--bar-dk:#5a2a17;--bar-ink:#f1eadf;--khaki:#4a3a30;--olive:#d3bfad;--olive-dk:#5a2a17;--gold:#d3bfad;--gold-dk:#8e3420;
+--page:#dcd7cd;--card:#f2efe9;--colhead:#d3bfad;--namebar:#4a3a30;--soft:#e3d6c9;--ink:#2e2a26;--muted:#6b6259;--line:#b6ab9c;--disc:#2e2a26;--rim:#d3bfad;--save:#5a2a17;
+--ph-hero:#4a3a30;--ph-shoot:#4a3a30;--ph-fight:#4a3a30;--ph-charge:#4a3a30;--ph-passive:#4a3a30;--ph-end:#4a3a30;--ph-defense:#4a3a30;--ph-move:#4a3a30;
+--body:"Source Sans 3","Segoe UI",Arial,sans-serif;--navh:calc(58px + env(safe-area-inset-bottom,0px))}
+body{font-size:16px;line-height:1.45;color:#2e2a26;background-color:#dcd7cd;background-image:radial-gradient(ellipse at 20% 0%,rgba(255,255,255,.45),transparent 55%),radial-gradient(ellipse at 90% 60%,rgba(255,255,255,.25),transparent 50%),url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .35 0 0 0 0 .3 0 0 0 0 .25 0 0 0 .07 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-attachment:fixed}
+.bar{background:linear-gradient(180deg,#7a3b22,#5a2a17);color:#f1eadf;border-bottom:3px solid #d3bfad;box-shadow:0 2px 8px rgba(46,42,38,.3)}
+.bar h1,.bnav a span,.alliance-title,.g-sec,.sec,.g-btn,.g-lbl,.lbl,h2,h3{letter-spacing:.05em}
+.bnav{height:var(--navh)}
+a{color:#8e3420}
+.bar a,.bnav a,.btn-install,.btn-warcounter,.back-game{color:inherit}
+.statband{background:linear-gradient(180deg,#e3d6c9,#d3bfad)}
+.stats .l{color:#2e2a26}
+.disc,.disc.wd,.disc.sv{border-radius:12px;background:#2e2a26;border:2px solid #d3bfad;box-shadow:0 1px 3px rgba(46,42,38,.35);color:#f1eadf}
+.disc.sv{background:#5a2a17}
+.disc.wd{background:#8e3420}
+.g-btn.primary,.acc .btn.primary,.btn-install{background:linear-gradient(180deg,#7a3b22,#5a2a17);border-color:#5a2a17;color:#f1eadf}
+.g-btn.gold,.g-next,#g-next{background:#d3bfad;border-color:#b6ab9c;color:#2e2a26}
+.acc-warn,.g-loss{color:#a3341f}
+.acc .btn.danger{color:#a3341f;border-color:#b6ab9c}
+.g-win{color:#3f6b2e}
+.back-game{background:linear-gradient(180deg,#7a3b22,#5a2a17);color:#f1eadf}
+.back-game b{color:#d3bfad}
+.alliance-title{background:#4a3a30;color:#f1eadf}
+.fav-block .alliance-title{background:#7a3b22}
+.fav.on svg{fill:#c24a2c;stroke:#c24a2c}
+.sh-search,select.g-sel,#view-partie input[type=text],.acc input,.mapw select{background:#f2efe9;border-color:#b6ab9c;color:#2e2a26}
+.panel,.g-panel,.fcard,.map-total{border-radius:12px}
+.btn-warcounter{background:linear-gradient(180deg,#7a3b22,#5a2a17);border-color:#d3bfad}
+.btn-warcounter b{color:#f1eadf}
+#sp-msg{color:#f1eadf}
+#splash{background:#6a321d}
+#splash .sp-c{background:linear-gradient(180deg,#7a3b22,#5a2a17)}
+#splash span{background:#d3bfad}
+html[data-theme="dark"]{--page:#1a1714;--card:#25201c;--colhead:#3a2f27;--namebar:#3a2f27;--soft:#2e2823;--ink:#ece4d8;--muted:#b0a597;--line:#4a4038;--khaki:#3a2f27;--gold:#5a4a3c;--olive:#3a2f27;--disc:#120f0d;
+--ph-hero:#3a2f27;--ph-shoot:#3a2f27;--ph-fight:#3a2f27;--ph-charge:#3a2f27;--ph-passive:#3a2f27;--ph-end:#3a2f27;--ph-defense:#3a2f27;--ph-move:#3a2f27}
+html[data-theme="dark"] body{color:#ece4d8;background-color:#1a1714;background-image:radial-gradient(ellipse at 20% 0%,rgba(255,240,220,.05),transparent 55%),url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 .95 0 0 0 0 .9 0 0 0 .035 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+html[data-theme="dark"] .bar{background:linear-gradient(180deg,#5a2a17,#3a1c10);border-bottom-color:#5a4a3c}
+html[data-theme="dark"] .statband{background:linear-gradient(180deg,#2e2823,#3a2f27)}
+html[data-theme="dark"] .stats .l{color:#ece4d8}
+html[data-theme="dark"] .disc,html[data-theme="dark"] .disc.wd{background:#120f0d;border-color:#5a4a3c}
+html[data-theme="dark"] .disc.sv{background:#5a2a17;border-color:#5a4a3c}
+html[data-theme="dark"] a{color:#e0a27e}
+html[data-theme="dark"] .bar a,html[data-theme="dark"] .bnav a,html[data-theme="dark"] .btn-install,html[data-theme="dark"] .btn-warcounter,html[data-theme="dark"] .back-game{color:inherit}
+html[data-theme="dark"] .bnav{background:#1f1a17;border-top-color:#4a4038}
+html[data-theme="dark"] .bnav a{color:#b0a597}
+html[data-theme="dark"] .bnav a[aria-current="page"]{color:#e0a27e;border-top-color:#e0a27e}
+html[data-theme="dark"] .sh-search,html[data-theme="dark"] select.g-sel,html[data-theme="dark"] #view-partie input[type=text],html[data-theme="dark"] #view-partie select,html[data-theme="dark"] .acc input,html[data-theme="dark"] .mapw select{background:#2e2823;color:#ece4d8;border-color:#5a4a3c}
+html[data-theme="dark"] .g-btn,html[data-theme="dark"] .g-pick,html[data-theme="dark"] .g-chip,html[data-theme="dark"] .g-stepper button,html[data-theme="dark"] .acc .btn,html[data-theme="dark"] .pf-sug,html[data-theme="dark"] .pf-sug button,html[data-theme="dark"] .sup-link,html[data-theme="dark"] .theme-btn{background:#2e2823;color:#ece4d8;border-color:#5a4a3c}
+html[data-theme="dark"] .sup-link,html[data-theme="dark"] .theme-btn,html[data-theme="dark"] .sup-thanks a,html[data-theme="dark"] .mapw a{color:#e0a27e}
+html[data-theme="dark"] .g-btn.primary,html[data-theme="dark"] .acc .btn.primary,html[data-theme="dark"] .btn-install,html[data-theme="dark"] .back-game{background:linear-gradient(180deg,#5a2a17,#3a1c10);border-color:#5a2a17;color:#f1eadf}
+html[data-theme="dark"] .g-btn.gold,html[data-theme="dark"] .g-pick[aria-pressed="true"],html[data-theme="dark"] .g-chip[aria-pressed="true"],html[data-theme="dark"] #g-next{background:#5a4a3c;border-color:#6b5a4a;color:#ece4d8}
+html[data-theme="dark"] .alliance-title{background:#3a2f27}
+html[data-theme="dark"] .fav-block .alliance-title{background:#5a2a17}
+html[data-theme="dark"] .g-note,html[data-theme="dark"] .g-hist > div,html[data-theme="dark"] .steps li,html[data-theme="dark"] .pf-vis,html[data-theme="dark"] .under,html[data-theme="dark"] .map-total{background:#25201c}
+html[data-theme="dark"] .map-total b,html[data-theme="dark"] .back-game b{color:#e0a27e}
+html[data-theme="dark"] .acc-warn,html[data-theme="dark"] .g-loss{color:#ff8a72}
+html[data-theme="dark"] .g-win{color:#8fd08a}
+html[data-theme="dark"] #splash{background:#3a1c10}
+html[data-theme="dark"] .btn-warcounter{background:linear-gradient(180deg,#5a2a17,#3a1c10);border-color:#5a4a3c}
+
 </style>
 </head>
 <body>
@@ -526,7 +639,7 @@ html[data-theme="dark"] .fav-block .alliance-title{background:#8f2a2d}
   <a class="sup-link" href="#soutenir">Si tu veux soutenir le projet</a>
   <button type="button" class="sup-link theme-btn" id="theme-btn" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg><span>Mode sombre</span></button>
   <p>© 2026 elcounter. Tous droits réservés.</p>
-  <p>SpearCounter version 2.7.8 · MAJ 14-11-2026</p>
+  <p>SpearCounter version 2.8.0 · MAJ 15-11-2026</p>
   <p>Application non officielle, non affiliée à Games Workshop.</p>
   <p>Spearhead est une marque de Games Workshop Ltd.</p>
 </footer>

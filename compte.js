@@ -192,7 +192,7 @@
     L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {maxZoom:18, attribution:'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'}).addTo(mapObj);
     Object.values(by).forEach(g => {
       const n = g.P.length;
-      L.circleMarker([g.lat, g.lng], {radius:7 + Math.min(n, 10) * 1.5, color:"#d4ae3f", weight:2, fillColor:"#6b2119", fillOpacity:.85}).addTo(mapObj)
+      L.circleMarker([g.lat, g.lng], {radius:7 + Math.min(n, 10) * 1.5, color:"#d3bfad", weight:2, fillColor:"#7a3b22", fillOpacity:.85}).addTo(mapObj)
         .bindPopup(`<b>${esc(g.city || "")}</b> · ${n} joueur${n > 1 ? "s" : ""}<br>` + g.P.map(p => `<div class="mp"><b>${esc(p.pseudo)}</b>${p.club ? ` · ${esc(p.club)}` : ""}${(f => f.length ? `<br><small>${esc(f.join(", "))}</small>` : "")(spFacs(p.factions))}</div>`).join(""));
     });
     if (!me && R.length) mapObj.fitBounds(L.latLngBounds(R.map(r => [r.lat, r.lng])).pad(.2), {maxZoom:9});

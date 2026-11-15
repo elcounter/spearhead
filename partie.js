@@ -348,30 +348,30 @@
   async function shareImage(D){
     const W = 1080, H = 1350, c = document.createElement("canvas"); c.width = W; c.height = H;
     const x = c.getContext("2d");
-    try { await Promise.all(["700 60px Oswald", "400 30px Bitter", "700 30px Bitter"].map(f => document.fonts.load(f))); } catch (e) {}
-    const DISP = "Oswald, 'Arial Narrow', sans-serif", BODY = "Bitter, Georgia, serif";
-    const BG = "#6b2119", CREAM = "#f3ead8", GOLD = "#c9a24a", INK = "#1f1a17", MUT = "#7a6f66";
+    try { await Promise.all(["700 60px Oswald", "400 30px 'Source Sans 3'", "700 30px 'Source Sans 3'"].map(f => document.fonts.load(f))); } catch (e) {}
+    const DISP = "Oswald, 'Arial Narrow', sans-serif", BODY = "'Source Sans 3', Arial, sans-serif";
+    const BG = "#7a3b22", CREAM = "#f1eadf", GOLD = "#d3bfad", INK = "#2e2a26", MUT = "#6b6259";
     const txt = (t, X, Y, f, col, al) => { x.font = f; x.fillStyle = col; x.textAlign = al || "center"; x.fillText(t, X, Y); };
     const fit = (t, f, max) => { let s = f.size; do { x.font = `${f.w} ${s}px ${f.fam}`; s -= 2; } while (x.measureText(t).width > max && s > 20); return `${f.w} ${s + 2}px ${f.fam}`; };
-    x.fillStyle = "#efe9df"; x.fillRect(0, 0, W, H);
+    x.fillStyle = "#dcd7cd"; x.fillRect(0, 0, W, H);
     x.fillStyle = BG; x.fillRect(0, 0, W, 260);
     txt("S", 120, 175, `700 130px ${DISP}`, CREAM); x.fillStyle = GOLD; x.fillRect(88, 198, 64, 10);
     txt("SPEARCOUNTER", 210, 130, `700 64px ${DISP}`, CREAM, "left");
     txt("FEUILLE DE PARTIE · WARHAMMER SPEARHEAD", 212, 185, `400 28px ${DISP}`, GOLD, "left");
     const [a, b] = D.sc, win = a === b ? -1 : a > b ? 0 : 1;
-    x.fillStyle = "#fff"; x.beginPath(); x.roundRect(60, 310, W - 120, 560, 28); x.fill();
-    txt(win < 0 ? "ÉGALITÉ" : "VICTOIRE DE " + D.names[win].toUpperCase(), W / 2, 395, fit(win < 0 ? "ÉGALITÉ" : "VICTOIRE DE " + D.names[win].toUpperCase(), {w:700, size:52, fam:DISP}, W - 200), win < 0 ? MUT : "#2e7d32");
+    x.fillStyle = "#f2efe9"; x.beginPath(); x.roundRect(60, 310, W - 120, 560, 28); x.fill();
+    txt(win < 0 ? "ÉGALITÉ" : "VICTOIRE DE " + D.names[win].toUpperCase(), W / 2, 395, fit(win < 0 ? "ÉGALITÉ" : "VICTOIRE DE " + D.names[win].toUpperCase(), {w:700, size:52, fam:DISP}, W - 200), win < 0 ? MUT : "#3f6b2e");
     [0,1].forEach(p => {
       const X = p ? W * 0.75 : W * 0.25;
       txt(D.names[p], X, 490, fit(D.names[p], {w:700, size:50, fam:BODY}, 400), INK);
       txt(D.facs[p] || "", X, 540, fit(D.facs[p] || "", {w:400, size:30, fam:BODY}, 420), MUT);
-      txt(win < 0 ? "Égalité" : win === p ? "Victoire" : "Défaite", X, 590, `700 32px ${BODY}`, win < 0 ? MUT : win === p ? "#2e7d32" : "#c62828");
+      txt(win < 0 ? "Égalité" : win === p ? "Victoire" : "Défaite", X, 590, `700 32px ${BODY}`, win < 0 ? MUT : win === p ? "#3f6b2e" : "#a3341f");
     });
     txt(`${a}  -  ${b}`, W / 2, 760, `700 170px ${DISP}`, BG);
     txt("points de victoire", W / 2, 830, `400 30px ${BODY}`, MUT);
     // Tableau des rounds
     const top = 920, cw = (W - 120) / 6;
-    x.fillStyle = "#fff"; x.beginPath(); x.roundRect(60, top, W - 120, 260, 28); x.fill();
+    x.fillStyle = "#f2efe9"; x.beginPath(); x.roundRect(60, top, W - 120, 260, 28); x.fill();
     ["", "R1", "R2", "R3", "R4", "Total"].forEach((h, i) => txt(h, 60 + cw * i + cw / 2, top + 65, `700 32px ${DISP}`, MUT));
     [0,1].forEach(p => {
       const Y = top + 140 + p * 80;
