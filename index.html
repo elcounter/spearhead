@@ -541,6 +541,13 @@ a{color:#8e3420}
 html[data-theme="dark"] #splash .sp-c{background:#3a1c10}
 #splash .sp-c{display:flex;flex-direction:column;align-items:center;gap:19px;width:auto;height:auto;background:none;border-radius:0;overflow:visible}
 html[data-theme="dark"] #splash .sp-c{background:none}
+.btn-warcounter,.btn-warcounter.nc{background:linear-gradient(180deg,#7a3b22,#5a2a17);border:1px solid #d3bfad;color:#f1eadf}
+.btn-warcounter:active,.btn-warcounter.nc:active{background:#5a2a17}
+.btn-warcounter b,.btn-warcounter.nc b{color:#f1eadf}
+.btn-warcounter small{color:#e3d6c9;opacity:1}
+.btn-warcounter img{border-radius:10px;box-shadow:0 0 0 2px #d3bfad}
+html[data-theme="dark"] .btn-warcounter,html[data-theme="dark"] .btn-warcounter.nc{background:linear-gradient(180deg,#5a2a17,#3a1c10);border-color:#5a4a3c}
+html[data-theme="dark"] .btn-warcounter small{color:#d3bfad}
 #splash .sp-c img{position:static;width:auto;height:160px;margin:0;animation-duration:1.4s}
 #splash .sp-c span{position:static;width:98px;height:11px;background:#d3bfad}
 #splash span{background:#d3bfad}
@@ -644,7 +651,7 @@ html[data-theme="dark"] .btn-warcounter{background:linear-gradient(180deg,#5a2a1
   <a class="sup-link" href="#soutenir">Si tu veux soutenir le projet</a>
   <button type="button" class="sup-link theme-btn" id="theme-btn" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg><span>Mode sombre</span></button>
   <p>© 2026 elcounter. Tous droits réservés.</p>
-  <p>SpearCounter version 2.8.2 · MAJ 15-11-2026</p>
+  <p>SpearCounter version 2.8.3 · MAJ 15-11-2026</p>
   <p>Application non officielle, non affiliée à Games Workshop.</p>
   <p>Spearhead est une marque de Games Workshop Ltd.</p>
 </footer>
@@ -766,7 +773,7 @@ html[data-theme="dark"] .btn-warcounter{background:linear-gradient(180deg,#5a2a1
         <span><b>Découvre WarCounter</b><small>Ton compagnon pour Age of Sigmar.</small></span>
       </a>
       <a class="btn-warcounter nc" href="https://elcounter.github.io/necrocounter/" target="_blank" rel="noopener">
-        <svg viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="30" fill="#141414"/><circle cx="32" cy="32" r="26" fill="none" stroke="#f0a028" stroke-width="2.5"/><path d="M22 45V19h4l12 18V19h4v26h-4L26 27v18z" fill="#f0a028"/></svg>
+        <img src="icons/app-necrocounter.png" alt="" width="40" height="40">
         <span><b>Découvre NecroCounter</b><small>Ton compagnon pour Necromunda.</small></span>
       </a>
     </div>`;
