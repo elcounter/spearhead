@@ -586,6 +586,30 @@ html[data-theme="dark"] .g-win{color:#8fd08a}
 html[data-theme="dark"] #splash{background:#3a1c10}
 html[data-theme="dark"] .btn-warcounter{background:linear-gradient(180deg,#5a2a17,#3a1c10);border-color:#5a4a3c}
 
+/* Collection : suivi de peinture */
+.cbar{display:flex;height:12px;border-radius:6px;background:var(--soft);overflow:hidden;margin:6px 0 4px}
+.cbar.sm{height:6px;margin:8px 0 0}
+.cbar .cp{background:#3f7d4a}.cbar .ce{background:#d4ae3f}.cbar .ca{background:#b33a2b}
+.cleg{margin:0;font-size:13px;color:var(--muted)}
+.cleg i{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:4px}
+.cleg .dp{background:#3f7d4a}.cleg .de{background:#d4ae3f}.cleg .da{background:#b33a2b}
+.clab{display:block;font:600 12px var(--display);text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+#coll .lbl{display:block;margin:0 0 6px;font-weight:600}
+#coll select{width:100%;box-sizing:border-box;padding:12px 14px;border:1px solid var(--line);border-radius:8px;font:16px var(--body);background:var(--card);color:var(--ink)}
+.csh .sec{display:flex;align-items:center;gap:10px}
+.csh .sec span{flex:1;min-width:0}
+.csh .sec small{display:block;margin-top:2px;font:500 11px var(--display);letter-spacing:.08em;opacity:.8}
+.cdel{flex:none;background:none;border:1px solid rgba(255,255,255,.45);color:inherit;border-radius:6px;padding:6px 10px;font:600 12px var(--body);text-transform:none;letter-spacing:0;cursor:pointer}
+.cdel.arm{background:#b33a2b;border-color:#b33a2b;color:#fff}
+.cunit{padding:12px 0;border-top:1px solid var(--line)}
+.cunit:first-of-type{border-top:0;padding-top:0}
+.cunit b{display:block;margin:0 0 8px}
+.cpk{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+.cpk button{min-height:42px;padding:4px;border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:8px;font:600 14px var(--body);cursor:pointer}
+.cpk button[aria-pressed="true"].s0{background:#b33a2b;border-color:#b33a2b;color:#fff}
+.cpk button[aria-pressed="true"].s1{background:#d4ae3f;border-color:#d4ae3f;color:#2e2a26}
+.cpk button[aria-pressed="true"].s2{background:#3f7d4a;border-color:#3f7d4a;color:#fff}
+@media (max-width:420px){.hm{width:34px}.hm svg{width:21px;height:21px}}
 </style>
 </head>
 <body>
@@ -598,7 +622,7 @@ html[data-theme="dark"] .btn-warcounter{background:linear-gradient(180deg,#5a2a1
     <div class="ttl"><span class="kicker" id="kicker">Warhammer Spearhead</span><h1 id="title">SpearCounter</h1></div>
     <div class="hright">
     <button class="install" id="install" type="button" hidden aria-label="Installer l'application"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg>Installer</button>
-    <a class="hm" href="#carte" aria-label="Carte des joueurs"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg></a><a class="hm" href="#compte" aria-label="Mon compte"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/></svg></a><a class="hm" href="#" aria-label="Accueil"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11l9-7 9 7"/><path d="M5 10v10h14V10"/></svg></a>
+    <a class="hm" href="#collection" aria-label="Collection"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 3l3 3-9 9-3-3z"/><path d="M9 12l-4 1-2 7 7-2 1-4"/></svg></a><a class="hm" href="#carte" aria-label="Carte des joueurs"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg></a><a class="hm" href="#compte" aria-label="Mon compte"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/></svg></a><a class="hm" href="#" aria-label="Accueil"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11l9-7 9 7"/><path d="M5 10v10h14V10"/></svg></a>
     </div>
   </div>
   <div class="in g-score" id="g-score" hidden><span class="nm" id="g-sn0"></span><span class="pts" id="g-pts"></span><span class="nm" id="g-sn1"></span></div>
@@ -621,6 +645,9 @@ html[data-theme="dark"] .btn-warcounter{background:linear-gradient(180deg,#5a2a1
   <section id="view-compte" hidden><div id="compte"></div></section>
   <section id="view-carte" hidden><div id="carte"></div></section>
   <section id="view-confidentialite" hidden><div id="confidentialite"></div></section>
+
+  <!-- Collection : suivi de peinture des Spearheads possédées -->
+  <section id="view-collection" hidden><div id="coll"></div></section>
 
   <!-- Onglet Spearhead : choix de la Spearhead -->
   <section id="view-home" hidden>
@@ -659,7 +686,7 @@ html[data-theme="dark"] .btn-warcounter{background:linear-gradient(180deg,#5a2a1
   <a class="sup-link" href="#soutenir">Si tu veux soutenir le projet</a>
   <button type="button" class="sup-link theme-btn" id="theme-btn" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg><span>Mode sombre</span></button>
   <p>© 2026 elcounter. Tous droits réservés.</p>
-  <p>SpearCounter version 2.8.7 · MAJ 16-11-2026</p>
+  <p>SpearCounter version 2.9.0 · MAJ 16-11-2026</p>
   <p>Application non officielle, non affiliée à Games Workshop.</p>
   <p>Spearhead est une marque de Games Workshop Ltd.</p>
 </footer>
@@ -761,6 +788,7 @@ html[data-theme="dark"] .btn-warcounter{background:linear-gradient(180deg,#5a2a1
   const FEATURES = [
     ["regles","Règles","Les règles des packs de bataille : Le Feu et le Jade, Le Sable et l'Os, Cité de Cendre, Double.",'<path d="M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2z"/><path d="M4 19V5"/><path d="M9 7h6"/>'],
     ["spearheads","Spearhead","Choisis ta Spearhead : mémo des unités, règles d'armée et phases.",'<path d="M12 2l3 7-3 13-3-13z"/><path d="M7 9h10"/>'],
+    ["collection","Collection","Suis la peinture de tes Spearheads, unité par unité.",'<path d="M18 3l3 3-9 9-3-3z"/><path d="M9 12l-4 1-2 7 7-2 1-4"/>'],
     ["carte","Carte des joueurs","Trouve des joueurs et des clubs près de chez toi.",'<path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/>'],
     ["partie","Partie","Suis le score de tes parties entre amis, round par round.",'<rect x="4" y="4" width="16" height="16" rx="3"/><circle cx="9" cy="9" r="1.2" fill="currentColor"/><circle cx="15" cy="15" r="1.2" fill="currentColor"/><circle cx="15" cy="9" r="1.2" fill="currentColor"/><circle cx="9" cy="15" r="1.2" fill="currentColor"/>']
   ];
@@ -1057,12 +1085,56 @@ html[data-theme="dark"] .btn-warcounter{background:linear-gradient(180deg,#5a2a1
 
   // ---------- Navigation ----------
   // #  : accueil · #<spearhead>/memo|regles|phases · #<spearhead>/u/<unité>
+  // ---------- Collection : Spearheads possédées, état de peinture par unité (clé synchronisée avec le compte) ----------
+  const COLL_KEY = "spearcounter-collection", C_LAB = ["Non peinte", "En cours", "Peinte"];
+  const collGet = () => { try { const v = JSON.parse(localStorage.getItem(COLL_KEY)); return v && typeof v === "object" && !Array.isArray(v) ? v : {}; } catch (e) { return {}; } };
+  const collSet = c => { try { localStorage.setItem(COLL_KEY, JSON.stringify(c)); } catch (e) {} };
+  let collArm = "";
+  function collStats(sh, C){
+    const n = [0, 0, 0]; sh.units.forEach(u => { n[+(C[sh.id] || {})[u.id] || 0]++; });
+    return {a:n[0], e:n[1], p:n[2], t:sh.units.length};
+  }
+  function collBar(st, sm){
+    const pc = x => st.t ? Math.round(x * 100 / st.t) : 0, pl = (n, a, b) => `${n} ${n > 1 ? b : a}`;
+    return `<div class="cbar${sm ? " sm" : ""}" role="img" aria-label="${pc(st.p)} % peintes"><span class="cp" style="width:${pc(st.p)}%"></span><span class="ce" style="width:${pc(st.e)}%"></span><span class="ca" style="width:${st.t ? 100 - pc(st.p) - pc(st.e) : 0}%"></span></div>`
+      + (sm ? "" : `<p class="cleg"><b>${pc(st.p)} %</b> peintes · <i class="dp"></i>${pl(st.p, "peinte", "peintes")} · <i class="de"></i>${st.e} en cours · <i class="da"></i>${pl(st.a, "non peinte", "non peintes")}</p>`);
+  }
+  function renderColl(){
+    const C = collGet(), own = SPEARHEADS.filter(sh => C[sh.id]).sort((a, b) => a.name.localeCompare(b.name, "fr"));
+    let h = "";
+    if (own.length) {
+      const all = own.map(sh => collStats(sh, C)).reduce((x, y) => ({a:x.a + y.a, e:x.e + y.e, p:x.p + y.p, t:x.t + y.t}));
+      h += `<div class="panel"><h3 class="sec">Ma collection</h3><div class="body"><span class="clab">${own.length} Spearhead${own.length > 1 ? "s" : ""} · ${all.t} unités</span>${collBar(all)}</div></div>`;
+    }
+    h += `<div class="panel"><h3 class="sec">Mes Spearheads</h3><div class="body"><label class="lbl" for="coll-add">Ajouter une Spearhead que tu possèdes</label>
+      <select id="coll-add"><option value="">Choisir…</option>${allianceKeys.map(a => { const L = byAlliance[a].filter(sh => !C[sh.id]); return L.length ? `<optgroup label="${esc(a)}">${L.map(sh => `<option value="${sh.id}">${esc(sh.name)}${sh.faction ? " (" + esc(sh.faction) + ")" : ""}</option>`).join("")}</optgroup>` : ""; }).join("")}</select>
+      ${own.length ? "" : `<p class="hint">Sélectionne tes Spearheads : leurs unités s'affichent, il ne te reste qu'à indiquer où en est la peinture de chacune.</p>`}</div></div>`;
+    h += own.map(sh => `<div class="panel csh"><h3 class="sec"><span>${esc(sh.name)}${sh.faction ? `<small>${esc(sh.faction)}</small>` : ""}</span><button type="button" class="cdel${collArm === sh.id ? " arm" : ""}" data-cdel="${sh.id}">${collArm === sh.id ? "Confirmer" : "Retirer"}</button></h3><div class="body">
+      ${sh.units.map(u => { const v = +C[sh.id][u.id] || 0; return `<div class="cunit"><b>${esc(u.en)}</b><div class="cpk">${C_LAB.map((lab, k) => `<button type="button" class="s${k}" data-csh="${sh.id}" data-cu="${esc(u.id)}" data-ck="${k}" aria-pressed="${v === k}">${lab}</button>`).join("")}</div></div>`; }).join("")}
+      ${collBar(collStats(sh, C), true)}</div></div>`).join("");
+    h += `<p class="hint">Ta collection est enregistrée sur cet appareil, et synchronisée si tu es connecté à ton compte.</p>`;
+    $("coll").innerHTML = h;
+  }
+  $("coll").addEventListener("change", e => {
+    if (e.target.id !== "coll-add" || !e.target.value) return;
+    const C = collGet(); C[e.target.value] = {}; collSet(C); collArm = ""; renderColl();
+  });
+  $("coll").addEventListener("click", e => {
+    const d = e.target.closest("[data-cdel]"), b = e.target.closest("[data-ck]");
+    if (d) {
+      if (collArm !== d.dataset.cdel) collArm = d.dataset.cdel;
+      else { const C = collGet(); delete C[collArm]; collSet(C); collArm = ""; }
+      renderColl(); return;
+    }
+    if (b) { const C = collGet(); if (!C[b.dataset.csh]) return; C[b.dataset.csh][b.dataset.cu] = +b.dataset.ck; collSet(C); collArm = ""; renderColl(); }
+  });
+
   // Mémo ouvert depuis la feuille de score : barre « Retour à la partie »
   let fromGame = false;
   document.addEventListener("click", e => { if (e.target.closest("a[data-memo]")) fromGame = true; });
   function route(){
     const [shId, part, unitId] = location.hash.slice(1).split("/");
-    if (["", "partie", "spearheads", "regles", "pack", "soutenir", "compte", "carte", "confidentialite"].includes(shId)) fromGame = false;
+    if (["", "partie", "spearheads", "regles", "pack", "soutenir", "compte", "carte", "confidentialite", "collection"].includes(shId)) fromGame = false;
     $("back-game").hidden = !fromGame;
     document.body.classList.toggle("has-back-game", fromGame);
     if (fromGame) $("back-score").textContent = window.SC_PARTIE.scoreLine ? window.SC_PARTIE.scoreLine() : "";
@@ -1070,6 +1142,7 @@ html[data-theme="dark"] .btn-warcounter{background:linear-gradient(180deg,#5a2a1
     if (shId === "regles") { show("rules"); return; }
     if (shId === "spearheads") { show("home"); return; }
     if (shId === "soutenir") { show("soutenir"); return; }
+    if (shId === "collection") { collArm = ""; renderColl(); show("collection"); return; }
     if (["compte","carte","confidentialite"].includes(shId)) { show(shId); window.SC_COMPTE.open(shId); return; }
     if (shId === "pack") {
       PK = PACKS.find(x => x.id === part);
@@ -1087,7 +1160,7 @@ html[data-theme="dark"] .btn-warcounter{background:linear-gradient(180deg,#5a2a1
     show(unit ? "unit" : (["regles","phases"].includes(part) ? part : "memo"), unit);
   }
   function show(view, unit, doc){
-    const ACC = ["compte","carte","confidentialite"];
+    const ACC = ["compte","carte","confidentialite","collection"];
     ["accueil","soutenir","home","rules","partie","memo","regles","phases","unit","pack","doc"].concat(ACC).forEach(k => { $("view-" + k).hidden = k !== view; });
     $("tabs").hidden = ["accueil","soutenir","home","rules","partie","unit","pack","doc"].concat(ACC).includes(view);
     $("back").hidden = ["accueil","home","rules","partie"].includes(view);
@@ -1098,7 +1171,7 @@ html[data-theme="dark"] .btn-warcounter{background:linear-gradient(180deg,#5a2a1
     const top = ["accueil","soutenir","home","rules"].includes(view);
     if (ACC.includes(view)) {
       $("kicker").textContent = "SpearCounter";
-      $("title").textContent = {compte:"Mon compte", carte:"Carte des joueurs", confidentialite:"Confidentialité"}[view];
+      $("title").textContent = {compte:"Mon compte", carte:"Carte des joueurs", confidentialite:"Confidentialité", collection:"Collection"}[view];
       ["regles","spearhead","partie"].forEach(k => $("bn-" + k).removeAttribute("aria-current"));
       window.scrollTo(0, 0); return;
     }
@@ -1114,7 +1187,7 @@ html[data-theme="dark"] .btn-warcounter{background:linear-gradient(180deg,#5a2a1
     const [shId, part, sub] = location.hash.slice(1).split("/");
     if (shId === "partie") return window.SC_PARTIE.back();
     if (shId === "pack") location.hash = sub ? "pack/" + part : "regles";
-    else if (shId === "soutenir" || shId === "compte" || shId === "carte") location.hash = "";
+    else if (shId === "soutenir" || shId === "compte" || shId === "carte" || shId === "collection") location.hash = "";
     else if (shId === "confidentialite") location.hash = "compte";
     else location.hash = part === "u" ? shId + "/memo" : "spearheads";
   });

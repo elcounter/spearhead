@@ -204,7 +204,7 @@
     const msg = accMsg ? `<p class="acc-msg${accErr ? " err" : ""}">${esc(accMsg)}</p>` : "";
     if (sess) return `<div class="sup-hero"><h2>Mon compte</h2><p>Connecté avec <b>${esc(sess.email || "")}</b></p></div>${msg}
       <div class="panel"><div class="body acc">
-        <p>Tes parties, ton historique et tes choix d'aptitudes sont synchronisés automatiquement sur tous les appareils où tu es connecté.</p>
+        <p>Tes parties, ton historique, ta collection et tes choix d'aptitudes sont synchronisés automatiquement sur tous les appareils où tu es connecté.</p>
         <p class="hint">${m.dirty ? "Modifications en attente d'envoi." : m.at ? "Dernière synchronisation : " + new Date(m.at).toLocaleString("fr-FR") : ""}</p>
         <button type="button" class="btn primary" id="acc-sync"${accBusy ? " disabled" : ""}>Synchroniser maintenant</button>
         <button type="button" class="btn" id="acc-out">Se déconnecter</button>
@@ -241,7 +241,7 @@
   const privacyHtml = () => `<div class="sup-hero"><h2>Confidentialité</h2><p>Ce que SpearCounter fait de tes données.</p></div>
     <div class="panel"><div class="body"><dl class="blk">
       <dt><b>Sans compte</b></dt><dd>Tes parties et tes choix restent uniquement sur ton appareil. Rien n'est envoyé.</dd>
-      <dt><b>Avec un compte (facultatif)</b></dt><dd>Sont enregistrés : ton adresse e-mail, ton mot de passe (chiffré, jamais lisible), tes parties, ton historique et tes choix d'aptitudes. Ils servent uniquement à te connecter et à synchroniser tes données entre tes appareils. Le compte est commun à SpearCounter, WarCounter et NecroCounter.</dd>
+      <dt><b>Avec un compte (facultatif)</b></dt><dd>Sont enregistrés : ton adresse e-mail, ton mot de passe (chiffré, jamais lisible), tes parties, ton historique, ta collection et tes choix d'aptitudes. Ils servent uniquement à te connecter et à synchroniser tes données entre tes appareils. Le compte est commun à SpearCounter, WarCounter et NecroCounter.</dd>
       <dt><b>Profil joueur (facultatif)</b></dt><dd>Pseudo, ville (centre de la commune, jamais d'adresse), club et factions jouées. Ils ne sont visibles des autres joueurs que si tu coches « Apparaître sur la carte communautaire », et tu peux décocher à tout moment.</dd>
       <dt><b>Hébergement</b></dt><dd>Supabase, sur des serveurs situés dans l'Union européenne.</dd>
       <dt><b>Durée de conservation</b></dt><dd>Jusqu'à la suppression de ton compte.</dd>
