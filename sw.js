@@ -2,12 +2,19 @@
 // Changer VERSION à chaque mise à jour du site pour forcer le rafraîchissement du cache.
 // ASSETS (app et données, légers) : mis en cache à l'installation. IMAGES : cache séparé et durable, rempli en arrière-plan.
 // Ces deux listes sont régénérées par sync.py.
-const VERSION = "spearcounter-2.9.0";
+const VERSION = "spearcounter-2.10.0";
 const ASSETS = [
   "./",
   "./index.html",
   "./partie.js",
   "./compte.js",
+  "./fonts/fonts.css",
+  "./fonts/oswald-latin-500-normal.woff2",
+  "./fonts/oswald-latin-600-normal.woff2",
+  "./fonts/oswald-latin-700-normal.woff2",
+  "./fonts/source-sans-3-latin-400-normal.woff2",
+  "./fonts/source-sans-3-latin-600-normal.woff2",
+  "./fonts/source-sans-3-latin-700-normal.woff2",
   "./icons/app-necrocounter.png",
   "./icons/app-warcounter.png",
   "./icons/sc5-apple-touch-icon.png",
@@ -382,16 +389,6 @@ self.addEventListener("fetch", e => {
     return;
   }
 
-  // Polices Google : cache puis mise à jour en arrière-plan
-  if (url.hostname === "fonts.googleapis.com" || url.hostname === "fonts.gstatic.com") {
-    e.respondWith(
-      caches.open(VERSION).then(c => c.match(req).then(hit => {
-        const net = fetch(req).then(res => { c.put(req, res.clone()); return res; }).catch(() => hit);
-        return hit || net;
-      }))
-    );
-    return;
-  }
 
   if (url.origin !== location.origin) return;
 
