@@ -357,7 +357,7 @@
     x.fillStyle = BG; x.fillRect(0, 0, W, 260);
     txt("S", 120, 175, `700 130px ${DISP}`, CREAM); x.fillStyle = GOLD; x.fillRect(88, 198, 64, 10);
     txt("SPEARCOUNTER", 210, 130, `700 64px ${DISP}`, CREAM, "left");
-    txt("FEUILLE DE PARTIE · WARHAMMER SPEARHEAD", 212, 185, `400 28px ${DISP}`, GOLD, "left");
+    txt("FEUILLE DE PARTIE · SPEARHEAD", 212, 185, `400 28px ${DISP}`, GOLD, "left");
     const [a, b] = D.sc, win = a === b ? -1 : a > b ? 0 : 1;
     x.fillStyle = "#f2efe9"; x.beginPath(); x.roundRect(60, 310, W - 120, 560, 28); x.fill();
     txt(win < 0 ? "ÉGALITÉ" : "VICTOIRE DE " + D.names[win].toUpperCase(), W / 2, 395, fit(win < 0 ? "ÉGALITÉ" : "VICTOIRE DE " + D.names[win].toUpperCase(), {w:700, size:52, fam:DISP}, W - 200), win < 0 ? MUT : "#3f6b2e");
