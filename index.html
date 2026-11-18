@@ -118,6 +118,14 @@ main{padding-block:16px 40px}
 .renf-top .renf.big{top:0}
 #list .unit-link{position:relative}
 #list .renf{top:0;right:8px}
+.unit-link .u-ico{display:block;width:clamp(30px,11vw,48px);height:clamp(30px,11vw,48px);margin:0 auto 8px;color:#e9c96b}
+.unit-link .u-ico svg{display:block;width:100%;height:100%}
+.unit-link{align-content:center}
+#home .sh-link .u-ico{width:clamp(26px,9vw,40px);height:clamp(26px,9vw,40px);opacity:.9}
+.hero-ico{flex-direction:column;align-items:center;padding:18px 16px 12px;color:#3c3530}
+.hero-ico .u-ico.big{display:block;width:64px;height:64px}
+.hero-ico .u-ico.big svg{display:block;width:100%;height:100%}
+.hero-ico .u-type{margin-top:8px;font:600 13px var(--display);letter-spacing:.12em;text-transform:uppercase}
 .hero-photo img{display:block;width:100%;max-width:640px;max-height:300px;object-fit:contain}
 .army-link{background:var(--bar)}
 .ab-name{padding:12px 16px;font:700 15px var(--body);border-bottom:2px solid #dcdcdc}
@@ -686,7 +694,7 @@ html[data-theme="dark"] .btn-warcounter{background:linear-gradient(180deg,#5a2a1
   <a class="sup-link" href="#soutenir">Si tu veux soutenir le projet</a>
   <button type="button" class="sup-link theme-btn" id="theme-btn" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg><span>Mode sombre</span></button>
   <p>© 2026 elcounter. Tous droits réservés.</p>
-  <p>SpearCounter version 2.10.0 · MAJ 17-11-2026</p>
+  <p>SpearCounter version 2.11.0 · MAJ 18-11-2026</p>
   <p>Application non officielle, non affiliée à Games Workshop.</p>
   <p>Spearhead est une marque de Games Workshop Ltd.</p>
 </footer>
@@ -863,13 +871,44 @@ html[data-theme="dark"] .btn-warcounter{background:linear-gradient(180deg,#5a2a1
     return FA_NORM[normF(sh.faction)] || "Autres";
   }  window.SC_ALLIANCE = { of: allianceOf, order: ALLIANCE_ORDER };
 
+  // Icônes de type d'unité et d'alliance (remplacent les photos)
+  const SVG = (b, f) => `<svg viewBox="0 0 24 24" aria-hidden="true"${f ? ' fill="currentColor"' : ' fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"'}>${b}</svg>`;
+  const ICO = {
+    heros: SVG('<path d="M3 8l4.5 4L12 4.5 16.5 12 21 8l-2 9.5H5z"/><rect x="4.5" y="18.8" width="15" height="2.2" rx="1"/>', 1),
+    infanterie: SVG('<g transform="rotate(45 12 12)"><path d="M10.8 1.5h2.4l.8 13h-4z"/><rect x="6.5" y="14.5" width="11" height="2.2" rx="1"/><rect x="11" y="16.7" width="2" height="4"/><circle cx="12" cy="21.6" r="1.6"/></g>', 1),
+    cavalerie: SVG('<path d="M19.5 21.5H9.8l1-4.6c-1.9.4-3.9.1-5.6-1L3.6 14.8c-.6-.4-.8-1.2-.4-1.8l1.1-1.8 3.9-2.3L11 5.4 10.4 2l3 2c3.9.5 7.1 4.3 7.1 9z"/><circle cx="11.2" cy="8.6" r="1" fill="#fff"/>', 1),
+    tireurs: SVG('<path d="M7 3c7.5 3 7.5 15 0 18"/><path d="M7 3v18" stroke-width="1"/><path d="M3 12h16"/><path d="M16 9l3 3-3 3"/><path d="M3 12l-1-2M3 12l-1 2"/>'),
+    monstre: SVG('<path d="M5 3c3 5 3 12-1 18"/><path d="M11 2.5c3 6 3 13 0 19"/><path d="M17 3c3 5 3 12-1 18"/>', 0).replace('stroke-width="1.8"', 'stroke-width="2.6"'),
+    machine: SVG('<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="2.2"/><path d="M12 3v6.8M12 14.2V21M3 12h6.8M14.2 12H21M5.6 5.6l4.8 4.8M13.6 13.6l4.8 4.8M18.4 5.6l-4.8 4.8M10.4 13.6l-4.8 4.8"/>'),
+    bete: SVG('<ellipse cx="12" cy="16" rx="4.6" ry="4"/><ellipse cx="5.2" cy="10.5" rx="2" ry="2.6"/><ellipse cx="9.4" cy="6.2" rx="2" ry="2.7"/><ellipse cx="14.6" cy="6.2" rx="2" ry="2.7"/><ellipse cx="18.8" cy="10.5" rx="2" ry="2.6"/>', 1),
+    vol: SVG('<path d="M2 19C9 19 17 13 22 3c-1 6-3.5 10-7 12.5 2 0 3.6-.4 5-1.2-2.4 2.6-5.6 3.9-9 4.2 1.6.3 3 .4 4.4.2C12.3 20.4 6 21 2 19z"/>', 1),
+    ordre: SVG('<path d="M12 2l8.5 3.2v6.3c0 5.2-3.6 9.1-8.5 10.5C7.1 20.6 3.5 16.7 3.5 11.5V5.2z"/><path d="M12 6v12M7.5 11h9" stroke="#fff" stroke-width="1.6" fill="none"/>', 1),
+    chaos: SVG('<path d="M12 2c1 4 5.5 6 5.5 11.5A5.5 5.5 0 0 1 12 22a5.5 5.5 0 0 1-5.5-5.5c0-3 1.7-4.6 2.8-6.2.4 1.6 1 2.6 2 3.2C11 9.5 11 5.5 12 2z"/>', 1),
+    mort: SVG('<path d="M12 2.5c-4.7 0-8 3.3-8 7.6 0 2.7 1.3 4.6 3 5.6V19c0 .8.6 1.4 1.4 1.4h7.2c.8 0 1.4-.6 1.4-1.4v-3.3c1.7-1 3-2.9 3-5.6 0-4.3-3.3-7.6-8-7.6z"/><circle cx="8.8" cy="11" r="2" fill="#fff"/><circle cx="15.2" cy="11" r="2" fill="#fff"/><path d="M11.2 16h1.6M10 20.4v-2.2M14 20.4v-2.2" stroke="#fff" stroke-width="1.2"/>', 1),
+    destruction: SVG('<path d="M11 6h2v16h-2z"/><path d="M13 4.5c3.5-.5 6.5 1 8 3.5-1 3-3.5 5.4-8 5.5zM11 4.5C7.5 4 4.5 5.5 3 8c1 3 3.5 5.4 8 5.5z"/>', 1)
+  };
+  const TYPE_LBL = { heros: "Héros", machine: "Machine de guerre", monstre: "Monstre", cavalerie: "Cavalerie", bete: "Bête", tireurs: "Tireurs", vol: "Volants", infanterie: "Infanterie" };
+  function unitType(u){
+    const kw = (u.kw || "").toUpperCase();
+    if (/HÉROS/.test(kw)) return "heros";
+    if (/MACHINE DE GUERRE|\bCHAR\b/.test(kw)) return "machine";
+    if (/MONSTRE/.test(kw)) return "monstre";
+    if (/CAVALERIE/.test(kw)) return "cavalerie";
+    if (/BÊTE/.test(kw)) return "bete";
+    if ((u.weapons || []).some(w => w.range && w.range !== "Mêlée")) return "tireurs";
+    if (/\bVOL\b/.test(kw)) return "vol";
+    return "infanterie";
+  }
+  const ALLI_ICO = { "L'Ordre": "ordre", "Le Chaos": "chaos", "La Mort": "mort", "La Destruction": "destruction" };
+  const unitIco = (u, big) => { const t = unitType(u); return `<span class="u-ico${big ? " big" : ""}" role="img" aria-label="${TYPE_LBL[t]}" title="${TYPE_LBL[t]}">${ICO[t]}</span>`; };
+
   // Favoris (clé synchronisée avec le compte)
   const FAV_KEY = "spearcounter-favoris";
   const favs = () => { try { const v = JSON.parse(localStorage.getItem(FAV_KEY)); return Array.isArray(v) ? v : []; } catch (e) { return []; } };
   const HEART = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7.5-4.6-9.6-9.2C.9 8.4 3 4.5 6.8 4.5c2.1 0 3.6 1.2 5.2 3.1 1.6-1.9 3.1-3.1 5.2-3.1 3.8 0 5.9 3.9 4.4 7.3C19.5 16.4 12 21 12 21z"/></svg>';
   function shBtn(sh) {
     const on = favs().includes(sh.id);
-    return `<button type="button" class="unit-link sh-link${sh.cover ? " has-photo" : ""}" data-id="${sh.id}" data-q="${esc(normF(sh.name + " " + (sh.faction || "") + " " + allianceOf(sh)))}"${photoAttr(sh.cover)}><span>${esc(sh.name)}${sh.faction ? `<small>${esc(sh.faction)}</small>` : ""}</span><span class="fav${on ? " on" : ""}" role="button" tabindex="0" data-fav="${sh.id}" aria-pressed="${on}" aria-label="${on ? "Retirer des favoris" : "Ajouter aux favoris"}">${HEART}</span></button>`;
+    return `<button type="button" class="unit-link sh-link" data-id="${sh.id}" data-q="${esc(normF(sh.name + " " + (sh.faction || "") + " " + allianceOf(sh)))}">${ALLI_ICO[allianceOf(sh)] ? `<span class="u-ico" aria-hidden="true">${ICO[ALLI_ICO[allianceOf(sh)]]}</span>` : ""}<span>${esc(sh.name)}${sh.faction ? `<small>${esc(sh.faction)}</small>` : ""}</span><span class="fav${on ? " on" : ""}" role="button" tabindex="0" data-fav="${sh.id}" aria-pressed="${on}" aria-label="${on ? "Retirer des favoris" : "Ajouter aux favoris"}">${HEART}</span></button>`;
   }
   const byAlliance = {};
   SPEARHEADS.forEach(sh => {
@@ -960,7 +999,7 @@ html[data-theme="dark"] .btn-warcounter{background:linear-gradient(180deg,#5a2a1
 
   // ---------- Mémo ----------
   function renderMemo(){
-    $("list").innerHTML = SH.units.map(u => `<button type="button" class="unit-link${SH.photos[u.id] ? " has-photo" : ""}" data-id="${u.id}"${photoAttr(SH.photos[u.id])}>${renfBadge(u, false)}<span>${esc(u.en).replace(/-/g, "\u2011")}</span></button>`).join("");
+    $("list").innerHTML = SH.units.map(u => `<button type="button" class="unit-link" data-id="${u.id}">${renfBadge(u, false)}${unitIco(u, false)}<span>${esc(u.en).replace(/-/g, "\u2011")}</span></button>`).join("");
   }
   $("list").addEventListener("click", e => { const t = e.target.closest(".unit-link"); if (t) location.hash = SH.id + "/u/" + t.dataset.id; });
 
@@ -1021,7 +1060,7 @@ html[data-theme="dark"] .btn-warcounter{background:linear-gradient(180deg,#5a2a1
   function saveChoice(){ try { localStorage.setItem(storeKey(), JSON.stringify(CHOICE)); } catch(e){} }
 
   function renderRules(){
-    let h = SH.photos.armee ? `<div class="hero-photo rules-photo"><img src="${SH.photos.armee}" alt="Règles de l'armée"></div>` : "";
+    let h = "";
     h += SH.army.sections.map(sec => {
       if (!sec.pick) return `<h3 class="sec">${esc(sec.title)}</h3><div class="abilities">${sec.abilities.map(a => abCard(a)).join("")}</div>`;
       return `<h3 class="sec">${esc(sec.title)} (1 au choix)</h3><p class="hint">Touche une carte pour la sélectionner.</p><div class="abilities" role="radiogroup" aria-label="${esc(sec.title)}">` +
@@ -1070,7 +1109,7 @@ html[data-theme="dark"] .btn-warcounter{background:linear-gradient(180deg,#5a2a1
   const renfBadge = (u, big) => isRenf(u) ? `<span class="renf${big ? " big" : ""}" role="img" aria-label="Renforts" title="Renforts">${RENF}</span>` : "";
   function showUnit(u){
     const s = u.stats;
-    let h = SH.photos[u.id] ? `<div class="hero-photo has-renf">${renfBadge(u, true)}<img src="${SH.photos[u.id]}" alt="${esc(u.en)}"></div>` : (isRenf(u) ? `<div class="renf-top">${renfBadge(u, true)}</div>` : "");
+    let h = `<div class="hero-photo hero-ico has-renf">${renfBadge(u, true)}${unitIco(u, true)}<span class="u-type">${TYPE_LBL[unitType(u)]}</span></div>`;
     h += `<div class="statband"><div class="stats" style="--n:${s.W ? 5 : 4}">` +
       [[s.M,"Mouv.",""],[s.S,"Santé",""],[s.C,"Contrôle",""],[s.Sv,"Sauv."," sv"]].concat(s.W ? [[s.W,"Prot."," wd"]] : []).map(([v,l,c]) =>
         `<div><div class="disc${c}">${esc(v)}</div><div class="l">${l}</div></div>`).join("") + `</div></div>`;

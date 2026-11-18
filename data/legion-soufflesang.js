@@ -13,12 +13,12 @@
     { id: "char-chaos", en: "Char du Chaos", stats: { M: '10\"', S: 8, C: 2, Sv: "3+" },
       weapons: [{ n: "Fléaux et Fouets", range: "Mêlée", a: 6, h: 3, w: 3, r: 1, d: "1", crit: "none" }, { n: "Sabots", range: "Mêlée", a: 4, h: 4, w: 3, r: 0, d: "1", crit: "none", extra: ["Compagnon"] }],
       abilities: [{ c: "charge", t: "N'importe Quelle Phase de Charge", n: "Écrasement", x: ["Annonce : Si cette unité a chargé, choisissez une unité ennemie en mêlée.", "Effet : Jetez un dé. Sur 2+, infligez D3 dégâts mortels."] }],
-      kw: "CHAR, CAVALERIE" },
+      kw: "MACHINE DE GUERRE" },
     { id: "guerriers-chaos", en: "Guerriers du Chaos", stats: { M: '5\"', S: 2, C: 1, Sv: "3+" },
-      weapons: [{ n: "Armes du Chaos", range: "Mêlée", a: 2, h: 3, w: 3, r: 1, d: "1", crit: "none" }], abilities: [], kw: "INFANTERIE, RENFORTS" },
+      weapons: [{ n: "Armes du Chaos", range: "Mêlée", a: 2, h: 3, w: 3, r: 1, d: "1", crit: "none" }], abilities: [], kw: "INFANTERIE" },
     { id: "chevaliers-chaos", en: "Chevaliers du Chaos", stats: { M: '10\"', S: 3, C: 1, Sv: "3+" },
       weapons: [{ n: "Lances du Chaos", range: "Mêlée", a: 2, h: 3, w: 3, r: 1, d: "1", crit: "none", extra: ["Charge (+1 Dégât)"] }, { n: "Sabots", range: "Mêlée", a: 2, h: 4, w: 3, r: 0, d: "1", crit: "none", extra: ["Compagnon"] }],
-      abilities: [], kw: "CAVALERIE, RENFORTS" }
+      abilities: [], kw: "CAVALERIE" }
   ],
   army: { id: "armee", en: "Règles de l'armée", sections: [
     { key: "trait", title: "Trait de bataille", who: "Trait de bataille", abilities: [
