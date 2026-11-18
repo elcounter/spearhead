@@ -2,7 +2,7 @@
 // Changer VERSION à chaque mise à jour du site pour forcer le rafraîchissement du cache.
 // ASSETS (app et données, légers) : mis en cache à l'installation. IMAGES : cache séparé et durable, rempli en arrière-plan.
 // Ces deux listes sont régénérées par sync.py.
-const VERSION = "spearcounter-2.11.0";
+const VERSION = "spearcounter-2.12.0";
 const ASSETS = [
   "./",
   "./index.html",
@@ -76,30 +76,7 @@ const ASSETS = [
   "./data/yndrasta.js",
   "./data/zelotes-zenestra.js"
 ];
-const IMAGES = [
-  "./img/cite/campagne.webp",
-  "./img/cite/decors.webp",
-  "./img/cite/deploiement.webp",
-  "./img/cite/plateau.webp",
-  "./img/cite/r-barricade.webp",
-  "./img/cite/r-caisse.webp",
-  "./img/cite/r-chausse.webp",
-  "./img/cite/r-egout.webp",
-  "./img/cite/r-tonneau.webp",
-  "./img/cite/reliques.webp",
-  "./img/double/bataille-droite.webp",
-  "./img/double/bataille-gauche.webp",
-  "./img/double/bataille.webp",
-  "./img/double/deux-plateaux.webp",
-  "./img/feu-et-jade/art.webp",
-  "./img/feu-et-jade/bataille.webp",
-  "./img/feu-et-jade/decors.webp",
-  "./img/feu-et-jade/objectifs.webp",
-  "./img/sable-et-os/art.webp",
-  "./img/sable-et-os/bataille.webp",
-  "./img/sable-et-os/decors.webp",
-  "./img/sable-et-os/objectifs.webp"
-];
+const IMAGES = [];
 const IMG = "spearcounter-img-2";
 
 self.addEventListener("install", e => {
