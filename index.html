@@ -121,7 +121,6 @@ main{padding-block:16px 40px}
 .unit-link .u-ico{display:block;width:clamp(30px,11vw,48px);height:clamp(30px,11vw,48px);margin:0 auto 8px;color:#e9c96b}
 .unit-link .u-ico svg{display:block;width:100%;height:100%}
 .unit-link{align-content:center}
-#home .sh-link .u-ico{width:clamp(26px,9vw,40px);height:clamp(26px,9vw,40px);opacity:.9}
 .hero-ico{flex-direction:column;align-items:center;padding:18px 16px 12px;color:#3c3530}
 .hero-ico .u-ico.big{display:block;width:64px;height:64px}
 .hero-ico .u-ico.big svg{display:block;width:100%;height:100%}
@@ -173,6 +172,11 @@ main{padding-block:16px 40px}
 .sh-none{margin:0 0 14px;text-align:center;color:var(--muted);font-style:italic}
 .sh-link[hidden],.alliance-block[hidden]{display:none}
 #home .sh-link{position:relative;padding-right:56px}
+#home .list{grid-template-columns:minmax(0,1fr);gap:8px}
+#home .sh-link{aspect-ratio:auto;min-height:64px;place-items:center start;text-align:left;padding:10px 60px 10px 16px;font-size:17px}
+#home .sh-link small{margin-top:2px}
+#home .fav{top:50%;transform:translateY(-50%)}
+#home .fav:active{transform:translateY(-50%) scale(.9)}
 .fav{position:absolute;top:8px;right:8px;display:grid;place-items:center;width:40px;height:40px;border-radius:50%;background:rgba(0,0,0,.35);cursor:pointer}
 .fav svg{width:22px;height:22px;fill:none;stroke:#fff;stroke-width:2;stroke-linejoin:round}
 .fav.on svg{fill:#e5484d;stroke:#e5484d}
@@ -694,7 +698,7 @@ html[data-theme="dark"] .btn-warcounter{background:linear-gradient(180deg,#5a2a1
   <a class="sup-link" href="#soutenir">Si tu veux soutenir le projet</a>
   <button type="button" class="sup-link theme-btn" id="theme-btn" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg><span>Mode sombre</span></button>
   <p>© 2026 elcounter. Tous droits réservés.</p>
-  <p>SpearCounter version 2.12.0 · MAJ 18-11-2026</p>
+  <p>SpearCounter version 2.12.1 · MAJ 18-11-2026</p>
   <p>Application non officielle, non affiliée à Games Workshop.</p>
   <p>Spearhead est une marque de Games Workshop Ltd.</p>
 </footer>
@@ -904,7 +908,6 @@ html[data-theme="dark"] .btn-warcounter{background:linear-gradient(180deg,#5a2a1
     if (/\bVOL\b/.test(kw)) return "vol";
     return "infanterie";
   }
-  const ALLI_ICO = { "L'Ordre": "ordre", "Le Chaos": "chaos", "La Mort": "mort", "La Destruction": "destruction" };
   const unitIco = (u, big) => { const t = unitType(u); return `<span class="u-ico${big ? " big" : ""}" role="img" aria-label="${TYPE_LBL[t]}" title="${TYPE_LBL[t]}">${ICO[t]}</span>`; };
 
   // Favoris (clé synchronisée avec le compte)
@@ -913,7 +916,7 @@ html[data-theme="dark"] .btn-warcounter{background:linear-gradient(180deg,#5a2a1
   const HEART = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7.5-4.6-9.6-9.2C.9 8.4 3 4.5 6.8 4.5c2.1 0 3.6 1.2 5.2 3.1 1.6-1.9 3.1-3.1 5.2-3.1 3.8 0 5.9 3.9 4.4 7.3C19.5 16.4 12 21 12 21z"/></svg>';
   function shBtn(sh) {
     const on = favs().includes(sh.id);
-    return `<button type="button" class="unit-link sh-link" data-id="${sh.id}" data-q="${esc(normF(sh.name + " " + (sh.faction || "") + " " + allianceOf(sh)))}">${ALLI_ICO[allianceOf(sh)] ? `<span class="u-ico" aria-hidden="true">${ICO[ALLI_ICO[allianceOf(sh)]]}</span>` : ""}<span>${esc(sh.name)}${sh.faction ? `<small>${esc(sh.faction)}</small>` : ""}</span><span class="fav${on ? " on" : ""}" role="button" tabindex="0" data-fav="${sh.id}" aria-pressed="${on}" aria-label="${on ? "Retirer des favoris" : "Ajouter aux favoris"}">${HEART}</span></button>`;
+    return `<button type="button" class="unit-link sh-link" data-id="${sh.id}" data-q="${esc(normF(sh.name + " " + (sh.faction || "") + " " + allianceOf(sh)))}"><span>${esc(sh.name)}${sh.faction ? `<small>${esc(sh.faction)}</small>` : ""}</span><span class="fav${on ? " on" : ""}" role="button" tabindex="0" data-fav="${sh.id}" aria-pressed="${on}" aria-label="${on ? "Retirer des favoris" : "Ajouter aux favoris"}">${HEART}</span></button>`;
   }
   const byAlliance = {};
   SPEARHEADS.forEach(sh => {
