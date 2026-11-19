@@ -27,7 +27,7 @@
           ]
         }
       ],
-      kw: "HÉROS, MONSTRE, CAVALERIE"
+      kw: "HÉROS, MONSTRE"
     },
     {
       id: "guerriers-saurus",
@@ -37,7 +37,7 @@
         { n: "Celestite Club or Spear", range: "Mêlée", a: 2, h: 3, w: 3, r: 1, d: "1", crit: "none" }
       ],
       abilities: [],
-      kw: "INFANTERIE, RENFORTS"
+      kw: "INFANTERIE"
     },
     {
       id: "kroxigor",

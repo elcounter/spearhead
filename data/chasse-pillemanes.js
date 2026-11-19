@@ -11,9 +11,9 @@
       abilities: [{ c: "hero", t: "Votre Phase des Héros", n: "Récolte d'Âmes", x: ["Annonce : Choisissez une unité ennemie visible à 12\".", "Effet : Jetez un dé. Sur 3+, infligez 1 dégât mortel. Si une figurine est tuée, Soignez (1) une unité amie à 12\"."] }],
       kw: "HÉROS, PRÊTRE, INFANTERIE" },
     { id: "gardes-morrarr-2", en: "Gardes Morrarr Akhéliens", stats: { M: '14\"', S: 3, C: 1, Sv: "4+" },
-      weapons: [{ n: "Lance Voltaïque", range: "Mêlée", a: 3, h: 3, w: 3, r: 1, d: "2", crit: "none" }], abilities: [], kw: "CAVALERIE" },
+      weapons: [{ n: "Lance Voltaïque", range: "Mêlée", a: 3, h: 3, w: 3, r: 1, d: "2", crit: "none" }], abilities: [], kw: "CAVALERIE, VOL" },
     { id: "allopex", en: "Allopex Akhélien", stats: { M: '12\"', S: 8, C: 2, Sv: "4+" },
-      weapons: [{ n: "Lance-harpon", range: '12\"', a: 2, h: 3, w: 3, r: 1, d: "D3", crit: "none" }, { n: "Mâchoires d'Allopex", range: "Mêlée", a: 4, h: 3, w: 2, r: 2, d: "2", crit: "none", extra: ["Compagnon"] }], abilities: [], kw: "MONSTRE, CAVALERIE" },
+      weapons: [{ n: "Lance-harpon", range: '12\"', a: 2, h: 3, w: 3, r: 1, d: "D3", crit: "none" }, { n: "Mâchoires d'Allopex", range: "Mêlée", a: 4, h: 3, w: 2, r: 2, d: "2", crit: "none", extra: ["Compagnon"] }], abilities: [], kw: "CAVALERIE, RENFORTS, VOL" },
     { id: "hilotes-namarti", en: "Hilotes Namarti", stats: { M: '6\"', S: 1, C: 1, Sv: "5+" },
       weapons: [{ n: "Lames Lanmari", range: "Mêlée", a: 2, h: 4, w: 4, r: 0, d: "1", crit: "none" }], abilities: [], kw: "INFANTERIE, RENFORTS" }
   ],

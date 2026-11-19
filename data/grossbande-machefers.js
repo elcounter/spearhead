@@ -13,11 +13,11 @@
     { id: "rageux-brutes", en: "Rageux Brutes", stats: { M: '5\"', S: 3, C: 1, Sv: "5+" },
       weapons: [{ n: "Choppas", range: "Mêlée", a: 3, h: 3, w: 3, r: 1, d: "2", crit: "none" }],
       abilities: [{ c: "passive", t: "Passif", n: "Fous Furieux", x: ["Effet : Cette unité a FRAPPE EN PREMIER si elle a chargé au même tour."] }],
-      kw: "INFANTERIE" },
+      kw: "INFANTERIE, BRUTE, RENFORTS" },
     { id: "durboyz", en: "Durboyz", stats: { M: '4\"', S: 2, C: 1, Sv: "3+" },
-      weapons: [{ n: "Arrows et Choppa", range: '18\"', a: 1, h: 4, w: 4, r: 0, d: "1", crit: "none" }, { n: "Choppa", range: "Mêlée", a: 2, h: 3, w: 3, r: 1, d: "1", crit: "none" }], abilities: [], kw: "INFANTERIE, RENFORTS" },
+      weapons: [{ n: "Arrows et Choppa", range: '18\"', a: 1, h: 4, w: 4, r: 0, d: "1", crit: "none" }, { n: "Choppa", range: "Mêlée", a: 2, h: 3, w: 3, r: 1, d: "1", crit: "none" }], abilities: [], kw: "INFANTERIE" },
     { id: "brutes", en: "Brutes", stats: { M: '4\"', S: 3, C: 1, Sv: "3+" },
-      weapons: [{ n: "Gore-choppa", range: "Mêlée", a: 3, h: 3, w: 3, r: 1, d: "2", crit: "none" }], abilities: [], kw: "INFANTERIE, RENFORTS" }
+      weapons: [{ n: "Gore-choppa", range: "Mêlée", a: 3, h: 3, w: 3, r: 1, d: "2", crit: "none" }], abilities: [], kw: "INFANTERIE, BRUTE" }
   ],
   army: { id: "armee", en: "Règles de l'armée", sections: [
     { key: "trait", title: "Trait de bataille", who: "Trait de bataille", abilities: [
