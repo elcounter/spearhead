@@ -61,7 +61,7 @@
     {
       id: "prestelame",
       en: "Prestelame du Corps de Commandement des Guildes Franches",
-      stats: { M: '5\"', S: 3, C: 1, Sv: "6+" },
+      stats: { M: '5\"', S: 3, C: 2, Sv: "6+" },
       weapons: [
         { n: "Rapière Enchantée", range: "Mêlée", a: 4, h: 3, w: 4, r: 2, d: "2", crit: "none" }
       ],

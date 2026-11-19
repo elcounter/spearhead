@@ -52,7 +52,7 @@
       en: "Fusiliers des Guildes Franches",
       stats: { M: '5\"', S: 1, C: 1, Sv: "4+" },
       weapons: [
-        { n: "Canon-fusil", range: '15\"', a: 2, h: 4, w: 4, r: 1, d: "1", crit: "none" },
+        { n: "Canon-fusil", range: '18\"', a: 2, h: 4, w: 4, r: 1, d: "1", crit: "none" },
         { n: "Baïonnette", range: "Mêlée", a: 1, h: 4, w: 4, r: 0, d: "1", crit: "none" }
       ],
       abilities: [
@@ -80,7 +80,7 @@
       stats: { M: '5\"', S: 1, C: 1, Sv: "5+" },
       weapons: [
         { n: "Arbalète de Chasse", range: '15\"', a: 2, h: 4, w: 4, r: 1, d: "1", crit: "none" },
-        { n: "Armes de Chasse", range: "Mêlée", a: 1, h: 4, w: 4, r: 0, d: "1", crit: "none" },
+        { n: "Armes de Chasse", range: "Mêlée", a: 2, h: 4, w: 4, r: 0, d: "1", crit: "none" },
         { n: "Morsure Féroce de Chien Courant", range: "Mêlée", a: 2, h: 4, w: 3, r: 0, d: "1", crit: "none" }
       ],
       abilities: [
