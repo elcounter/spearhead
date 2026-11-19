@@ -68,7 +68,7 @@
     {
       id: "carognes",
       en: "Carognes Faucheuses",
-      stats: { M: '8\"', S: 1, C: 1, Sv: "6+" },
+      stats: { M: '8\"', S: 2, C: 1, Sv: "6+" },
       weapons: [
         { n: "Membres Faucheurs", range: "Mêlée", a: 3, h: 4, w: 4, r: 1, d: "1", crit: "auto" }
       ],

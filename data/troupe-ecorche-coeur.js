@@ -167,7 +167,7 @@
           {
             c: "fight",
             t: "Une Fois par Bataille, N'importe Quelle Phase de Mêlée",
-            n: "Flasque d'Ombre Brume",
+            n: "Flasque d'Ombrebrume",
             x: [
               "Effet : Jusqu'à la fin de la phase, soustrayez 1 aux jets de touche pour les attaques qui ciblent des unités amies tant qu'elles sont entièrement à 12\" de votre général."
             ]
@@ -191,7 +191,7 @@
     "Bénédiction de Khaine": ["fight", "fight-opp"],
     "Baignée dans le Sang": ["fight"],
     "Poussée par la Vengeance": ["fight"],
-    "Flasque d'Ombre Brume": ["fight", "fight-opp"],
+    "Flasque d'Ombrebrume": ["fight", "fight-opp"],
     "Oratrice Zélée": ["hero"],
     "Massacre Total": ["hero"],
     "Transmuté en Cristal": ["end"],

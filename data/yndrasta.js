@@ -11,8 +11,8 @@
       en: "Yndrasta, la Lance Céleste",
       stats: { M: '12\"', S: 8, C: 2, Sv: "3+" },
       weapons: [
-        { n: "Thengavar", range: '12\"', a: 1, h: 2, w: 2, r: 3, d: "D6", crit: "none", extra: ["Tir en Mêlée"] },
-        { n: "Lame des Hauts Cieux", range: "Mêlée", a: 5, h: 3, w: 3, r: 2, d: "2", crit: "none" }
+        { n: "Thengavar", range: '12\"', a: 1, h: 3, w: 2, r: 2, d: "4", crit: "none", extra: ["Tir en Mêlée"] },
+        { n: "Lame des Hauts Cieux", range: "Mêlée", a: 5, h: 3, w: 3, r: 2, d: "3", crit: "none" }
       ],
       abilities: [
         {
@@ -27,7 +27,7 @@
     {
       id: "vexillor",
       en: "Chevalier-Vexillor",
-      stats: { M: '5\"', S: 5, C: 2, Sv: "3+" },
+      stats: { M: '5\"', S: 6, C: 5, Sv: "3+" },
       weapons: [
         { n: "Lame de Guerre de Sigmarite", range: "Mêlée", a: 4, h: 3, w: 3, r: 1, d: "2", crit: "none" }
       ],
@@ -49,7 +49,7 @@
       en: "Annihilators",
       stats: { M: '4\"', S: 3, C: 1, Sv: "2+" },
       weapons: [
-        { n: "Marteau Météorique", range: "Mêlée", a: 3, h: 3, w: 3, r: 2, d: "2", crit: "none" }
+        { n: "Marteau Météorique", range: "Mêlée", a: 3, h: 3, w: 3, r: 1, d: "2", crit: "none" }
       ],
       abilities: [
         {
@@ -86,11 +86,11 @@
     {
       id: "char-foudroyeur",
       en: "Char Foudroyeur",
-      stats: { M: '10\"', S: 8, C: 2, Sv: "3+" },
+      stats: { M: '10\"', S: 10, C: 2, Sv: "3+" },
       weapons: [
         { n: "Grand Arc d'Orage", range: '18\"', a: 2, h: 3, w: 3, r: 1, d: "1", crit: "none" },
         { n: "Hache Foudroyeuse", range: "Mêlée", a: 3, h: 3, w: 3, r: 1, d: "1", crit: "none" },
-        { n: "Becs et Griffes de Gryph-destriens", range: "Mêlée", a: 6, h: 4, w: 3, r: 1, d: "1", crit: "none", extra: ["Compagnon"] }
+        { n: "Becs et Griffes de Gryph-destriers", range: "Mêlée", a: 6, h: 4, w: 3, r: 1, d: "1", crit: "none", extra: ["Compagnon"] }
       ],
       abilities: [
         {
