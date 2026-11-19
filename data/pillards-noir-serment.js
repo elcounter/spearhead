@@ -9,7 +9,7 @@
     {
       id: "reine",
       en: "Reine de Guerre Noir-serment",
-      stats: { M: '5\"', S: 8, C: 2, Sv: "5+" },
+      stats: { M: '5\"', S: 5, C: 2, Sv: "5+" },
       weapons: [
         { n: "Hache Gravée de Runes", range: "Mêlée", a: 5, h: 4, w: 3, r: 1, d: "2", crit: "mortal" }
       ],
