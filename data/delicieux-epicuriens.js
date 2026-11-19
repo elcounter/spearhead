@@ -9,29 +9,22 @@
     {
       id: "triple-discorde",
       en: "La Triple Discorde",
-      stats: { M: '6\"', S: 6, C: 2, Sv: "5+" },
+      stats: { M: '6"', S: 3, C: 2, Sv: "5+" },
       weapons: [
-        { n: "Lames de la Discorde", range: "Mêlée", a: 6, h: 3, w: 3, r: 1, d: "2", crit: "none" }
+        { n: "Triple Arsenal", range: "Mêlée", a: 3, h: 3, w: 3, r: 1, d: "2", crit: "none" }
       ],
       abilities: [
-        {
-          c: "fight",
-          t: "N'importe Quelle Phase de Mêlée",
-          n: "Dispute des Hérauts",
-          x: [
-            "Annonce : Choisissez une unité ennemie en mêlée avec cette unité.",
-            "Effet : Ajoutez 1 aux jets de touche pour les attaques de mêlée de cette unité qui ciblent la cible pour le restant de la phase."
-          ]
-        }
+        { c: "passive", t: "Passif", n: "Triple Cour", x: ["Effet : Chaque figurine de cette unité est considérée comme une unité individuelle quand on détermine l'effet du trait de bataille « Faveur des Plus Volages »."] },
+        { c: "hero", t: "Votre Phase des Héros", n: "Pourvoyeur de Faveur", x: ["Annonce : Choisissez comme cibles jusqu'à X unités amies différentes et entièrement à 12\" de cette unité, où X est le nombre de figurines de cette unité. Puis faites un jet de lancement de 2D6.", "Effet : Sur 6+, appliquez l'effet approprié à chaque cible :", "• Démonettes : les armes de la cible ont Anti-charge (+1 Perf.) jusqu'au début de votre prochain tour.", "• Veneuses : ajoutez 2\" à la caractéristique de Mouvement de la cible jusqu'au début de votre prochain tour.", "• Charnelles : ajoutez 1 aux jets de touche pour les attaques de mêlée de la cible jusqu'au début de votre prochain tour."] }
       ],
-      kw: "HÉROS, INFANTERIE, PROTECTION (6+)"
+      kw: "INFANTERIE, HÉROS, SORCIER, PROTECTION (5+)"
     },
     {
       id: "charnelles",
       en: "Charnelles",
       stats: { M: '10\"', S: 4, C: 1, Sv: "5+" },
       weapons: [
-        { n: "Pinces et Crinière Embelée", range: "Mêlée", a: 4, h: 4, w: 3, r: 1, d: "D3", crit: "none" }
+        { n: "Pinces Mortelles et Dard Barbelé", range: "Mêlée", a: 4, h: 4, w: 3, r: 1, d: "D3", crit: "none" }
       ],
       abilities: [
         {
@@ -98,8 +91,10 @@
             x: [
               "Effet : Les effets suivants s'appliquent en fonction du nombre d'unités amies sur le champ de bataille. Ces effets ne sont pas cumulatifs :",
               "• 5 unités ou plus : Ajoutez 2 à la caractéristique de Contrôle des unités amies.",
-              "• 4 unités : Ajoutez 1 aux jets de touche et de blessure pour les attaques de mêlée des unités amies.",
-              "• 3 unités ou moins : Ajoutez 1 à la caractéristique d'Attaques des armes de mêlée des unités amies."
+              "• 4 unités : Ajoutez 1 aux jets de touche et de blessure pour les attaques de mêlée des unités amies, y compris les attaques faites avec les armes de Compagnon.",
+              "• 3 unités : Ajoutez 1 aux jets de course et de charge pour les unités amies.",
+              "• 2 unités : Les unités amies ont une PROTECTION (5+).",
+              "• 1 unité : Ajoutez 2 à la caractéristique d'Attaques des armes de mêlée de l'unité amie, y compris les armes de Compagnon."
             ]
           }
         ]
@@ -149,27 +144,28 @@
             c: "fight",
             t: "Une Fois par Bataille, N'importe Quelle Phase de Mêlée",
             n: "Excès de Violence",
-            x: ["Effet : Votre général peut utiliser 2 aptitudes de Corps à Corps à cette phase."]
+            x: ["Annonce : Choisissez comme cible une unité amie visible et entièrement à 12\" de votre général.", "Effet : Les armes de mêlée de la cible, y compris les armes de Compagnon, ont Crit (2 Touches) jusqu'au début de votre prochain tour."]
           },
           {
             c: "move",
             t: "Une Fois par Bataille, Votre Phase de Mouvement",
-            n: "Éther Dépravé",
-            x: ["Effet : Retirez votre général du champ de bataille et replacez-le à plus de 6\" des unités ennemies."]
+            n: "Éthermusc Irrésistible",
+            x: ["Annonce : Choisissez comme cible une unité de Veneuses ou de Charnelles amie visible et entièrement à 12\" de votre général.", "Effet : Retirez la cible du champ de bataille et replacez-la sur le champ de bataille, à plus de 6\" des unités ennemies."]
           }
         ]
       }
     ]
   },
   when: {
-    "Faveur des Plus Volages": ["hero"],
+    "Faveur des Plus Volages": ["move", "charge", "fight", "fight-opp", "end"],
     "Apôtres de la Déchéance": ["fight", "fight-opp"],
     "Offensive Démoniaque": ["deploy"],
     "Grâce Dévoyée": ["charge"],
     "Hauts Courtisans": ["shoot-opp", "fight-opp"],
     "Excès de Violence": ["fight", "fight-opp"],
-    "Éther Dépravé": ["move"],
-    "Dispute des Hérauts": ["fight", "fight-opp"],
+    "Éthermusc Irrésistible": ["move"],
+    "Triple Cour": [],
+    "Pourvoyeur de Faveur": ["hero"],
     "Musc Soporifique": ["charge"],
     "Vives et Agiles": ["charge"],
     "Vitesse du Vif-Argent": ["move"]
