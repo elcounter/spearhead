@@ -34,7 +34,7 @@
       stats: { M: '12\"', S: 3, C: 1, Sv: "5+" },
       weapons: [{ n: "Grandes Lances", range: "Mêlée", a: 3, h: 4, w: 3, r: 1, d: "1", crit: "none", extra: ["Charge (+1 Dégât)"] }],
       abilities: [],
-      kw: "CAVALERIE, RENFORTS"
+      kw: "CAVALERIE"
     },
     {
       id: "rouleur-fauchesoleil",
