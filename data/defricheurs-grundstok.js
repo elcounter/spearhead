@@ -23,10 +23,23 @@
       ],
       abilities: [{ c: "shoot", t: "Une Fois par Bataille (Armée), N'importe Quelle Phase de Tir", n: "Munitions Incapacitantes", x: ["Annonce : Choisissez comme cible une unité ennemie à laquelle un ou plusieurs dégâts ont été alloués à cette phase par les attaques de tir de cette unité.", "Effet : Soustrayez D6 au score de contrôle de la cible pour le restant du tour."] }],
       kw: "INFANTERIE, RENFORTS" },
-    { id: "canonniere", en: "Canonnière Grundstok", stats: { M: '12"', S: 8, C: 2, Sv: "3+" },
-      weapons: [{ n: "Canons Aether", range: '18"', a: 4, h: 3, w: 3, r: 1, d: "2", crit: "none" }, { n: "Éperon", range: "Mêlée", a: 2, h: 4, w: 3, r: 1, d: "2", crit: "none" }], abilities: [], kw: "MACHINE DE GUERRE, VOL" },
-    { id: "endringreeurs", en: "Endringréeurs", stats: { M: '4"', S: 2, C: 1, Sv: "4+" },
-      weapons: [{ n: "Aethermatic Weapons", range: '12"', a: 2, h: 3, w: 3, r: 1, d: "1", crit: "none" }, { n: "Tools", range: "Mêlée", a: 2, h: 4, w: 4, r: 0, d: "1", crit: "none" }], abilities: [], kw: "INFANTERIE" }
+    { id: "canonniere", en: "Canonnière Grundstok", stats: { M: '14"', S: 10, C: 2, Sv: "2+" },
+      weapons: [
+        { n: "Stratoartillerie", range: '15"', a: 3, h: 4, w: 3, r: 2, d: "3", crit: "none" },
+        { n: "Armes d'Abordage", range: "Mêlée", a: 4, h: 4, w: 4, r: "-", d: "1", crit: "none" }
+      ],
+      abilities: [{ c: "fight", t: "N'importe Quelle Phase de Mêlée", n: "Canonnière en État d'Alerte", x: ["Annonce : Choisissez comme cible une unité ennemie qui a chargé à ce tour et qui est en mêlée avec cette unité.", "Effet : Jetez un D3. Sur 2+, infligez à la cible autant de dégâts mortels que le résultat du jet."] }],
+      kw: "MACHINE DE GUERRE, VOL" },
+    { id: "endringreeurs", en: "Endringréeurs", stats: { M: '12"', S: 2, C: 1, Sv: "3+" },
+      weapons: [
+        { n: "Cribleur à Rivets", range: '10"', a: 3, h: 3, w: 4, r: 1, d: "1", crit: "none", extra: ["Tir en Mêlée", "1 figurine"] },
+        { n: "Fusil Rotatif Éthermatique", range: '15"', a: "2D6", h: 4, w: 4, r: "-", d: "1", crit: "2hits", extra: ["1 figurine"] },
+        { n: "Arme Lourde de Stratogréeur", range: '15"', a: 1, h: 4, w: 3, r: 1, d: "D3", crit: "none", extra: ["Anti-MONSTRE (+1 Perf.)", "1 figurine (Lance-grappin, Stratoharpon ou Lance-forets)"] },
+        { n: "Scie Éthermatique", range: "Mêlée", a: 3, h: 4, w: 3, r: 1, d: "2", crit: "none", extra: ["Anti-charge (+1 Perf.)", "1 figurine"] },
+        { n: "Crosse", range: "Mêlée", a: 1, h: 4, w: 5, r: "-", d: "1", crit: "none", extra: ["2 figurines"] }
+      ],
+      abilities: [{ c: "move", t: "Phase de Mouvement Adverse", n: "Aéronautes Autonomes", x: ["Effet : Jetez un dé. Sur 3+, cette unité peut utiliser l'aptitude « Mouvement Normal » comme s'il s'agissait de votre phase de mouvement."] }],
+      kw: "INFANTERIE, VOL, RENFORTS" }
   ],
   army: { id: "armee", en: "Règles de l'armée", sections: [
     { key: "trait", title: "Trait de bataille", who: "Trait de bataille", abilities: [
@@ -43,5 +56,5 @@
       { c: "defense", t: "Passif", n: "Largage d'Urgence", x: ["Effet : Soustrayez 1 aux dégâts infligés à cette unité quand elle utilise une aptitude de REPLI."] }
     ]}
   ]},
-  when: { "Canonnière d'Escorte": ["shoot-opp", "fight-opp"], "Relocalisation Rapide": ["move"], "Courant d'Hélice Descendant": ["charge-opp"], "Capsule d'Injection de Carburant d'Urgence": ["fight", "fight-opp"], "Prospecteur et Pionnier": ["end", "end-opp"], "Mini-bombes au Célestium": ["fight", "fight-opp"], "Largage d'Urgence": ["move"], "Talent de Maître-endrinieur": ["hero"], "Munitions Incapacitantes": ["shoot", "shoot-opp"] }
+  when: { "Canonnière d'Escorte": ["shoot-opp", "fight-opp"], "Relocalisation Rapide": ["move"], "Courant d'Hélice Descendant": ["charge-opp"], "Capsule d'Injection de Carburant d'Urgence": ["fight", "fight-opp"], "Prospecteur et Pionnier": ["end", "end-opp"], "Mini-bombes au Célestium": ["fight", "fight-opp"], "Largage d'Urgence": ["move"], "Talent de Maître-endrinieur": ["hero"], "Munitions Incapacitantes": ["shoot", "shoot-opp"], "Canonnière en État d'Alerte": ["fight", "fight-opp"], "Aéronautes Autonomes": ["move-opp"] }
 });
