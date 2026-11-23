@@ -700,7 +700,7 @@ html[data-theme="dark"] .btn-warcounter{background:linear-gradient(180deg,#5a2a1
   <a class="sup-link" href="#soutenir">Si tu veux soutenir le projet</a>
   <button type="button" class="sup-link theme-btn" id="theme-btn" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg><span>Mode sombre</span></button>
   <p>© 2026 elcounter. Tous droits réservés.</p>
-  <p>SpearCounter version 2.13.13 · MAJ 23-11-2026</p>
+  <p>SpearCounter version 2.13.14 · MAJ 23-11-2026</p>
   <p>Application non officielle, non affiliée à Games Workshop.</p>
   <p>Spearhead est une marque de Games Workshop Ltd.</p>
 </footer>
@@ -1012,7 +1012,7 @@ html[data-theme="dark"] .btn-warcounter{background:linear-gradient(180deg,#5a2a1
   // ---------- Mémo ----------
   function renderMemo(){
     const cp = (window.COMPOS || {})[SH.id];
-    $("compo").innerHTML = cp ? `<div class="panel"><h3 class="sec">Composition</h3><div class="body compo"><p><b>Général</b></p><ul><li>${esc(cp[0])}</li></ul>${cp.length > 1 ? `<p><b>Unités</b></p><ul>${cp.slice(1).map(x => `<li>${esc(x)}</li>`).join("")}</ul>` : ""}</div></div>` : "";
+    $("compo").innerHTML = cp ? `<div class="panel"><h3 class="sec">Composition</h3><div class="body compo"><p><b>Général</b></p><ul><li>${esc(cp[0])}</li></ul>${cp.length > 1 ? `<p><b>Unités</b></p><ul>${cp.slice(1).filter(x => x[0] !== "*").map(x => `<li>${esc(x)}</li>`).join("")}</ul>` : ""}${cp.filter(x => x[0] === "*").map(x => `<p class="note"><i>${esc(x.slice(1))}</i></p>`).join("")}</div></div>` : "";
     $("list").innerHTML = SH.units.map(u => `<button type="button" class="unit-link" data-id="${u.id}">${renfBadge(u, false)}${unitIco(u, false)}<span>${esc(u.en).replace(/-/g, "\u2011")}</span></button>`).join("");
   }
   $("list").addEventListener("click", e => { const t = e.target.closest(".unit-link"); if (t) location.hash = SH.id + "/u/" + t.dataset.id; });
