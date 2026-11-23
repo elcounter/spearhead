@@ -342,7 +342,6 @@ body.has-back-game{padding-bottom:calc(var(--navh) + 48px)}
 .btn-warcounter.nc b{color:#f0a028}
 .btn-warcounter b{display:block;color:#d4ae3f;font:700 15px/1.2 var(--display);letter-spacing:.06em;text-transform:uppercase}
 .btn-warcounter small{display:block;margin-top:2px;font-size:13px;opacity:.9}
-/* Soutenir */
 .panel{background:var(--card);border-radius:10px;box-shadow:0 1px 2px rgba(0,0,0,.12);overflow:hidden;margin:0 0 14px}
 .panel .sec{margin:0;background:var(--khaki);color:#fff;font:700 15px var(--display);text-transform:uppercase;letter-spacing:.06em;padding:12px 16px}
 .panel .body{padding:14px 16px}
@@ -652,8 +651,6 @@ html[data-theme="dark"] .btn-warcounter{background:linear-gradient(180deg,#5a2a1
   <!-- Accueil -->
   <section id="view-accueil" hidden><div id="accueil"></div></section>
 
-  <!-- Soutenir le projet -->
-  <section id="view-soutenir" hidden><div id="soutenir"></div></section>
 
   <!-- Compte, carte communautaire, confidentialité (compte.js) -->
   <section id="view-compte" hidden><div id="compte"></div></section>
@@ -697,10 +694,9 @@ html[data-theme="dark"] .btn-warcounter{background:linear-gradient(180deg,#5a2a1
 </main>
 
 <footer class="foot">
-  <a class="sup-link" href="#soutenir">Si tu veux soutenir le projet</a>
   <button type="button" class="sup-link theme-btn" id="theme-btn" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg><span>Mode sombre</span></button>
   <p>© 2026 elcounter. Tous droits réservés.</p>
-  <p>SpearCounter version 2.13.14 · MAJ 23-11-2026</p>
+  <p>SpearCounter version 2.14.0 · MAJ 23-11-2026</p>
   <p>Application non officielle, non affiliée à Games Workshop.</p>
   <p>Spearhead est une marque de Games Workshop Ltd.</p>
 </footer>
@@ -811,8 +807,7 @@ html[data-theme="dark"] .btn-warcounter{background:linear-gradient(180deg,#5a2a1
     ["partie","Partie","Suis le score de tes parties entre amis, round par round.",'<rect x="4" y="4" width="16" height="16" rx="3"/><circle cx="9" cy="9" r="1.2" fill="currentColor"/><circle cx="15" cy="15" r="1.2" fill="currentColor"/><circle cx="15" cy="9" r="1.2" fill="currentColor"/><circle cx="9" cy="15" r="1.2" fill="currentColor"/>']
   ];
   const EXTRA = [
-    ["mailto:warcounter@proton.me?subject=%5BSpearCounter%5D%20Retour","Signaler un bug / Suggestion","Envoie un e-mail pour faire remonter un souci ou une idée.",'<path d="M4 4h16v16H4z"/><path d="M4 8l8 5 8-5"/>'],
-    ["#soutenir","Si tu veux soutenir le projet","Un don pour l'hébergement et le développement.",'<path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/>']
+    ["mailto:warcounter@proton.me?subject=%5BSpearCounter%5D%20Retour","Signaler un bug / Suggestion","Envoie un e-mail pour faire remonter un souci ou une idée.",'<path d="M4 4h16v16H4z"/><path d="M4 8l8 5 8-5"/>']
   ];
   const card = ([href, n, d, svg]) => `<a class="fcard" href="${href.startsWith("mailto:") || href.startsWith("#") ? href : "#" + href}"><span class="ficon">${I(svg)}</span><span><b>${n}</b><br>${d}</span></a>`;
   $("accueil").innerHTML = `<div class="welcome">
@@ -833,17 +828,6 @@ html[data-theme="dark"] .btn-warcounter{background:linear-gradient(180deg,#5a2a1
     </div>`;
   const hi = $("home-install"); if (hi) hi.addEventListener("click", () => { if (window.SC_INSTALL) window.SC_INSTALL(); });
 
-  const PAYPAL_URL = "https://www.paypal.com/qrcodes/p2pqrc/MXBPC6EUBZBGN";
-  const step = (n, t) => `<li><span class="snum">${n}</span><span>${t}</span></li>`;
-  $("soutenir").innerHTML = `<div class="sup-hero">${MARK('<path d="M32 46s-13-8-13-17a7 7 0 0 1 13-3.5A7 7 0 0 1 45 29c0 9-13 17-13 17z" fill="#fff"/>')}
-      <h2>Soutenir SpearCounter</h2>
-      <p>Projet piloté sur mon temps libre, ton don servira à payer un meilleur hébergement et à me donner du temps pour peaufiner l'application.</p>
-      <p>SpearCounter est gratuit, sans publicité, et le restera. <b>Ce n'est absolument pas obligatoire</b> : utiliser l'app et me faire des retours, c'est déjà un super soutien.</p></div>
-    <div class="sup-panel"><h3 class="sec">Faire un don avec PayPal</h3><div class="sup-body">
-      <a class="sup-main" href="${PAYPAL_URL}" target="_blank" rel="noopener">Faire un don avec PayPal</a>
-      <ol class="steps">${step(1, "Appuie sur le bouton ci-dessus.")}${step(2, "Indique le montant de ton choix.")}${step(3, "Sélectionne <b>Entre proches</b> : ainsi, aucun frais n'est prélevé sur ton don.")}</ol>
-    </div></div>
-    <p class="sup-thanks">Merci du fond du cœur, et bonnes parties !<br><b>elcounter</b></p>`;
 
   // ---------- Onglet Spearhead : liste (classée par alliance) ----------
   const ALLIANCE_ORDER = ["L'Ordre", "Le Chaos", "La Mort", "La Destruction"];
@@ -1187,14 +1171,13 @@ html[data-theme="dark"] .btn-warcounter{background:linear-gradient(180deg,#5a2a1
   document.addEventListener("click", e => { if (e.target.closest("a[data-memo]")) fromGame = true; });
   function route(){
     const [shId, part, unitId] = location.hash.slice(1).split("/");
-    if (["", "partie", "spearheads", "regles", "pack", "soutenir", "compte", "carte", "confidentialite", "collection"].includes(shId)) fromGame = false;
+    if (["", "partie", "spearheads", "regles", "pack", "compte", "carte", "confidentialite", "collection"].includes(shId)) fromGame = false;
     $("back-game").hidden = !fromGame;
     document.body.classList.toggle("has-back-game", fromGame);
     if (fromGame) $("back-score").textContent = window.SC_PARTIE.scoreLine ? window.SC_PARTIE.scoreLine() : "";
     if (shId === "partie") { show("partie"); window.SC_PARTIE.open((t, sub) => { const pn = window.SC_PARTIE.packName(); $("kicker").textContent = pn ? "Partie · " + pn : "Partie"; $("title").textContent = t; $("back").hidden = !sub; }); return; }
     if (shId === "regles") { show("rules"); return; }
     if (shId === "spearheads") { show("home"); return; }
-    if (shId === "soutenir") { show("soutenir"); return; }
     if (shId === "collection") { collArm = ""; renderColl(); show("collection"); return; }
     if (["compte","carte","confidentialite"].includes(shId)) { show(shId); window.SC_COMPTE.open(shId); return; }
     if (shId === "pack") {
@@ -1214,14 +1197,14 @@ html[data-theme="dark"] .btn-warcounter{background:linear-gradient(180deg,#5a2a1
   }
   function show(view, unit, doc){
     const ACC = ["compte","carte","confidentialite","collection"];
-    ["accueil","soutenir","home","rules","partie","memo","regles","phases","unit","pack","doc"].concat(ACC).forEach(k => { $("view-" + k).hidden = k !== view; });
-    $("tabs").hidden = ["accueil","soutenir","home","rules","partie","unit","pack","doc"].concat(ACC).includes(view);
+    ["accueil","home","rules","partie","memo","regles","phases","unit","pack","doc"].concat(ACC).forEach(k => { $("view-" + k).hidden = k !== view; });
+    $("tabs").hidden = ["accueil","home","rules","partie","unit","pack","doc"].concat(ACC).includes(view);
     $("back").hidden = ["accueil","home","rules","partie"].includes(view);
     if (view !== "partie") $("g-score").hidden = true;
     document.body.classList.toggle("g-has-foot", view === "partie" && !$("g-foot").hidden);
     const inPack = view === "pack" || view === "doc";
     if (view === "partie") { $("bn-partie").setAttribute("aria-current", "page"); ["regles","spearhead"].forEach(k => $("bn-" + k).removeAttribute("aria-current")); window.scrollTo(0, 0); return; }
-    const top = ["accueil","soutenir","home","rules"].includes(view);
+    const top = ["accueil","home","rules"].includes(view);
     if (ACC.includes(view)) {
       $("kicker").textContent = "SpearCounter";
       $("title").textContent = {compte:"Mon compte", carte:"Carte des joueurs", confidentialite:"Confidentialité", collection:"Collection"}[view];
@@ -1230,7 +1213,7 @@ html[data-theme="dark"] .btn-warcounter{background:linear-gradient(180deg,#5a2a1
     }
     $("kicker").textContent = top ? "" : inPack ? (doc ? PK.name : "Règles") : (view === "unit" ? SH.name : "SpearCounter");
     $("title").textContent = top ? "SpearCounter" : inPack ? (doc ? doc.en : PK.name) : (unit ? unit.en : SH.name);
-    const tab = view === "accueil" || view === "soutenir" ? "accueil" : (view === "rules" || inPack) ? "regles" : "spearhead";
+    const tab = view === "accueil" ? "accueil" : (view === "rules" || inPack) ? "regles" : "spearhead";
     ["regles","spearhead","partie"].forEach(k => { if (k === tab) $("bn-" + k).setAttribute("aria-current", "page"); else $("bn-" + k).removeAttribute("aria-current"); });
     ["memo","regles","phases"].forEach(k => { if (k === view) $("nav-" + k).setAttribute("aria-current", "page"); else $("nav-" + k).removeAttribute("aria-current"); });
     if (unit) showUnit(unit);
@@ -1240,7 +1223,7 @@ html[data-theme="dark"] .btn-warcounter{background:linear-gradient(180deg,#5a2a1
     const [shId, part, sub] = location.hash.slice(1).split("/");
     if (shId === "partie") return window.SC_PARTIE.back();
     if (shId === "pack") location.hash = sub ? "pack/" + part : "regles";
-    else if (shId === "soutenir" || shId === "compte" || shId === "carte" || shId === "collection") location.hash = "";
+    else if (shId === "compte" || shId === "carte" || shId === "collection") location.hash = "";
     else if (shId === "confidentialite") location.hash = "compte";
     else location.hash = part === "u" ? shId + "/memo" : "spearheads";
   });
