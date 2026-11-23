@@ -2,7 +2,7 @@
 // Changer VERSION à chaque mise à jour du site pour forcer le rafraîchissement du cache.
 // ASSETS (app et données, légers) : mis en cache à l'installation. IMAGES : cache séparé et durable, rempli en arrière-plan.
 // Ces deux listes sont régénérées par sync.py.
-const VERSION = "spearcounter-2.13.10";
+const VERSION = "spearcounter-2.13.11";
 const ASSETS = [
   "./",
   "./index.html",
@@ -57,6 +57,8 @@ const ASSETS = [
   "./data/liges-charognards.js",
   "./data/mangeferraille.js",
   "./data/bande-cherche-gueule.js",
+  "./data/sentinelles-embergard.js",
+  "./data/fyrd-magmatique.js",
   "./data/meutegriffe-maletincelle.js",
   "./data/meutegriffe-rongefestin.js",
   "./data/ogors.js",
