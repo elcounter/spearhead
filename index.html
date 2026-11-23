@@ -346,6 +346,7 @@ body.has-back-game{padding-bottom:calc(var(--navh) + 48px)}
 .panel{background:var(--card);border-radius:10px;box-shadow:0 1px 2px rgba(0,0,0,.12);overflow:hidden;margin:0 0 14px}
 .panel .sec{margin:0;background:var(--khaki);color:#fff;font:700 15px var(--display);text-transform:uppercase;letter-spacing:.06em;padding:12px 16px}
 .panel .body{padding:14px 16px}
+.compo p{margin:0 0 4px}.compo ul{margin:0 0 10px;padding-left:20px}.compo ul:last-child{margin-bottom:0}
 .acc{display:grid;gap:10px}
 .acc p{margin:0}
 .acc .hint{padding:0;font-size:13px}
@@ -682,7 +683,7 @@ html[data-theme="dark"] .btn-warcounter{background:linear-gradient(180deg,#5a2a1
   <section id="view-doc" hidden><div class="sheet"><div class="doc" id="doc"></div></div></section>
 
   <!-- Mémo -->
-  <section id="view-memo" hidden><div class="list" id="list"></div></section>
+  <section id="view-memo" hidden><div id="compo"></div><div class="list" id="list"></div></section>
 
   <!-- Fiche unité -->
   <section id="view-unit" hidden><div class="sheet" id="unit"></div></section>
@@ -699,7 +700,7 @@ html[data-theme="dark"] .btn-warcounter{background:linear-gradient(180deg,#5a2a1
   <a class="sup-link" href="#soutenir">Si tu veux soutenir le projet</a>
   <button type="button" class="sup-link theme-btn" id="theme-btn" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg><span>Mode sombre</span></button>
   <p>© 2026 elcounter. Tous droits réservés.</p>
-  <p>SpearCounter version 2.13.12 · MAJ 23-11-2026</p>
+  <p>SpearCounter version 2.13.13 · MAJ 23-11-2026</p>
   <p>Application non officielle, non affiliée à Games Workshop.</p>
   <p>Spearhead est une marque de Games Workshop Ltd.</p>
 </footer>
@@ -759,6 +760,7 @@ html[data-theme="dark"] .btn-warcounter{background:linear-gradient(180deg,#5a2a1
 <script src="data/sentinelles-embergard.js"></script>
 <script src="data/fyrd-magmatique.js"></script>
 <script src="data/slasher-host.js"></script>
+<script src="data/compositions.js"></script>
 <script src="data/ost-lugubre.js"></script>
 <script src="data/avant-garde-kavalos.js"></script>
 <script src="data/echelon-collecteur-dime.js"></script>
@@ -1009,6 +1011,8 @@ html[data-theme="dark"] .btn-warcounter{background:linear-gradient(180deg,#5a2a1
 
   // ---------- Mémo ----------
   function renderMemo(){
+    const cp = (window.COMPOS || {})[SH.id];
+    $("compo").innerHTML = cp ? `<div class="panel"><h3 class="sec">Composition</h3><div class="body compo"><p><b>Général</b></p><ul><li>${esc(cp[0])}</li></ul>${cp.length > 1 ? `<p><b>Unités</b></p><ul>${cp.slice(1).map(x => `<li>${esc(x)}</li>`).join("")}</ul>` : ""}</div></div>` : "";
     $("list").innerHTML = SH.units.map(u => `<button type="button" class="unit-link" data-id="${u.id}">${renfBadge(u, false)}${unitIco(u, false)}<span>${esc(u.en).replace(/-/g, "\u2011")}</span></button>`).join("");
   }
   $("list").addEventListener("click", e => { const t = e.target.closest(".unit-link"); if (t) location.hash = SH.id + "/u/" + t.dataset.id; });
