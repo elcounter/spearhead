@@ -920,8 +920,8 @@ html[data-theme="dark"] .btn-warcounter{background:linear-gradient(180deg,#5a2a1
   function renderHome(){
     const F = favs().map(id => SPEARHEADS.find(x => x.id === id)).filter(Boolean)
       .sort((a, b) => (a.faction || "").localeCompare(b.faction || "", "fr") || a.name.localeCompare(b.name, "fr"));
-    $("home").innerHTML = (F.length ? `<div class="alliance-block fav-block"><h3 class="alliance-title">Mes Spearheads favorites</h3><div class="list">${F.map(shBtn).join("")}</div></div>` : "")
-      + allianceKeys.map(a => `<div class="alliance-block"><h3 class="alliance-title">${esc(a)}</h3><div class="list">${byAlliance[a].map(shBtn).join("")}</div></div>`).join("");
+    $("home").innerHTML = (F.length ? `<div class="alliance-block fav-block"><h3 class="alliance-title">Mes Spearheads favorites (${F.length})</h3><div class="list">${F.map(shBtn).join("")}</div></div>` : "")
+      + allianceKeys.map(a => `<div class="alliance-block"><h3 class="alliance-title">${esc(a)} (${byAlliance[a].length})</h3><div class="list">${byAlliance[a].map(shBtn).join("")}</div></div>`).join("");
     filterHome();
   }
   function toggleFav(id){
