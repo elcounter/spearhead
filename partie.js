@@ -132,7 +132,7 @@
         <div class="g-row"><div class="g-grow"><b>${pname(0)}</b> contre <b>${pname(1)}</b><div class="g-hint">${g.pack || g.face ? esc(packLine(g)) : "Pack à choisir"}${g.label ? " · " + esc(g.label) : ""}</div></div><div class="g-big">${total(0)} - ${total(1)}</div></div>
         <div class="g-row"><span class="g-tag">${where}</span><span class="g-grow"></span><button class="g-del" type="button" data-act="del" data-id="${g.id}" aria-label="Supprimer cette partie">${TRASH}</button><button class="g-btn gold" type="button" data-act="resume" data-id="${g.id}">Reprendre</button></div>
       </div></div>`; })).join("")}</div></div>`;
-    else h += `<div class="g-panel g-hero"><h2>Aucune partie en cours</h2><p class="g-hint">Pack de bataille, joueurs et Spearheads, puis le score round par round.</p></div>`;
+    else h += `<div class="g-panel g-hero"><h2>Aucune partie en cours</h2></div>`;
     if (hist.length) h += `<div><span class="g-lbl">Parties terminées</span><div class="g-hist">${hist.slice(0,15).map((x, i) => `<div><button class="g-grow g-hopen" type="button" data-act="hopen" data-i="${i}"><b>${esc(x.a)}</b> ${res(x.sa, x.sb)} ${x.sa} - ${x.sb} <b>${esc(x.b)}</b> ${res(x.sb, x.sa)}<br><span class="g-hint">${esc(x.f)} · ${esc(x.d)}</span></button><button class="g-del" type="button" data-act="hdel" data-i="${i}" aria-label="Supprimer cette partie">${TRASH}</button></div>`).join("")}</div></div>`;
     h += statsHtml(hist);
     return h;
