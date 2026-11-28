@@ -696,7 +696,7 @@ html[data-theme="dark"] .btn-warcounter{background:linear-gradient(180deg,#5a2a1
 <footer class="foot">
   <button type="button" class="sup-link theme-btn" id="theme-btn" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg><span>Mode sombre</span></button>
   <p>© 2026 elcounter. Tous droits réservés.</p>
-  <p>SpearCounter version 2.15.1 · MAJ 28-11-2026</p>
+  <p>SpearCounter version 2.16.0 · MAJ 28-11-2026</p>
   <p>Application non officielle, non affiliée à Games Workshop.</p>
   <p>Spearhead est une marque de Games Workshop Ltd.</p>
 </footer>
@@ -952,9 +952,20 @@ html[data-theme="dark"] .btn-warcounter{background:linear-gradient(180deg,#5a2a1
   $("home-packs").innerHTML = PACKS.map(pk => `<button type="button" class="unit-link sh-link army-link" data-id="${pk.id}">${PACK_ICO[pk.id] ? `<span class="u-ico" aria-hidden="true">${PACK_ICO[pk.id]}</span>` : ""}<span>${esc(pk.name)}${pk.sub ? `<small>${esc(pk.sub)}</small>` : ""}</span></button>`).join("");
   $("home-packs").addEventListener("click", e => { const t = e.target.closest(".sh-link"); if (t) location.hash = "pack/" + t.dataset.id; });
   $("pack").addEventListener("click", e => { const t = e.target.closest(".unit-link"); if (t) location.hash = "pack/" + PK.id + "/" + t.dataset.id; });
+  const GROUP_ICO = {
+    "avant": SVG('<path d="M5 4h12.5a2.5 2.5 0 0 1 0 5H17v9.5a2.5 2.5 0 0 1-2.5 2.5H4a2.5 2.5 0 0 1 0-5h1z"/><path d="M8 9h6M8 12h6M8 15h4" stroke="#5a2f1f" stroke-width="1.4" stroke-linecap="round"/><circle cx="17.5" cy="6.5" r="1" fill="#5a2f1f"/>', 1),
+    "rounds": SVG('<path d="M5 2h14v2h-1c0 4-2.5 6-4.5 8 2 2 4.5 4 4.5 8h1v2H5v-2h1c0-4 2.5-6 4.5-8C8.5 10 6 8 6 4H5z"/><path d="M8.2 5.5h7.6c-.4 2-1.8 3.4-3.8 5-2-1.6-3.4-3-3.8-5zM12 16c2 0 3.6 1.6 3.8 4H8.2c.2-2.4 1.8-4 3.8-4z" fill="#c9974a"/>', 1),
+    "decors": SVG('<path d="M1.5 21 8 9l4 7 2.5-4 8 9z"/><path d="M8 9l-1.8 3.4 1.8-1 1.6 1.3z" fill="#f1e6c8"/><path d="M14.5 12l-1.1 1.8 1.1-.5 1.2.7z" fill="#f1e6c8"/><circle cx="18" cy="6" r="2.6" fill="#e8743b"/>', 1),
+    "objectifs": SVG('<circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6.8" fill="#5a2f1f"/><circle cx="12" cy="12" r="4.4"/><circle cx="12" cy="12" r="1.8" fill="#c0392b"/>', 1),
+    "reliques": SVG('<path d="M5 3h14c0 5-2.6 8.6-6 9.4V17h3.5v2.5h-9V17H11v-4.6C7.6 11.6 5 8 5 3z"/><path d="M5 21h14v1.5H5z"/><path d="M12 5.2l1.6 2-1.6 2-1.6-2z" fill="#3f9a63"/>', 1),
+    "campagne": SVG('<path d="M2 5l6.5-2 7 2.5L22 3v16l-6.5 2-7-2.5L2 21z"/><path d="M5 17c2-1 2.5-3.5 5-3.5s3-3 5.5-4" stroke="#5a2f1f" stroke-width="1.4" stroke-dasharray="1.6 1.6" fill="none" stroke-linecap="round"/><path d="M16.5 6.2l2.6 2.6M19.1 6.2l-2.6 2.6" stroke="#c0392b" stroke-width="1.8" stroke-linecap="round"/>', 1),
+    "cartes": SVG('<rect x="2" y="4" width="20" height="16" rx="2"/><path d="M3.5 5.5h7v13h-7z" fill="#4f7fb3"/><path d="M13.5 5.5h7v13h-7z" fill="#c0392b"/><path d="M12 4.5v15" stroke="#5a2f1f" stroke-width="1" stroke-dasharray="1.5 1.5"/>', 1),
+    "regles": SVG('<path d="M12 6C9.5 4 6 3.5 2 4v15c4-.5 7.5 0 10 2 2.5-2 6-2.5 10-2V4c-4-.5-7.5 0-10 2z"/><path d="M12 6v15" stroke="#5a2f1f" stroke-width="1.3"/><path d="M4.5 8.5c2-.2 3.8.2 5.2 1M4.5 12c2-.2 3.8.2 5.2 1M14.3 9.5c1.4-.8 3.2-1.2 5.2-1M14.3 13c1.4-.8 3.2-1.2 5.2-1" stroke="#5a2f1f" stroke-width="1.1" fill="none" stroke-linecap="round"/>', 1),
+    "victoire": SVG('<path d="M7 3h10v2h3.5v2.5A4.5 4.5 0 0 1 16.6 12 5 5 0 0 1 13 14.8V17h3v2H8v-2h3v-2.2A5 5 0 0 1 7.4 12 4.5 4.5 0 0 1 3.5 7.5V5H7zM5.3 6.8v.7a2.7 2.7 0 0 0 1.9 2.6A9 9 0 0 1 7 6.8zm13.4 0H17a9 9 0 0 1-.2 3.3 2.7 2.7 0 0 0 1.9-2.6z"/><path d="M6 20h12v2H6z"/><path d="M12 5.5l.9 1.9 2 .2-1.5 1.3.5 2-1.9-1-1.9 1 .5-2-1.5-1.3 2-.2z" fill="#5a2f1f"/>', 1)
+  };
   function renderPack(){
     $("pack").innerHTML = PK.groups.map(g => {
-      return `<button type="button" class="unit-link army-link" data-id="${g.id}"><span>${esc(g.en)}</span></button>`;
+      return `<button type="button" class="unit-link sh-link army-link" data-id="${g.id}">${GROUP_ICO[g.id] ? `<span class="u-ico" aria-hidden="true">${GROUP_ICO[g.id]}</span>` : ""}<span>${esc(g.en)}</span></button>`;
     }).join("");
   }
   function docAb(a){
