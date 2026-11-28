@@ -167,7 +167,8 @@
   }
   const mapHtml = () => `<div class="mapw"><p class="hint">Les joueurs qui ont choisi d'apparaître sur la carte, regroupés par ville. Pour y figurer : <a href="#compte">Mon compte</a>, puis Mon profil joueur.</p>
     <p class="map-total" id="map-info" aria-live="polite">Chargement des joueurs…</p>
-    <div id="map" class="map"></div></div>`;
+    <div id="map" class="map"></div>
+    <div id="map-list"></div></div>`;
   // Sur la carte SpearCounter : seulement les factions des Spearheads (pas les gangs Necromunda ni les autres armées)
   const nf = t => String(t || "").normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().trim();
   const spFacs = L => { const S = new Set(FACS().map(nf)); return [...new Set((L || []).filter(f => S.has(nf(f))))]; };
@@ -183,6 +184,13 @@
     const clubs = new Set(R.map(r => r.club).filter(Boolean)), nv = Object.keys(by).length;
     $("map-info").innerHTML = failed ? "Joueurs indisponibles : vérifie ta connexion à Internet."
       : `<b>${R.length}</b> joueur${R.length > 1 ? "s" : ""} sur la carte<small>${nv} ville${nv > 1 ? "s" : ""} · ${clubs.size} club${clubs.size > 1 ? "s" : ""}</small>`;
+    // Liste des joueurs sous la carte (triée par ville puis pseudo)
+    if (!failed && R.length) {
+      const S = [...R].sort((a, b) => String(a.city || "").localeCompare(String(b.city || ""), "fr") || String(a.pseudo || "").localeCompare(String(b.pseudo || ""), "fr"));
+      $("map-list").innerHTML = `<div class="plist"><table><thead><tr><th>Pseudo</th><th>Factions</th><th>Ville</th><th>Club</th></tr></thead><tbody>`
+        + S.map(r => `<tr><td><b>${esc(r.pseudo || "")}</b></td><td>${esc(spFacs(r.factions).join(", ")) || "–"}</td><td>${esc(r.city || "")}</td><td>${esc(r.club || "") || "–"}</td></tr>`).join("")
+        + `</tbody></table></div>`;
+    }
     // 2. Le fond de carte
     try { await loadLeaflet(); } catch(e) { if ($("map")) $("map").innerHTML = `<p class="hint">Carte indisponible : vérifie ta connexion à Internet.</p>`; return; }
     if (!$("map")) return;
