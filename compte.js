@@ -187,8 +187,8 @@
     // Liste des joueurs sous la carte (triée par ville puis pseudo)
     if (!failed && R.length) {
       const S = [...R].sort((a, b) => String(a.city || "").localeCompare(String(b.city || ""), "fr") || String(a.pseudo || "").localeCompare(String(b.pseudo || ""), "fr"));
-      $("map-list").innerHTML = `<div class="plist"><table><thead><tr><th>Pseudo</th><th>Factions</th><th>Ville</th><th>Club</th></tr></thead><tbody>`
-        + S.map(r => `<tr><td><b>${esc(r.pseudo || "")}</b></td><td>${esc(spFacs(r.factions).join(", ")) || "–"}</td><td>${esc(r.city || "")}</td><td>${esc(r.club || "") || "–"}</td></tr>`).join("")
+      $("map-list").innerHTML = `<div class="plist"><table><thead><tr><th>Pseudo</th><th>Ville</th><th>Club</th></tr></thead><tbody>`
+        + S.map(r => `<tr><td><b>${esc(r.pseudo || "")}</b></td><td>${esc(r.city || "")}</td><td>${esc(r.club || "") || "–"}</td></tr>`).join("")
         + `</tbody></table></div>`;
     }
     // 2. Le fond de carte
